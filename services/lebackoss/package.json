@@ -5,6 +5,7 @@
     "duplo:dev": "tsx --watch interfaces/http/main.ts",
     "duplo:generate": "duplojs-types-codegen --import @duplojs/node/globals --require ./interfaces/http/plugins/generate.ts --include interfaces/http/routes/index.ts --output ../../libs/clients-type/types/lebackoss/duplojsTypesCodegen.d.ts",
     "test:types": "tsc",
+    "test:lint": "eslint",
     "postinstall": "npm run duplo:generate"
   },
   "dependencies": {
