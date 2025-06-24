@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useCreatePrestationSheetForm } from "./composables/useCreatePrestationSheetForm";
 import { addPrestationPage } from "./router";
 
 const { $pt } = addPrestationPage.use();
+const { CreatePrestationSheetForm } = useCreatePrestationSheetForm();
+
 </script>
 
 <template>
@@ -16,9 +19,8 @@ const { $pt } = addPrestationPage.use();
 			</p>
 		</div>
 
-		<div class="" />
-
-		<!-- TODO: remove this exemple -->
-		<DSDatePicker />
+		<CreatePrestationSheetForm>
+			<DSPrimaryButton>send</DSPrimaryButton>
+		</CreatePrestationSheetForm>
 	</section>
 </template>

@@ -7,6 +7,7 @@ import { type MultiLayoutTemplateItem } from "./multiLayout";
 import { type FormTemplateItem } from "./form";
 import { type TextLayoutTemplateItem } from "./textLayout";
 import { type UnionLayoutTemplateItem } from "./unionLayout";
+import { type RepeatLayoutTemplateItem } from "./repeatLayout";
 
 type TemplateComponent = DefineComponent<any, any, any, any, any, any, any, any, any, object, any>;
 
@@ -40,7 +41,8 @@ export type LayoutTemplateItems =
 	| MultiLayoutTemplateItem
 	| FormTemplateItem
 	| TextLayoutTemplateItem
-	| UnionLayoutTemplateItem;
+	| UnionLayoutTemplateItem
+	| RepeatLayoutTemplateItem;
 
 export type FindLayoutTemplateItem<
 	GenericLayout extends AnyFunction,
