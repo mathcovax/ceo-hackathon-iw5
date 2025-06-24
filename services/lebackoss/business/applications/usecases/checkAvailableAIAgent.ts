@@ -22,7 +22,7 @@ export class CheckAvailableAIAgentUsecase extends UsecaseHandler.create({
 
 			await this.prestationSheetRepository.save(updatedPrestationSheet);
 
-			return new UsecaseError("faild-check-AIAgent-availability", {
+			return new UsecaseError("failed-check-AIAgent-availability", {
 				aIAgent,
 				prestationSheet,
 			});

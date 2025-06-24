@@ -39,4 +39,11 @@ export class AIAgentEntity extends EntityHandler.create({
 	public static create(params: GetEntityProperties<typeof AIAgentEntity>) {
 		return new AIAgentEntity(params);
 	}
+
+	public partialUpdate(params: Partial<Pick<
+		GetEntityProperties<typeof AIAgentEntity>,
+		"pingUrl" | "entryPointUrl" | "tokenKey"
+	>>) {
+		return this.update(params);
+	}
 }
