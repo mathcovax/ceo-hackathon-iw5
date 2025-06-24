@@ -1,6 +1,7 @@
 import { prestationSheetRepository } from "@business/applications/repositories/prestationSheet";
-import { PrestationSheet } from "@business/domains/entities/prestationSheet";
+import { PrestationSheet, PrestationSheetEntity } from "@business/domains/entities/prestationSheet";
 import { mongo } from "@interfaces/providers/mongo";
+import { EntityHandler, RepositoryError } from "@vendors/clean";
 import { uuidv7 } from "uuidv7";
 
 prestationSheetRepository.default = {
@@ -17,5 +18,19 @@ prestationSheetRepository.default = {
 	},
 	generateId() {
 		return PrestationSheet.idObjecter.unsafeCreate(uuidv7());
+	},
+	async getById(prestationSheetId) {
+		const mongoPrestationSheet = await mongo.prestationSheetCollection.findOne({
+			id: prestationSheetId.value,
+		});
+
+		if (!mongoPrestationSheet) {
+			throw new RepositoryError("prestationSheet.notfound");
+		}
+
+		return EntityHandler.unsafeMapper(
+			PrestationSheetEntity,
+			mongoPrestationSheet,
+		);
 	},
 };

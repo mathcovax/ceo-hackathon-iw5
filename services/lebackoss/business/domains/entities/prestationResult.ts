@@ -10,12 +10,12 @@ export namespace PrestationResult {
 	export type Id = GetValueObject<typeof idObjecter>;
 }
 
-export class Entity extends EntityHandler.create({
+export class PrestationResultEntity extends EntityHandler.create({
 	id: PrestationResult.idObjecter,
 	prestationId: Prestation.idObjecter,
 	data: prestationResultDataObjecter.array(),
 }) {
-	public static create(params: GetEntityProperties<typeof Entity>) {
-		return new Entity(params);
+	public static create(params: GetEntityProperties<typeof PrestationResultEntity>) {
+		return new PrestationResultEntity(params);
 	}
 }

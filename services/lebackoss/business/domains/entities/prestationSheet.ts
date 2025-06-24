@@ -79,6 +79,22 @@ export class PrestationSheetEntity extends EntityHandler.create({
 		return this.update(params);
 	}
 
+	public disabledPrestationSheetStatus() {
+		return this.update(
+			{
+				status: PrestationSheet.statusObjecter.unsafeCreate("disabled"),
+			},
+		);
+	}
+
+	public availablePrestationSheetStatus() {
+		return this.update(
+			{
+				status: PrestationSheet.statusObjecter.unsafeCreate("available"),
+			},
+		);
+	}
+
 	public disabled() {
 		return this.update({
 			status: PrestationSheet.statusObjecter.unsafeCreate("disabled"),

@@ -9,7 +9,7 @@ interface Input {
 	keywords?: PrestationSheet.Keyword[];
 }
 
-export class UpdatePrestationSheetUsecase extends UsecaseHandler.create({
+export class UpdatePrestationSheet extends UsecaseHandler.create({
 	prestationSheetRepository,
 }) {
 	public execute({
