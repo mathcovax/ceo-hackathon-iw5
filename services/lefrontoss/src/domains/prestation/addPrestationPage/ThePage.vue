@@ -17,5 +17,8 @@ const { $pt } = addPrestationPage.use();
 		</div>
 
 		<div class="" />
+
+		<!-- TODO: remove this exemple -->
+		<DSDatePicker />
 	</section>
 </template>
