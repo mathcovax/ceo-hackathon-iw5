@@ -18,7 +18,7 @@ aIAgentRepository.default = {
 	generateId() {
 		return AIAgent.IdObjecter.unsafeCreate(uuidv7());
 	},
-	isAvailable(aIAgent) {
+	async isAvailable(aIAgent) {
 		return Promise.resolve(false);
 	},
 

@@ -3,8 +3,10 @@ import { createRepositoryHandler, type RepositoryBase } from "@vendors/clean";
 
 export interface PrestationSheetRepository extends RepositoryBase<PrestationSheetEntity> {
 	generateId(): PrestationSheet.Id;
+	getById(id: PrestationSheet.Id): Promise<PrestationSheetEntity>;
 }
 
 export const prestationSheetRepository = createRepositoryHandler<
 	PrestationSheetRepository
 >();
+

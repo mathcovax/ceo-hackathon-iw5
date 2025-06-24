@@ -52,6 +52,13 @@ export namespace PrestationSheet {
 
 }
 
+type UpdateDescriptionFieldsParams = Partial<
+	Pick<
+		GetEntityProperties<typeof PrestationSheetEntity>,
+		"description" | "name" | "keywords"
+	>
+>;
+
 export class PrestationSheetEntity extends EntityHandler.create({
 	id: PrestationSheet.idObjecter,
 	mode: PrestationSheet.modeObjecter,
@@ -66,6 +73,10 @@ export class PrestationSheetEntity extends EntityHandler.create({
 			...params,
 			status: PrestationSheet.statusObjecter.unsafeCreate("disabled"),
 		});
+	}
+
+	public updateDescriptionFields(params: UpdateDescriptionFieldsParams) {
+		return this.update(params);
 	}
 
 	public disabled() {

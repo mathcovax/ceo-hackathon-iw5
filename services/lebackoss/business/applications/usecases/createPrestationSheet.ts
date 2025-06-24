@@ -57,7 +57,6 @@ export class CreatePrestationSheetUsecase extends UsecaseHandler.create({
 
 					const checkResult = await this.checkAIAgent({
 						aIAgent,
-						prestationSheet,
 					});
 
 					return checkResult;
