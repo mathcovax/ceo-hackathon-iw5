@@ -6,3 +6,4 @@ export * from "./utils";
 export * from "./valueObject/index";
 export * from "./error";
 export { z as zod } from "zod";
+export * as ZodSpace from "zod";

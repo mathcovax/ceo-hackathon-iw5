@@ -14,5 +14,8 @@ export const envs = zod
 		HOST: zod.enum(["0.0.0.0"]),
 		ENVIROMENT: zod.enum(["DEV", "PROD"]),
 		CORS_ALLOW_ORIGIN: zod.string(),
+		DB_CONNECTION: zod.booleanInString(),
+		MONGO_DATABASE_URL: zod.string(),
+		MONGO_DB: zod.string(),
 	})
 	.parse(process.env);
