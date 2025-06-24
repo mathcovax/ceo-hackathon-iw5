@@ -1,7 +1,7 @@
 export const notFoundPage = createPage(
 	"notFound",
 	{
-		path: "/",
+		path: "/:notFoundPath(.*)*",
 		component: () => import("./ThePage.vue"),
 	},
 );

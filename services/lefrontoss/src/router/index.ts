@@ -1,5 +1,7 @@
 import { homePage } from "@/domains/edito/homePage/router";
 import { notFoundPage } from "@/domains/edito/notFoundPage/router";
+import { listContractorsPage } from "@/domains/contractor/listContractorsPage/router";
+import { addContractorPage } from "@/domains/contractor/addContractorPage/router";
 import { createWebHistory, createRouter } from "vue-router";
 
 export const router = createRouter({
@@ -8,7 +10,12 @@ export const router = createRouter({
 		{
 			path: "/",
 			component: () => import("../layouts/BaseLayout.vue"),
-			children: [homePage.recordRaw, notFoundPage.recordRaw],
+			children: [
+				homePage.recordRaw,
+				notFoundPage.recordRaw,
+				listContractorsPage.recordRaw,
+				addContractorPage.recordRaw,
+			],
 		},
 	],
 	scrollBehavior(_to, _from, savedPosition) {

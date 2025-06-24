@@ -1,9 +1,22 @@
+import { notFoundPage } from "@/domains/edito/notFoundPage/router";
+
 export const FRfr = {
 	page: {
+		[notFoundPage.name]: {
+			title: "Page non trouvée",
+			description: "La page que vous recherchez n'existe pas.",
+		},
 	},
 	layout: {
 		loader: {
 			title: "Chargement en cours...",
+			description: "Veuillez patienter.",
+		},
+		header: {
+			nav: {
+				listContractors: "Liste des prestataires",
+				addContractor: "Ajouter un prestataire",
+			},
 		},
 		footer: {
 			nav: {

@@ -21,16 +21,12 @@ export const buttonVariants = cva(
 	{
 		variants: {
 			variant: {
-				seaence:
-					"bg-blue-seaence text-primary-foreground hover:bg-seaence/80",
 				primary: "bg-primary text-primary-foreground hover:bg-primary/80",
-				secondary:
-					"bg-secondary text-secondary-foreground hover:bg-secondary/80",
-				outline:
-					"border border-primary bg-background text-primary hover:bg-accent",
-				destructive:
-					"bg-destructive text-primary-foreground hover:bg-destructive/60",
+				secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+				outline: "border border-primary bg-background text-primary hover:bg-accent",
+				destructive: "bg-destructive text-primary-foreground hover:bg-destructive/60",
 				ghost: "bg-transparent text-muted-foreground hover:bg-accent/40",
+				link: "underline-offset-8 hover:text-primary hover:underline",
 			},
 			size: {
 				default: "h-10 px-4 py-2",

@@ -3,5 +3,5 @@
 </script>
 
 <template>
-	Home Page
+	Add Contractor Page
 </template>

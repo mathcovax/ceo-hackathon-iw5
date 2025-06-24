@@ -11,7 +11,7 @@
 	--popover-foreground: oklch(0.145 0 0);
 	--primary:
 		/* oklch(0.205 0 0); */
-		oklch(0.67 0.1 265);
+		#5690E8;
 	--primary-foreground: oklch(0.985 0 0);
 	--secondary:
 		/* oklch(0.97 0 0); */
@@ -23,15 +23,15 @@
 	--accent-foreground: oklch(0.205 0 0);
 	--success: oklch(0.627 0.194 149.214);
 	--success-foreground: oklch(0.627 0.194 149.214);
-	--warning: oklch(0.67 0.1 265);
-	--warning-foreground: oklch(0.67 0.1 265);
+	--warning: #5690E8;
+	--warning-foreground: #5690E8;
 	--destructive: oklch(0.577 0.245 27.325);
 	--destructive-foreground: oklch(0.577 0.245 27.325);
 	--border: oklch(0.922 0 0);
 	--input: oklch(0.922 0 0);
 	--ring:
 		/* oklch(0.708 0 0); */
-		oklch(0.67 0.1 265);
+		#5690E8;
 	--chart-1: oklch(0.646 0.222 41.116);
 	--chart-2: oklch(0.6 0.118 184.704);
 	--chart-3: oklch(0.398 0.07 227.392);
@@ -48,7 +48,7 @@
 	--sidebar-ring: oklch(0.708 0 0);
 
 	/* Custom */
-	--blue-seaence: oklch(0.67 0.13 250);
+	--blue-seaence: #5690E8;
 	--pink-seaence: oklch(0.732 0.206 18.2);
 	--green-seaence: oklch(0.715 0.071 187.6);
 	--purple-seaence: oklch(0.714 0.203 305.504);
@@ -127,21 +127,6 @@
 
 		to {
 			height: 0;
-		}
-	}
-
-	/* Loading waves */
-	--animate-wave: wave 2s ease-in-out infinite;
-
-	@keyframes wave {
-
-		from,
-		to {
-			transform: translateY(0);
-		}
-
-		50% {
-			transform: translateY(-1.25px);
 		}
 	}
 }

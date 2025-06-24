@@ -36,7 +36,11 @@ export default defineConfig({
 			vueTemplate: true,
 		}),
 		autoImportComponents({
-			dirs: ["src/components"],
+			dirs: [
+				"src/components",
+				"vendors/design-system",
+			],
+			exclude: ["vendors/design-system/components/form"],
 		}),
 		tsconfigPaths(),
 		vueComplexTypes(),
