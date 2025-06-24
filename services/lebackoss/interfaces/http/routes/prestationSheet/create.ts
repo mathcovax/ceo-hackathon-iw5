@@ -49,7 +49,12 @@ useBuilder()
 				.exhaustive();
 		},
 		[],
+		[
+			...makeResponseContract(ServiceUnavailableHttpResponse, "AIAgent.unavaible"),
+			...makeResponseContract(BadRequestHttpResponse, "AIAgent.isMissing"),
+		],
 	)
 	.handler(
 		() => new OkHttpResponse("prestationSheet.created"),
+		makeResponseContract(OkHttpResponse, "prestationSheet.created"),
 	);

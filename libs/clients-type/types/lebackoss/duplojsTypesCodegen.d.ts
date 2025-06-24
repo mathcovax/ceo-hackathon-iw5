@@ -5,14 +5,70 @@
 /* v8 ignore start */
 // noinspection JSUnusedGlobalSymbols
 // @ts-nocheck
+type SubmissionField = {
+    type: "text";
+    name: string;
+    require: boolean;
+    min: number;
+    max: number;
+} | {
+    type: "textarea";
+    name: string;
+    require: boolean;
+    min: number;
+    max: number;
+} | {
+    type: "number";
+    name: string;
+    require: boolean;
+    min: number;
+    max: number;
+} | {
+    type: "date";
+    name: string;
+    require: boolean;
+} | {
+    type: "url";
+    name: string;
+    require: boolean;
+} | {
+    type: "file";
+    name: string;
+    require: boolean;
+    fileType: "pdf" | "image" | "text" | "csv";
+};
+
+export { SubmissionField };
+
 type CodegenRoutes = ({
     method: "POST";
-    path: "/test";
+    path: "/create-prestation-sheet";
+    body: {
+        mode: "ai" | "humain";
+        name: string;
+        description: string;
+        keywords: {
+            value: string;
+        }[];
+        submissionFields: SubmissionField[];
+        aIAgent?: {
+            pingUrl: string;
+            tokenKey: string;
+            entryPointUrl: string;
+        } | undefined;
+    };
     response: {
-        code: number;
-        information: string;
-        body: unknown;
-        ok: boolean;
+        code: 503;
+        information: "AIAgent.unavaible";
+        body?: undefined;
+    } | {
+        code: 400;
+        information: "AIAgent.isMissing";
+        body?: undefined;
+    } | {
+        code: 200;
+        information: "prestationSheet.created";
+        body?: undefined;
     };
 });
 
