@@ -36,7 +36,7 @@ const titleProps = computed(() => {
 	}
 	return {
 		to: props.link,
-		class: "text-blue-seaence hover:underline",
+		class: "text-primary hover:underline",
 	};
 });
 

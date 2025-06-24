@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { homePage } from "@/domains/edito/homePage/router";
-import { addContractorPage } from "@/domains/contractor/addContractorPage/router";
-import { listContractorsPage } from "@/domains/contractor/listContractorsPage/router";
+import { addPrestationPage } from "@/domains/prestation/addPrestationPage/router";
+import { listPrestationsPage } from "@/domains/prestation/listPrestationPage/router";
 
 const { isScrolled } = useScroll({ allowScrollEvent: true });
 </script>
@@ -29,14 +29,14 @@ const { isScrolled } = useScroll({ allowScrollEvent: true });
 			<nav>
 				<ul class="flex items-center gap-2">
 					<li>
-						<RouterLink :to="listContractorsPage">
-							<DSLinkButton>{{ $t("layout.header.nav.listContractors") }}</DSLinkButton>
+						<RouterLink :to="listPrestationsPage">
+							<DSLinkButton>{{ $t("layout.header.nav.listPrestations") }}</DSLinkButton>
 						</RouterLink>
 					</li>
 
 					<li>
-						<RouterLink :to="addContractorPage">
-							<DSLinkButton>{{ $t("layout.header.nav.addContractor") }}</DSLinkButton>
+						<RouterLink :to="addPrestationPage">
+							<DSLinkButton>{{ $t("layout.header.nav.addPrestation") }}</DSLinkButton>
 						</RouterLink>
 					</li>
 				</ul>

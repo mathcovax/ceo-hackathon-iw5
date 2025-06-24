@@ -1,10 +1,20 @@
 import { notFoundPage } from "@/domains/edito/notFoundPage/router";
+import { addPrestationPage } from "@/domains/prestation/addPrestationPage/router";
+import { listPrestationsPage } from "@/domains/prestation/listPrestationPage/router";
 
 export const FRfr = {
 	page: {
 		[notFoundPage.name]: {
 			title: "Page non trouvée",
 			description: "La page que vous recherchez n'existe pas.",
+		},
+		[listPrestationsPage.name]: {
+			title: "Liste des prestations",
+			description: "Découvrez les prestations disponibles.",
+		},
+		[addPrestationPage.name]: {
+			title: "Ajouter une prestation",
+			description: "Ajoutez une nouvelle prestation.",
 		},
 	},
 	layout: {
@@ -14,13 +24,23 @@ export const FRfr = {
 		},
 		header: {
 			nav: {
-				listContractors: "Liste des prestataires",
-				addContractor: "Ajouter un prestataire",
+				listPrestations: "Liste des prestataires",
+				addPrestation: "Ajouter un prestataire",
 			},
 		},
 		footer: {
 			nav: {
 			},
+		},
+	},
+	prestation: {
+		mod: {
+			ai: "IA",
+			human: "Humain",
+		},
+		status: {
+			disabled: "Indisponible",
+			available: "Disponible",
 		},
 	},
 	formMessage: {
@@ -35,6 +55,7 @@ export const FRfr = {
 	cta: {
 		backHome: "Retour à l'accueil",
 		connection: "Inscription / Connexion",
+		contact: "Contacter",
 	},
 	responses: {
 	},
