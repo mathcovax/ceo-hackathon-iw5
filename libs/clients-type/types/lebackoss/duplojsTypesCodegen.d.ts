@@ -70,6 +70,22 @@ type CodegenRoutes = ({
         information: "prestationSheet.created";
         body?: undefined;
     };
+}) | ({
+    method: "POST";
+    path: "/update-prestation-sheet-description-fields";
+    body: {
+        name: string;
+        description: string;
+        keywords: {
+            value: string;
+        }[];
+        prestationSheetId: string;
+    };
+    response: {
+        code: 200;
+        information: "prestationSheet.updated";
+        body?: undefined;
+    };
 });
 
 export { CodegenRoutes };

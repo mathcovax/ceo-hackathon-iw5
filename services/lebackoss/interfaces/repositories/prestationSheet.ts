@@ -33,4 +33,18 @@ prestationSheetRepository.default = {
 			mongoPrestationSheet,
 		);
 	},
+	async findOneById(prestationSheetId) {
+		const mongoPrestationSheet = await mongo.prestationSheetCollection.findOne({
+			id: prestationSheetId.value,
+		});
+
+		if (!mongoPrestationSheet) {
+			return null;
+		}
+
+		return EntityHandler.unsafeMapper(
+			PrestationSheetEntity,
+			mongoPrestationSheet,
+		);
+	},
 };

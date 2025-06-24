@@ -9,10 +9,10 @@ interface Input {
 	keywords?: PrestationSheet.Keyword[];
 }
 
-export class UpdatePrestationSheet extends UsecaseHandler.create({
+export class UpdatePrestationSheetDescriptionFieldsUsecase extends UsecaseHandler.create({
 	prestationSheetRepository,
 }) {
-	public execute({
+	public async execute({
 		prestationSheet,
 		name,
 		description,
