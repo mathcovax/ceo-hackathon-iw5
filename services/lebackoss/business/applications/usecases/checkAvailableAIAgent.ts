@@ -14,7 +14,7 @@ export class CheckAvailableAIAgentUsecase extends UsecaseHandler.create({
 	prestationSheetRepository,
 }) {
 	public async execute({ aIAgent, prestationSheet }: Input) {
-		const isAvailable = await this.aIAgentRepository.isAvailabity(aIAgent);
+		const isAvailable = await this.aIAgentRepository.isAvailable(aIAgent);
 		if (!isAvailable) {
 			const updatedPrestationSheet = prestationSheet.disabled();
 

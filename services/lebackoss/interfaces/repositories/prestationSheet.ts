@@ -9,7 +9,7 @@ prestationSheetRepository.default = {
 
 		await mongo.prestationSheetCollection.updateOne(
 			{ id: simplePrestationSheet.id },
-			simplePrestationSheet,
+			{ $set: simplePrestationSheet },
 			{ upsert: true },
 		);
 
