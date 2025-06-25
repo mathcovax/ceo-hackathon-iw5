@@ -13,20 +13,14 @@ type SubmissionField = {
     type: "text";
     name: string;
     require: boolean;
-    min: number;
-    max: number;
 } | {
     type: "textarea";
     name: string;
     require: boolean;
-    min: number;
-    max: number;
 } | {
     type: "number";
     name: string;
     require: boolean;
-    min: number;
-    max: number;
 } | {
     type: "date";
     name: string;
@@ -93,6 +87,148 @@ type CodegenRoutes = ({
         code: 200;
         information: "prestationSheet.updated";
         body?: undefined;
+    };
+}) | ({
+    method: "POST";
+    path: "/available-prestationsheet-status";
+    params: {
+        prestationSheetId: string;
+    };
+    response: {
+        code: 200;
+        information: "prestationSheet-status.updated";
+        body?: undefined;
+    };
+}) | ({
+    method: "POST";
+    path: "/disable-prestationsheet-status";
+    params: {
+        prestationSheetId: string;
+    };
+    response: {
+        code: 200;
+        information: "prestationSheet-status.updated";
+        body?: undefined;
+    };
+}) | ({
+    method: "POST";
+    path: "/update-ai-agent";
+    body: {
+        aiAgentId: string;
+        tokenKey: string;
+        pingUrl: string;
+        entryPointUrl: string;
+    };
+    response: {
+        code: 200;
+        information: "aiAgent.updated";
+        body?: undefined;
+    };
+}) | ({
+    method: "POST";
+    path: "/create-prestation";
+    body: {
+        prestationSheetId: string;
+        submissionData: Partial<Record<string, ({
+            type: "text";
+            value: string;
+        } | {
+            type: "number";
+            value: number;
+        } | {
+            type: "date";
+            value: Date;
+        } | {
+            type: "url";
+            value: string;
+        } | {
+            type: "file";
+            value: string[];
+        }) | undefined>>;
+    };
+    response: {
+        code: 503;
+        information: "prestation.failedCheckAIAgentAvailability";
+        body?: undefined;
+    } | {
+        code: 422;
+        information: "prestation.extraField";
+        body?: undefined;
+    } | {
+        code: 422;
+        information: "prestation.fieldTypeIncompatible";
+        body?: undefined;
+    } | {
+        code: 422;
+        information: "prestation.missingField";
+        body?: undefined;
+    } | {
+        code: 200;
+        information: "prestation.created";
+        body?: undefined;
+    };
+}) | ({
+    method: "POST";
+    path: "/start-prestation";
+    params: {
+        prestationId: string;
+    };
+    response: {
+        code: 500;
+        information: "prestation.errorWhileStarting";
+        body?: undefined;
+    } | {
+        code: 200;
+        information: "prestation.start";
+        body?: undefined;
+    };
+}) | ({
+    method: "POST";
+    path: "/complete-prestation";
+    body: {
+        prestationResultData: ({
+            type: "text";
+            value: string;
+        } | {
+            type: "file";
+            value: string;
+        })[];
+    };
+    params: {
+        prestationId: string;
+    };
+    response: {
+        code: 200;
+        information: "prestation.completed";
+        body?: undefined;
+    };
+}) | ({
+    method: "GET";
+    path: "/find-all-prestation";
+    response: {
+        code: 200;
+        information: "prestationList.found";
+        body: {
+            id: string;
+            prestationSheetId: string;
+            submissionData: Partial<Record<string, ({
+                type: "text";
+                value: string;
+            } | {
+                type: "number";
+                value: number;
+            } | {
+                type: "date";
+                value: Date;
+            } | {
+                type: "url";
+                value: string;
+            } | {
+                type: "file";
+                value: string[];
+            }) | undefined>>;
+            status: "created" | "inProgress" | "completed";
+        }[];
     };
 });
 
