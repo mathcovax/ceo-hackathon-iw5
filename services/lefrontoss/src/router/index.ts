@@ -1,6 +1,6 @@
 import { homePage } from "@/domains/edito/homePage/router";
 import { notFoundPage } from "@/domains/edito/notFoundPage/router";
-import { listPrestationsPage } from "@/domains/prestation/listPrestationPage/router";
+import { listPrestationSheetPage } from "@/domains/prestation/listPrestationSheetPage/router";
 import { addPrestationPage } from "@/domains/prestation/addPrestationPage/router";
 import { prestationDetailPage } from "@/domains/prestation/prestationDetailPage/router";
 import { createWebHistory, createRouter } from "vue-router";
@@ -14,7 +14,7 @@ export const router = createRouter({
 			children: [
 				homePage.recordRaw,
 				notFoundPage.recordRaw,
-				listPrestationsPage.recordRaw,
+				listPrestationSheetPage.recordRaw,
 				addPrestationPage.recordRaw,
 				prestationDetailPage.recordRaw,
 			],

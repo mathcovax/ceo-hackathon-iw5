@@ -11,6 +11,7 @@ import { FindOnePrestationUsecase } from "@business/applications/usecases/presta
 import { StartPrestationUsecase } from "@business/applications/usecases/prestation/startPrestation";
 import { CompletePrestationUsecase } from "@business/applications/usecases/prestation/completePrestation";
 import { FindAllPrestationUsecase } from "@business/applications/usecases/prestation/findAllPrestation";
+import { FindAllPrestationSheetUsecase } from "@business/applications/usecases/prestationSheet/findAllPrestationSheet";
 
 export const availablePrestationSheetUsecase = new AvailablePrestationSheetUsecase();
 export const createPrestationSheetUsecase = new CreatePrestationSheetUsecase();
@@ -18,6 +19,7 @@ export const createPrestationUsecase = new CreatePrestationUsecase();
 export const disabledPrestationSheetUsecase = new DisabledPrestationSheetUsecase();
 export const updatePrestationSheetDescriptionFieldsUsecase = new UpdatePrestationSheetDescriptionFieldsUsecase();
 export const findOnePrestationSheetUsecase = new FindOnePrestationSheetUsecase();
+export const findAllPrestationSheetUsecase = new FindAllPrestationSheetUsecase();
 
 export const findOneAIAgentUsecase = new FindOneAIAgentUsecase();
 export const updateAIAgentUsecase = new UpdateAIAgentUsecase();

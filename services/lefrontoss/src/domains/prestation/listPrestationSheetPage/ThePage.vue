@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { listPrestationsPage } from "./router";
-import ContratorCard from "./components/PrestationCard.vue";
+import { listPrestationSheetPage } from "./router";
+import ContratorCard from "./components/PrestationSheetCard.vue";
 
-const { $pt } = listPrestationsPage.use();
+const { $pt } = listPrestationSheetPage.use();
 
 // mock data for prestations
 const prestations = [
@@ -67,6 +67,7 @@ const prestations = [
 		],
 	},
 ];
+
 </script>
 
 <template>

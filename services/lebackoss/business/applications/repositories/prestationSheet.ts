@@ -5,6 +5,7 @@ export interface PrestationSheetRepository extends RepositoryBase<PrestationShee
 	generateId(): PrestationSheet.Id;
 	getById(prestationSheetId: PrestationSheet.Id): Promise<PrestationSheetEntity>;
 	findOneById(prestationSheetId: PrestationSheet.Id): Promise<PrestationSheetEntity | null>;
+	findAll(): Promise<PrestationSheetEntity[]>;
 }
 
 export const prestationSheetRepository = createRepositoryHandler<

@@ -47,4 +47,17 @@ prestationSheetRepository.default = {
 			mongoPrestationSheet,
 		);
 	},
+	async findAll() {
+		const mongoPrestationSheetList = await mongo.prestationSheetCollection
+			.find()
+			.toArray();
+
+		return mongoPrestationSheetList.map(
+			(mongoPrestationSheet) => EntityHandler
+				.unsafeMapper(
+					PrestationSheetEntity,
+					mongoPrestationSheet,
+				),
+		);
+	},
 };

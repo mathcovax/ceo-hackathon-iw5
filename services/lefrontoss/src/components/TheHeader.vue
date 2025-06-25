@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { homePage } from "@/domains/edito/homePage/router";
 import { addPrestationPage } from "@/domains/prestation/addPrestationPage/router";
-import { listPrestationsPage } from "@/domains/prestation/listPrestationPage/router";
+import { listPrestationsPage } from "@/domains/prestation/listPrestationSheetPage/router";
 
 const { isScrolled } = useScroll({ allowScrollEvent: true });
 </script>

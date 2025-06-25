@@ -38,6 +38,20 @@ type SubmissionField = {
 
 export { SubmissionField };
 
+type PrestationSheet = {
+    id: string;
+    mode: PrestationSheetModeObjecter;
+    status: "disabled" | "available";
+    name: string;
+    description: string;
+    keywords: {
+        value: string;
+    }[];
+    submissionFields: SubmissionField[];
+};
+
+export { PrestationSheet };
+
 interface CodegenReceiveFormData<GenericValue extends Record<string, string | string[] | number | number[] | Date | Date[] | File[]>> {
     extractor: (...args: any[]) => Promise<GenericValue>;
 }
@@ -127,6 +141,14 @@ type CodegenRoutes = ({
         code: 200;
         information: "prestationSheet-status.updated";
         body?: undefined;
+    };
+}) | ({
+    method: "GET";
+    path: "/find-all-prestation-sheet";
+    response: {
+        code: 200;
+        information: "prestationSheetList.found";
+        body: PrestationSheet[];
     };
 }) | ({
     method: "POST";

@@ -1,6 +1,6 @@
 import { notFoundPage } from "@/domains/edito/notFoundPage/router";
 import { addPrestationPage } from "@/domains/prestation/addPrestationPage/router";
-import { listPrestationsPage } from "@/domains/prestation/listPrestationPage/router";
+import { listPrestationsPage } from "@/domains/prestation/listPrestationSheetPage/router";
 
 export const FRfr = {
 	page: {
