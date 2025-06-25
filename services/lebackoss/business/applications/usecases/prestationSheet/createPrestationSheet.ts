@@ -1,11 +1,11 @@
 import { UsecaseHandler } from "@vendors/clean";
-import { prestationSheetRepository } from "../repositories/prestationSheet";
+import { prestationSheetRepository } from "../../repositories/prestationSheet";
 import { PrestationSheet, PrestationSheetEntity } from "@business/domains/entities/prestationSheet";
 import { type SubmissionField } from "@business/domains/common/submissionField";
 import { AIAgentEntity, type AIAgent } from "@business/domains/entities/aIAgent";
-import { aIAgentRepository } from "../repositories/aIAgent";
-import { CheckAvailableAIAgentUsecase } from "./checkAvailableAIAgent";
+import { aIAgentRepository } from "../../repositories/aIAgent";
 import { type SimplifyObjectTopLevel } from "@duplojs/utils";
+import { CheckAvailableAIAgentUsecase } from "../aIAgent/checkAvailableAIAgent";
 
 type Input = SimplifyObjectTopLevel<
 	& {

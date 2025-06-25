@@ -1,6 +1,6 @@
 import { UsecaseHandler } from "@vendors/clean";
 import { type AIAgent } from "@business/domains/entities/aIAgent";
-import { aIAgentRepository } from "../repositories/aIAgent";
+import { aIAgentRepository } from "@business/applications/repositories/aIAgent";
 
 interface Input {
 	aIAgentId: AIAgent.Id;

@@ -1,6 +1,6 @@
 import { UsecaseHandler } from "@vendors/clean";
-import { prestationSheetRepository } from "../repositories/prestationSheet";
 import { type PrestationSheetEntity } from "@business/domains/entities/prestationSheet";
+import { prestationSheetRepository } from "@business/applications/repositories/prestationSheet";
 
 interface Input {
 	prestationSheet: PrestationSheetEntity;

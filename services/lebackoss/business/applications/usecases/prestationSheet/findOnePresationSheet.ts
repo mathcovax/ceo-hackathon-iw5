@@ -1,6 +1,6 @@
 import { type PrestationSheet } from "@business/domains/entities/prestationSheet";
 import { UsecaseHandler } from "@vendors/clean";
-import { prestationSheetRepository } from "../repositories/prestationSheet";
+import { prestationSheetRepository } from "../../repositories/prestationSheet";
 
 interface Input {
 	prestationSheetId: PrestationSheet.Id;

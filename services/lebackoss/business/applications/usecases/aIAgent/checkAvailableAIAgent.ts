@@ -1,7 +1,7 @@
+import { aIAgentRepository } from "@business/applications/repositories/aIAgent";
+import { prestationSheetRepository } from "@business/applications/repositories/prestationSheet";
 import { type AIAgentEntity } from "@business/domains/entities/aIAgent";
 import { UsecaseError, UsecaseHandler } from "@vendors/clean";
-import { aIAgentRepository } from "../repositories/aIAgent";
-import { prestationSheetRepository } from "../repositories/prestationSheet";
 
 interface Input {
 	aIAgent: AIAgentEntity;

@@ -1,6 +1,6 @@
 import { UsecaseHandler } from "@vendors/clean";
 import { type AIAgentEntity, type AIAgent } from "@business/domains/entities/aIAgent";
-import { aIAgentRepository } from "../repositories/aIAgent";
+import { aIAgentRepository } from "../../repositories/aIAgent";
 import { CheckAvailableAIAgentUsecase } from "./checkAvailableAIAgent";
 
 interface Input {
