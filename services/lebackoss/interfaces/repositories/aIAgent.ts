@@ -1,20 +1,20 @@
 import { aIAgentRepository } from "@business/applications/repositories/aIAgent";
 import { AIAgent, AIAgentEntity } from "@business/domains/entities/aIAgent";
 import { mongo } from "@interfaces/providers/mongo";
-import { TokenProvider } from "@interfaces/providers/token";
+import { PingTokenProvider } from "@interfaces/providers/token/ping";
 import { uuidv7 } from "uuidv7";
-import crypto from "crypto";
 import { ZodAccelerator } from "@duplojs/core";
 import { EntityHandler, RepositoryError } from "@vendors/clean";
-
-const randNumberRangeMin = 0;
-const randNumberRangeMax = 10000;
+import crypto from "crypto";
 
 const responseOfIsAvailableSchema = ZodAccelerator.build(
 	zod.object({
 		number: zod.number(),
 	}),
 );
+
+const randNumberRangeMin = 0;
+const randNumberRangeMax = 10000;
 
 aIAgentRepository.default = {
 	async save(aIAgent) {
@@ -32,21 +32,14 @@ aIAgentRepository.default = {
 		return AIAgent.IdObjecter.unsafeCreate(uuidv7());
 	},
 	isAvailable(aIAgent) {
-		const simpleAIAgent = aIAgent.toSimpleObject();
 		const randNumber = crypto.randomInt(randNumberRangeMin, randNumberRangeMax);
-
-		const token = TokenProvider.generate(
-			aIAgent,
-			randNumber,
-		);
+		const pingToken = PingTokenProvider.generate(aIAgent, randNumber);
 
 		return fetch(
-			simpleAIAgent.pingUrl,
+			aIAgent.pingUrl.value,
 			{
 				method: "POST",
-				headers: {
-					token,
-				},
+				body: JSON.stringify({ pingToken }),
 			},
 		)
 			.then(({ json }) => json())

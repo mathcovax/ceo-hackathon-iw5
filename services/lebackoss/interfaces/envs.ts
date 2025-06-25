@@ -17,5 +17,6 @@ export const envs = zod
 		DB_CONNECTION: zod.booleanInString(),
 		MONGO_DATABASE_URL: zod.string(),
 		MONGO_DB: zod.string(),
+		PRESTATION_TOKEN_KEY: zod.string(),
 	})
 	.parse(process.env);
