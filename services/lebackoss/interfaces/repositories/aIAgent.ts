@@ -5,7 +5,7 @@ import { TokenProvider } from "@interfaces/providers/token";
 import { uuidv7 } from "uuidv7";
 import crypto from "crypto";
 import { ZodAccelerator } from "@duplojs/core";
-import { EntityHandler } from "@vendors/clean";
+import { EntityHandler, RepositoryError } from "@vendors/clean";
 
 const randNumberRangeMin = 0;
 const randNumberRangeMax = 10000;
@@ -67,5 +67,24 @@ aIAgentRepository.default = {
 			AIAgentEntity,
 			mongoAIAgent,
 		);
+	},
+	async getOneByPrestationSheet(prestationSheet) {
+		const mongoAIAgent = await mongo.aIAgentCollection.findOne({
+			prestationSheetId: prestationSheet.id.value,
+		});
+
+		if (!mongoAIAgent) {
+			throw new RepositoryError("aIAgent.notfound");
+		}
+
+		return EntityHandler.unsafeMapper(
+			AIAgentEntity,
+			mongoAIAgent,
+		);
+	},
+	async sendPrestation(_prestation) {
+		await Promise.all([true]);
+
+		return;
 	},
 };
