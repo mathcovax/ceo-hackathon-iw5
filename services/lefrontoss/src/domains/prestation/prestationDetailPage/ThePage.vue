@@ -17,8 +17,8 @@ const prestation = {
 		+ "d'écriture selon vos besoins spécifiques. Que ce soit pour des articles de blog, des fiches produits, "
 		+ "des newsletters ou de la documentation technique, cet assistant garantit une qualité constante et une "
 		+ "livraison rapide.",
-	mode: "ai" as const,
-	status: "available" as const,
+	mode: "ai" as "ai" | "human",
+	status: "available" as "available" | "disabled",
 	keywords: [
 		{ value: "Rédaction" },
 		{ value: "Marketing" },
@@ -65,7 +65,7 @@ const prestation = {
 							</h1>
 
 							<div class="mt-2 flex gap-2 items-center">
-								<DSBadge :variant="prestation.mode === 'humain' ? 'default' : 'secondary'">
+								<DSBadge :variant="prestation.mode === 'human' ? 'default' : 'secondary'">
 									{{ prestation.mode === "ai" ? $t("prestation.mod.ai") : $t("prestation.mod.human") }}
 								</DSBadge>
 
@@ -184,7 +184,7 @@ const prestation = {
 					size="full"
 					:disabled="prestation.status === 'disabled'"
 				>
-					{{ prestation.status === 'available' ? prestation.mode === "humain" ? $t("cta.contact") : $t("cta.use") : $t("prestation.status.disabled") }}
+					{{ prestation.status === 'available' ? prestation.mode === "human" ? $t("cta.contact") : $t("cta.use") : $t("prestation.status.disabled") }}
 				</DSPrimaryButton>
 			</aside>
 		</div>

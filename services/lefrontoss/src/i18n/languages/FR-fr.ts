@@ -1,6 +1,6 @@
 import { notFoundPage } from "@/domains/edito/notFoundPage/router";
 import { addPrestationPage } from "@/domains/prestation/addPrestationPage/router";
-import { listPrestationsPage } from "@/domains/prestation/listPrestationSheetPage/router";
+import { listPrestationSheetPage } from "@/domains/prestation/listPrestationSheetPage/router";
 
 export const FRfr = {
 	page: {
@@ -8,9 +8,9 @@ export const FRfr = {
 			title: "Page non trouvée",
 			description: "La page que vous recherchez n'existe pas.",
 		},
-		[listPrestationsPage.name]: {
-			title: "Liste des prestations",
-			description: "Découvrez les prestations disponibles.",
+		[listPrestationSheetPage.name]: {
+			title: "Liste des feuilles de prestation",
+			description: "Découvrez les feuilles prestations disponibles.",
 		},
 		[addPrestationPage.name]: {
 			title: "Ajouter une prestation",
