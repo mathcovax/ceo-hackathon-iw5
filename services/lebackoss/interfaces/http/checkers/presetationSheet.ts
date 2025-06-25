@@ -23,4 +23,5 @@ export const iWantPrestationSheetExistById = createPresetChecker(
 		catch: () => new NotFoundHttpResponse("prestationSheet.notfound"),
 		indexing: "prestationSheet",
 	},
+	makeResponseContract(NotFoundHttpResponse, "prestationSheet.notfound"),
 );

@@ -1,4 +1,6 @@
-import { Prestation, PrestationEntity } from "@business/domains/entities/prestation";
+import { AIPrestation } from "@business/domains/entities/aIPrestation";
+import { PrestationEntity } from "@business/domains/entities/prestation";
+import { iWantAIPrestationTokenIsValid } from "@interfaces/http/checkers/aIPrestationToken";
 import { iWantPrestationExistById } from "@interfaces/http/checkers/presetation";
 import { startPrestationUsecase } from "@interfaces/usecases";
 import { match, P } from "ts-pattern";
@@ -6,13 +8,17 @@ import { match, P } from "ts-pattern";
 useBuilder()
 	.createRoute("POST", "/start-prestation")
 	.extract({
-		body: zod.object({
-			prestationId: Prestation.idObjecter.toZodSchema(),
-		}),
+		body: {
+			aIPrestationToken: AIPrestation.tokenObjecter.toZodSchema(),
+		},
 	})
 	.presetCheck(
+		iWantAIPrestationTokenIsValid,
+		(pickup) => pickup("aIPrestationToken"),
+	)
+	.presetCheck(
 		iWantPrestationExistById,
-		(pickup) => pickup("body").prestationId,
+		(pickup) => pickup("prestationId"),
 	)
 	.cut(
 		async({ pickup, dropper }) => {

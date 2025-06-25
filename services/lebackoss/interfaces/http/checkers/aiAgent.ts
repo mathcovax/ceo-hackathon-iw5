@@ -1,7 +1,7 @@
 import { type AIAgent } from "@business/domains/entities/aIAgent";
 import { findOneAIAgentUsecase } from "@interfaces/usecases";
 
-export const aiAgentExistById = createChecker("aiAgentExistById")
+export const aiAgentExistByIdCheck = createChecker("aiAgentExistById")
 	.handler(
 		async(input: AIAgent.Id, output) => {
 			const aiAgent = await findOneAIAgentUsecase.execute({
@@ -17,10 +17,11 @@ export const aiAgentExistById = createChecker("aiAgentExistById")
 	);
 
 export const iWantAiAgentExistById = createPresetChecker(
-	aiAgentExistById,
+	aiAgentExistByIdCheck,
 	{
 		result: "aiAgent.found",
 		catch: () => new NotFoundHttpResponse("aiAgent.notfound"),
 		indexing: "aiAgent",
 	},
+	makeResponseContract(NotFoundHttpResponse, "aiAgent.notfound"),
 );

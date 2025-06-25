@@ -1,15 +1,18 @@
-import { prestationRepository } from "@business/applications/repositories/prestation";
-import { type PrestationEntity } from "@business/domains/entities/prestation";
+import { type AllPrestation, prestationRepository } from "@business/applications/repositories/prestation";
 import { UsecaseError, UsecaseHandler } from "@vendors/clean";
 
-interface Input {
-	prestation: PrestationEntity;
+interface Input<
+	GenericPrestation extends AllPrestation,
+> {
+	prestation: GenericPrestation;
 }
 
 export class StartPrestationUsecase extends UsecaseHandler.create({
 	prestationRepository,
 }) {
-	public execute({ prestation }: Input) {
+	public execute<
+		GenericPrestation extends AllPrestation,
+	>({ prestation }: Input<GenericPrestation>) {
 		const updatePrestation = prestation.start();
 
 		if (updatePrestation instanceof Error) {

@@ -23,10 +23,10 @@ export class AIPrestationTokenProvider {
 		return AIPrestation.tokenObjecter.unsafeCreate(rawToken);
 	}
 
-	public static verify(token: string) {
+	public static verify(token: AIPrestation.Token) {
 		try {
 			const content = jwt.verify(
-				token,
+				token.value,
 				envs.PRESTATION_TOKEN_KEY,
 				{
 					algorithms: ["ES512"],
