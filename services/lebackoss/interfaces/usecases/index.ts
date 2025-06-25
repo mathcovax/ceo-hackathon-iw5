@@ -7,6 +7,8 @@ import { UpdateAIAgentUsecase } from "@business/applications/usecases/aIAgent/up
 import { UpdatePrestationSheetDescriptionFieldsUsecase } from "@business/applications/usecases/prestationSheet/updatePrestationSheet";
 import { FindOnePrestationSheetUsecase } from "@business/applications/usecases/prestationSheet/findOnePresationSheet";
 import { CreatePrestationUsecase } from "@business/applications/usecases/prestation/createPrestation";
+import { FindOnePrestationUsecase } from "@business/applications/usecases/prestation/findOnePresation";
+import { StartPrestationUsecase } from "@business/applications/usecases/prestation/startPrestation";
 
 export const availablePrestationSheetUsecase = new AvailablePrestationSheetUsecase();
 export const createPrestationSheetUsecase = new CreatePrestationSheetUsecase();
@@ -17,3 +19,7 @@ export const findOnePrestationSheetUsecase = new FindOnePrestationSheetUsecase()
 
 export const findOneAIAgentUsecase = new FindOneAIAgentUsecase();
 export const updateAIAgentUsecase = new UpdateAIAgentUsecase();
+
+export const findOnePrestationUsecase = new FindOnePrestationUsecase();
+export const startPrestationUsecase = new StartPrestationUsecase();
+
