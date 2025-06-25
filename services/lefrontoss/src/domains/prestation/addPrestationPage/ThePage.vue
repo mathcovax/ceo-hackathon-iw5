@@ -31,7 +31,7 @@ function onSubmit() {
 
 		<CreatePrestationSheetForm @submit="onSubmit">
 			<DSPrimaryButton type="submit">
-				send
+				{{ $t("cta.submit") }}
 			</DSPrimaryButton>
 		</CreatePrestationSheetForm>
 	</section>

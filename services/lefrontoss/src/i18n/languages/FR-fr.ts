@@ -77,6 +77,7 @@ export const FRfr = {
 		contact: "Contacter",
 		use: "Utiliser",
 		back: "Retour",
+		submit: "Soumettre",
 	},
 	responses: {
 	},
