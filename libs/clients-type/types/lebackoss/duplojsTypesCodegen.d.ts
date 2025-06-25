@@ -5,6 +5,10 @@
 /* v8 ignore start */
 // noinspection JSUnusedGlobalSymbols
 // @ts-nocheck
+type PrestationSheetModeObjecter = "ai" | "human";
+
+export { PrestationSheetModeObjecter };
+
 type SubmissionField = {
     type: "text";
     name: string;
@@ -44,7 +48,7 @@ type CodegenRoutes = ({
     method: "POST";
     path: "/create-prestation-sheet";
     body: {
-        mode: "ai" | "human";
+        mode: PrestationSheetModeObjecter;
         name: string;
         description: string;
         keywords: {

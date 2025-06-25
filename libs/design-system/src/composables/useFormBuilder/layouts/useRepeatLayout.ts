@@ -36,7 +36,7 @@ export function useRepeatLayout<
 					return formField({
 						modelValue: computed({
 							get() {
-								return modelValue.value?.[index].value ?? last;
+								return modelValue.value?.[index]?.value ?? last.value;
 							},
 							set(value) {
 								if (!modelValue.value) {
@@ -53,7 +53,7 @@ export function useRepeatLayout<
 		);
 
 		function check() {
-			return formFieldItems.value
+			const result = formFieldItems.value
 				.reduce<unknown[] | ZodError>(
 					(acc, { exposed }) => {
 						if (acc instanceof Error) {
@@ -63,10 +63,15 @@ export function useRepeatLayout<
 						if (value instanceof ZodError) {
 							return value;
 						}
-						return value;
+
+						acc.push(value);
+
+						return acc;
 					},
 					[],
 				);
+
+			return result;
 		}
 
 		function reset() {
@@ -124,6 +129,7 @@ export function useRepeatLayout<
 								"button",
 								{
 									class: "formBilderButton formBilderLayout formBilderRepeatLayout formBilderButtonAddRepeatLayout",
+									type: "button",
 									onClick: () => void addItem(),
 								},
 								"+",
@@ -142,6 +148,7 @@ export function useRepeatLayout<
 												"formBilderButton formBilderLayout",
 												"formBilderRepeatLayout formBilderButtonRemoveRepeatLayout",
 											],
+											type: "button",
 											onClick: () => void removeItem(index),
 										},
 										"x",

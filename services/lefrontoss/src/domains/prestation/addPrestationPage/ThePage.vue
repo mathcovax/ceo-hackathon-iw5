@@ -3,7 +3,17 @@ import { useCreatePrestationSheetForm } from "./composables/useCreatePrestationS
 import { addPrestationPage } from "./router";
 
 const { $pt } = addPrestationPage.use();
-const { CreatePrestationSheetForm } = useCreatePrestationSheetForm();
+const { CreatePrestationSheetForm, checkCreatePrestationSheetForm } = useCreatePrestationSheetForm();
+
+function onSubmit() {
+	const result = checkCreatePrestationSheetForm();
+
+	console.log(result);
+
+	if (!result) {
+		return;
+	}
+}
 
 </script>
 
@@ -19,8 +29,10 @@ const { CreatePrestationSheetForm } = useCreatePrestationSheetForm();
 			</p>
 		</div>
 
-		<CreatePrestationSheetForm>
-			<DSPrimaryButton>send</DSPrimaryButton>
+		<CreatePrestationSheetForm @submit="onSubmit">
+			<DSPrimaryButton type="submit">
+				send
+			</DSPrimaryButton>
 		</CreatePrestationSheetForm>
 	</section>
 </template>
