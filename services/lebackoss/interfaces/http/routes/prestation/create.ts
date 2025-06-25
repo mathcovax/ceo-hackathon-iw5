@@ -4,7 +4,7 @@ import { PrestationSheet } from "@business/domains/entities/prestationSheet";
 import { iWantPrestationSheetExistById } from "@interfaces/http/checkers/presetationSheet";
 import { createPrestationUsecase } from "@interfaces/usecases";
 import { fileTypeFromBuffer } from "file-type";
-import { writeFile } from "fs/promises";
+import { rm, writeFile } from "fs/promises";
 import { match, P } from "ts-pattern";
 
 useBuilder()
@@ -77,6 +77,15 @@ useBuilder()
 				prestationSheet,
 				submissionData,
 			});
+
+			if (result instanceof Error) {
+				await Promise.all(
+					Object.values(submissionData.value)
+						.map(
+							(data) => data?.type === "file" && rm(data.value),
+						),
+				);
+			}
 
 			return match({ result })
 				.with(
