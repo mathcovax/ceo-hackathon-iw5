@@ -22,23 +22,11 @@ function createSubmissionField<
 		});
 }
 
-const textField = createSubmissionField("text")
-	.extend({
-		min: zod.number(),
-		max: zod.number(),
-	});
+const textField = createSubmissionField("text");
 
-const textareaField = createSubmissionField("textarea")
-	.extend({
-		min: zod.number(),
-		max: zod.number(),
-	});
+const textareaField = createSubmissionField("textarea");
 
-const numberField = createSubmissionField("number")
-	.extend({
-		min: zod.number(),
-		max: zod.number(),
-	});
+const numberField = createSubmissionField("number");
 
 const dateField = createSubmissionField("date");
 

@@ -3,6 +3,7 @@ import { createRepositoryHandler, type RepositoryBase } from "@vendors/clean";
 
 export interface PrestationResultRepository extends RepositoryBase<PrestationResultEntity> {
 	generateId(): PrestationResult.Id;
+	findOneById(id: PrestationResult.Id): Promise<PrestationResultEntity | null>;
 }
 
 export const prestationResultRepository = createRepositoryHandler<

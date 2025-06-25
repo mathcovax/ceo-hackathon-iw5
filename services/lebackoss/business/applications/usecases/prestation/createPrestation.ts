@@ -5,6 +5,8 @@ import { prestationRepository } from "../../repositories/prestation";
 import { PrestationEntity } from "@business/domains/entities/prestation";
 import { aIAgentRepository } from "../../repositories/aIAgent";
 import { CheckAvailableAIAgentUsecase } from "../aIAgent/checkAvailableAIAgent";
+import { match } from "ts-pattern";
+import { AIPrestationEntity } from "@business/domains/entities/aIPrestation";
 
 interface Input {
 	prestationSheet: PrestationSheetEntity;
@@ -57,15 +59,29 @@ export class CreatePrestationUsecase extends UsecaseHandler.create({
 
 		const prestationId = this.prestationRepository.generateId();
 
-		const prestation = PrestationEntity.create({
-			id: prestationId,
-			prestationSheetId: prestationSheet.id,
-			submissionData,
-		});
+		const prestation = match(prestationSheet.mode.value)
+			.with(
+				"human",
+				() => PrestationEntity.create({
+					id: prestationId,
+					prestationSheetId: prestationSheet.id,
+					submissionData,
+				}),
+			)
+			.with(
+				"ai",
+				() => AIPrestationEntity.create({
+					id: prestationId,
+					prestationSheetId: prestationSheet.id,
+					submissionData,
+					token: this.prestationRepository.generateToken(),
+				}),
+			)
+			.exhaustive();
 
 		await this.prestationRepository.save(prestation);
 
-		if (prestationSheet.mode.value === "ai") {
+		if (prestation instanceof AIPrestationEntity) {
 			await this.aIAgentRepository.sendPrestation(
 				prestation,
 			);

@@ -1,5 +1,5 @@
 import { EntityHandler, type GetValueObject, type GetEntityProperties, zod } from "@vendors/clean";
-import { PrestationEntity } from "./prestation";
+import { Prestation, PrestationEntity } from "./prestation";
 
 export namespace AIPrestation {
 	export const tokenObjecter = zod
@@ -15,7 +15,13 @@ export class AIPrestationEntity extends EntityHandler.create(
 	},
 	PrestationEntity,
 ) {
-	public static create(params: GetEntityProperties<typeof AIPrestationEntity>) {
-		return new AIPrestationEntity(params);
+	public static create(params: Omit<
+		GetEntityProperties<typeof AIPrestationEntity>,
+		"status"
+	>) {
+		return new PrestationEntity({
+			...params,
+			status: Prestation.statusObjecter.unsafeCreate("inProgress"),
+		});
 	}
 }
