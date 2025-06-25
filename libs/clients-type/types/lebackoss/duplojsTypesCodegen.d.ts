@@ -33,10 +33,14 @@ type SubmissionField = {
     type: "file";
     name: string;
     require: boolean;
-    fileType: "pdf" | "image" | "text" | "csv";
+    fileTypes: FileTypeEnum[];
 };
 
 export { SubmissionField };
+
+type FileTypeEnum = "pdf" | "image" | "text" | "csv";
+
+export { FileTypeEnum };
 
 type PrestationSheet = {
     id: string;

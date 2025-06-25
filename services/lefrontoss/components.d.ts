@@ -134,6 +134,7 @@ declare module 'vue' {
     DSValidationDialog: typeof import('./vendors/design-system/components/DSValidationDialog.vue')['default']
     FormTemplate: typeof import('./vendors/design-system/components/form/FormTemplate.vue')['default']
     InlineFormTemplate: typeof import('./vendors/design-system/components/form/InlineFormTemplate.vue')['default']
+    MultiComboboxTemplate: typeof import('./vendors/design-system/components/form/MultiComboboxTemplate.vue')['default']
     MultiLayoutTemplate: typeof import('./vendors/design-system/components/form/MultiLayoutTemplate.vue')['default']
     RadioGroup: typeof import('./vendors/design-system/components/ui/radio-group/RadioGroup.vue')['default']
     RadioGroupItem: typeof import('./vendors/design-system/components/ui/radio-group/RadioGroupItem.vue')['default']

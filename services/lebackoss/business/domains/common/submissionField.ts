@@ -39,9 +39,11 @@ const fileTypeEnum = createEnum([
 	"csv",
 ]);
 
+export const fileTypeEnumSchema = zod.enum(fileTypeEnum.toTuple());
+
 const fileField = createSubmissionField("file")
 	.extend({
-		fileType: zod.enum(fileTypeEnum.toTuple()),
+		fileTypes: fileTypeEnumSchema.array(),
 	});
 
 export const submissionFieldObjecter = zod

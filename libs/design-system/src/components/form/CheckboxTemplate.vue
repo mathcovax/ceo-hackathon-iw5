@@ -14,7 +14,7 @@ const checkboxId = useId();
 </script>
 
 <template>
-	<div class="flex gap-2 items-center">
+	<div class="flex gap-2 items-center w-full h-full">
 		<DSCheckbox
 			v-model="modelValue"
 			:id="checkboxId"

@@ -25,7 +25,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-	<div>
+	<div class="col-span-full">
 		<div
 			v-if="items.length < maxItems"
 			class="flex justify-start"

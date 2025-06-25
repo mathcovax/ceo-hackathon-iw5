@@ -89,15 +89,15 @@ export function useMultiFieldLayout<
 				.entries(exposed)
 				.reduce<Record<string, unknown> | Error>(
 					(acc, [key, { check } = {}]) => {
-						if (acc instanceof Error) {
-							return acc;
-						}
-
 						if (!check) {
 							return acc;
 						}
 
 						const result = check();
+
+						if (acc instanceof Error) {
+							return acc;
+						}
 
 						if (result instanceof Error) {
 							return result;

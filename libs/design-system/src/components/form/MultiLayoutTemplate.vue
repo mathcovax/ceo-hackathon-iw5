@@ -13,7 +13,7 @@ withDefaults(
 
 <template>
 	<div
-		class="grid"
+		class="grid col-span-full"
 		:class="{
 			'gap-2': space === 'default',
 			'gap-4': space === 'large',

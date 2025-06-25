@@ -56,10 +56,12 @@ export function useRepeatLayout<
 			const result = formFieldItems.value
 				.reduce<unknown[] | ZodError>(
 					(acc, { exposed }) => {
+						const value = exposed.check();
+
 						if (acc instanceof Error) {
 							return acc;
 						}
-						const value = exposed.check();
+
 						if (value instanceof ZodError) {
 							return value;
 						}

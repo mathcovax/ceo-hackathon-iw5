@@ -81,7 +81,13 @@ export function useCheckLayout<
 				return undefined;
 			}
 
-			const result = schema.safeParse(formFieldComponent.exposed.check());
+			const subResult = formFieldComponent.exposed.check();
+
+			if (subResult instanceof Error) {
+				return subResult;
+			}
+
+			const result = schema.safeParse(subResult);
 
 			if (result.success) {
 				errorMessage.value = "";

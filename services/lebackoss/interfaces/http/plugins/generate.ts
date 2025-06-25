@@ -1,5 +1,5 @@
 import "@duplojs/types-codegen";
-import { submissionFieldObjecter } from "@business/domains/common/submissionField";
+import { fileTypeEnumSchema, submissionFieldObjecter } from "@business/domains/common/submissionField";
 import { PrestationSheet } from "@business/domains/entities/prestationSheet";
 import { prestationSheetSchema } from "../schemas/prestationSheet";
 import { submissionDataObjecter } from "@business/domains/common/submissionData";
@@ -9,3 +9,4 @@ PrestationSheet.modeObjecter.zodSchema._zttIdentifier = "PrestationSheetModeObje
 prestationSheetSchema._zttIdentifier = "PrestationSheet";
 submissionDataObjecter.zodSchema._zttIdentifier = "SubmissionData";
 submissionFieldObjecter.zodSchema._zttIdentifier = "SubmissionField";
+fileTypeEnumSchema._zttIdentifier = "FileTypeEnum";
