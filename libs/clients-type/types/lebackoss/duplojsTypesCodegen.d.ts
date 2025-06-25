@@ -38,6 +38,12 @@ type SubmissionField = {
 
 export { SubmissionField };
 
+interface CodegenReceiveFormData<GenericValue extends Record<string, string | string[] | number | number[] | Date | Date[] | File[]>> {
+    extractor: (...args: any[]) => Promise<GenericValue>;
+}
+
+export { CodegenReceiveFormData };
+
 type CodegenRoutes = ({
     method: "POST";
     path: "/create-prestation-sheet";
@@ -84,6 +90,10 @@ type CodegenRoutes = ({
         prestationSheetId: string;
     };
     response: {
+        code: 404;
+        information: "prestationSheet.notfound";
+        body?: undefined;
+    } | {
         code: 200;
         information: "prestationSheet.updated";
         body?: undefined;
@@ -91,10 +101,14 @@ type CodegenRoutes = ({
 }) | ({
     method: "POST";
     path: "/available-prestationsheet-status";
-    params: {
+    body: {
         prestationSheetId: string;
     };
     response: {
+        code: 404;
+        information: "prestationSheet.notfound";
+        body?: undefined;
+    } | {
         code: 200;
         information: "prestationSheet-status.updated";
         body?: undefined;
@@ -102,10 +116,14 @@ type CodegenRoutes = ({
 }) | ({
     method: "POST";
     path: "/disable-prestationsheet-status";
-    params: {
+    body: {
         prestationSheetId: string;
     };
     response: {
+        code: 404;
+        information: "prestationSheet.notfound";
+        body?: undefined;
+    } | {
         code: 200;
         information: "prestationSheet-status.updated";
         body?: undefined;
@@ -120,6 +138,10 @@ type CodegenRoutes = ({
         entryPointUrl: string;
     };
     response: {
+        code: 404;
+        information: "aiAgent.notfound";
+        body?: undefined;
+    } | {
         code: 200;
         information: "aiAgent.updated";
         body?: undefined;
@@ -147,6 +169,10 @@ type CodegenRoutes = ({
         }) | undefined>>;
     };
     response: {
+        code: 404;
+        information: "prestationSheet.notfound";
+        body?: undefined;
+    } | {
         code: 503;
         information: "prestation.failedCheckAIAgentAvailability";
         body?: undefined;
@@ -165,41 +191,6 @@ type CodegenRoutes = ({
     } | {
         code: 200;
         information: "prestation.created";
-        body?: undefined;
-    };
-}) | ({
-    method: "POST";
-    path: "/start-prestation";
-    params: {
-        prestationId: string;
-    };
-    response: {
-        code: 500;
-        information: "prestation.errorWhileStarting";
-        body?: undefined;
-    } | {
-        code: 200;
-        information: "prestation.start";
-        body?: undefined;
-    };
-}) | ({
-    method: "POST";
-    path: "/complete-prestation";
-    body: {
-        prestationResultData: ({
-            type: "text";
-            value: string;
-        } | {
-            type: "file";
-            value: string;
-        })[];
-    };
-    params: {
-        prestationId: string;
-    };
-    response: {
-        code: 200;
-        information: "prestation.completed";
         body?: undefined;
     };
 }) | ({
@@ -229,6 +220,52 @@ type CodegenRoutes = ({
             }) | undefined>>;
             status: "created" | "inProgress" | "completed";
         }[];
+    };
+}) | ({
+    method: "POST";
+    path: "/start-prestation";
+    body: {
+        aIPrestationToken: string;
+    };
+    response: {
+        code: 404;
+        information: "aIPrestationToken.invalid";
+        body?: undefined;
+    } | {
+        code: 404;
+        information: "prestation.notfound";
+        body?: undefined;
+    } | {
+        code: 500;
+        information: "prestation.errorWhileStarting";
+        body?: undefined;
+    } | {
+        code: 200;
+        information: "prestation.start";
+        body?: undefined;
+    };
+}) | ({
+    method: "POST";
+    path: "/complete-prestation/{aIPrestationToken}";
+    body: CodegenReceiveFormData<{
+        resultFiles: File[];
+        resultText?: (string[] | string) | undefined;
+    }>;
+    params: {
+        aIPrestationToken: string;
+    };
+    response: {
+        code: 404;
+        information: "aIPrestationToken.invalid";
+        body?: undefined;
+    } | {
+        code: 404;
+        information: "prestation.notfound";
+        body?: undefined;
+    } | {
+        code: 200;
+        information: "prestation.completed";
+        body?: undefined;
     };
 });
 
