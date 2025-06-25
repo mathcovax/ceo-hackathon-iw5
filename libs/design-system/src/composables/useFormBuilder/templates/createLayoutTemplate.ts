@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { h, type VNode, type DefineComponent, isVNode } from "vue";
-import { type AnyFunction } from "@duplojs/utils";
+import { type AnyFunction, type IsEqual } from "@duplojs/utils";
 import { type BaseLayoutTemplateItem } from "./baseLayout";
 import { type CheckLayoutTemplateItem } from "./checkLayout";
 import { type MultiLayoutTemplateItem } from "./multiLayout";
@@ -46,11 +46,14 @@ export type LayoutTemplateItems =
 
 export type FindLayoutTemplateItem<
 	GenericLayout extends AnyFunction,
-> = Extract<
-	LayoutTemplateItems,
-	LayoutTemplateItem<GenericLayout, any, any>
-> extends infer InferedLayoutTemplateItem extends LayoutTemplateItem<any, any, any>
-	? InferedLayoutTemplateItem
+> = {
+	[
+	LayoutTemplateItem in LayoutTemplateItems
+	as IsEqual<LayoutTemplateItem["layout"], GenericLayout> extends true
+		? string : never
+	]: LayoutTemplateItem
+}[any] extends infer LayoutTemplateItem extends LayoutTemplateItems
+	? LayoutTemplateItem
 	: never;
 
 export function createLayoutTemplate<

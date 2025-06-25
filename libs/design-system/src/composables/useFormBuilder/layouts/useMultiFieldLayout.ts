@@ -15,6 +15,10 @@ export interface MultiLayoutOptions {
 
 type FormFieldsWrapper = Record<string, FormField>;
 
+type EntriesFormFieldsWrapper<
+	GenericKey extends string = string,
+> = [GenericKey, FormField][];
+
 type FormFieldsWrapperToFormValuesWrapper<
 	GenericFormFields extends FormFieldsWrapper,
 > = {
@@ -25,6 +29,19 @@ type FormFieldsWrapperToFormCheckedValuesWrapper<
 	GenericFormFields extends FormFieldsWrapper,
 > = {
 	[Prop in keyof GenericFormFields]: GetGenericFormField<GenericFormFields[Prop]>["GenericCheckedType"]
+};
+
+type EntriesFormFieldsWrapperToFormValuesWrapper<
+	GenericEntriesFormFieldsWrapper extends EntriesFormFieldsWrapper,
+> = {
+	[Entry in GenericEntriesFormFieldsWrapper[number] as Entry[0]]: GetGenericFormField<Entry[1]>["GenericValueType"]
+};
+
+type EntriesFormFieldsWrapperToFormCheckedValuesWrapper<
+	GenericEntriesFormFieldsWrapper extends EntriesFormFieldsWrapper,
+> = {
+	[Entry in GenericEntriesFormFieldsWrapper[number] as Entry[0]]: GetGenericFormField<Entry[1]>["GenericCheckedType"]
+
 };
 
 interface SpreadFormFieldInstance {
@@ -40,10 +57,25 @@ export function useMultiFieldLayout<
 	formFieldsWrapper: GenericFormFieldsWrapper,
 	options?: MultiLayoutOptions,
 ): FormField<
-		FormFieldsWrapperToFormValuesWrapper<GenericFormFieldsWrapper>,
-		FormFieldsWrapperToFormCheckedValuesWrapper<GenericFormFieldsWrapper>,
-		any
-	> {
+	FormFieldsWrapperToFormValuesWrapper<GenericFormFieldsWrapper>,
+	FormFieldsWrapperToFormCheckedValuesWrapper<GenericFormFieldsWrapper>,
+	any
+>;
+export function useMultiFieldLayout<
+	GenericKey extends string,
+	GenericEntriesFormFieldsWrapper extends EntriesFormFieldsWrapper<GenericKey>,
+>(
+	formFieldsWrapper: GenericEntriesFormFieldsWrapper,
+	options?: MultiLayoutOptions,
+): FormField<
+	EntriesFormFieldsWrapperToFormValuesWrapper<GenericEntriesFormFieldsWrapper>,
+	EntriesFormFieldsWrapperToFormCheckedValuesWrapper<GenericEntriesFormFieldsWrapper>,
+	any
+>;
+export function useMultiFieldLayout(
+	formFieldsWrapper: FormFieldsWrapper | EntriesFormFieldsWrapper,
+	options?: MultiLayoutOptions,
+) {
 	const {
 		template,
 	} = options ?? {};
@@ -51,8 +83,12 @@ export function useMultiFieldLayout<
 	function multiFieldLayout(params: FormFieldParams<Record<string, unknown>>): FormFieldInstance {
 		const { modelValue, key: paramsKey } = params;
 
-		const { exposed, formFieldVNode } = Object
-			.entries(formFieldsWrapper)
+		const { exposed, formFieldVNode } = (
+			formFieldsWrapper instanceof Array
+				? formFieldsWrapper
+				: Object
+					.entries(formFieldsWrapper)
+		)
 			.reduce<SpreadFormFieldInstance>(
 				(acc, [key, formField]) => {
 					const { exposed, getVNode } = formField({
