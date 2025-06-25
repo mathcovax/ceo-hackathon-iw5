@@ -1,78 +1,60 @@
-import { UsecaseHandler, UsecaseError } from "@vendors/clean";
+import { UsecaseHandler } from "@vendors/clean";
 import { prestationSheetRepository } from "../repositories/prestationSheet";
-import { type PrestationSheet, PrestationSheetEntity } from "@business/domains/entities/prestationSheet";
+import { PrestationSheet, PrestationSheetEntity } from "@business/domains/entities/prestationSheet";
 import { type SubmissionField } from "@business/domains/common/submissionField";
 import { AIAgentEntity, type AIAgent } from "@business/domains/entities/aIAgent";
 import { aIAgentRepository } from "../repositories/aIAgent";
 import { CheckAvailableAIAgentUsecase } from "./checkAvailableAIAgent";
-import { match, P } from "ts-pattern";
+import { type SimplifyObjectTopLevel } from "@duplojs/utils";
 
-interface Input {
-	mode: PrestationSheet.Mode;
-	name: PrestationSheet.Name;
-	description: PrestationSheet.Description;
-	keywords: PrestationSheet.Keyword[];
-	submissionFields: SubmissionField[];
-
-	aIAgent?: {
-		pingUrl: AIAgent.PingUrl;
-		tokenKey: AIAgent.TokenKey;
-		entryPointUrl: AIAgent.EntryPointUrl;
-	};
-}
+type Input = SimplifyObjectTopLevel<
+	& {
+		name: PrestationSheet.Name;
+		description: PrestationSheet.Description;
+		keywords: PrestationSheet.Keyword[];
+		submissionFields: SubmissionField[];
+	}
+	& (
+		| { mode: typeof PrestationSheet.modeEnum["human"] }
+		| {
+			mode: typeof PrestationSheet.modeEnum["ai"];
+			aIAgent: {
+				pingUrl: AIAgent.PingUrl;
+				tokenKey: AIAgent.TokenKey;
+				entryPointUrl: AIAgent.EntryPointUrl;
+			};
+		}
+	)
+>;
 
 export class CreatePrestationSheetUsecase extends UsecaseHandler.create({
 	prestationSheetRepository,
 	aIAgentRepository,
 	checkAIAgent: CheckAvailableAIAgentUsecase,
 }) {
-	public async execute({
-		aIAgent: aIAgentInput,
-		...prestationSheetInput
-	}: Input) {
+	public async execute(input: Input) {
 		const prestationSheet = PrestationSheetEntity.create({
-			...prestationSheetInput,
+			...input,
+			mode: PrestationSheet.modeObjecter.unsafeCreate(input.mode),
 			id: this.prestationSheetRepository.generateId(),
 		});
 
 		await this.prestationSheetRepository.save(prestationSheet);
 
-		return match({
-			mode: prestationSheet.mode.value,
-			aIAgentInput,
-		})
-			.with(
-				{
-					mode: "ai",
-					aIAgentInput: P.not(undefined),
-				},
-				async({ aIAgentInput }) => {
-					const aIAgent = AIAgentEntity.create({
-						...aIAgentInput,
-						prestationSheetId: prestationSheet.id,
-						id: this.aIAgentRepository.generateId(),
-					});
+		if (input.mode === "ai") {
+			const aIAgent = AIAgentEntity.create({
+				...input.aIAgent,
+				prestationSheetId: prestationSheet.id,
+				id: this.aIAgentRepository.generateId(),
+			});
 
-					await this.aIAgentRepository.save(aIAgent);
+			await this.aIAgentRepository.save(aIAgent);
 
-					const checkResult = await this.checkAIAgent({
-						aIAgent,
-					});
+			const checkResult = await this.checkAIAgent({
+				aIAgent,
+			});
 
-					return checkResult;
-				},
-			)
-			.with(
-				{
-					mode: "ai",
-					aIAgentInput: undefined,
-				},
-				() => new UsecaseError("missing-aIAgentInput"),
-			)
-			.with(
-				{ mode: "humain" },
-				() => undefined,
-			)
-			.exhaustive();
+			return checkResult;
+		}
 	}
 }

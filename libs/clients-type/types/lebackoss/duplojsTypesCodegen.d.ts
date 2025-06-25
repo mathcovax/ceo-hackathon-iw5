@@ -44,19 +44,23 @@ type CodegenRoutes = ({
     method: "POST";
     path: "/create-prestation-sheet";
     body: {
-        mode: "ai" | "humain";
+        mode: "ai" | "human";
         name: string;
         description: string;
         keywords: {
             value: string;
         }[];
         submissionFields: SubmissionField[];
-        aIAgent?: {
+    } & ({
+        mode: "human";
+    } | {
+        mode: "ai";
+        aIAgent: {
             pingUrl: string;
             tokenKey: string;
             entryPointUrl: string;
-        } | undefined;
-    };
+        };
+    });
     response: {
         code: 503;
         information: "AIAgent.unavaible";

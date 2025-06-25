@@ -138,7 +138,10 @@ export function useRepeatLayout<
 									h(
 										"button",
 										{
-											class: "formBilderButton formBilderLayout formBilderRepeatLayout formBilderButtonRemoveRepeatLayout",
+											class: [
+												"formBilderButton formBilderLayout",
+												"formBilderRepeatLayout formBilderButtonRemoveRepeatLayout",
+											],
 											onClick: () => void removeItem(index),
 										},
 										"x",

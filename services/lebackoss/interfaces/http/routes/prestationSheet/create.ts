@@ -13,34 +13,31 @@ useBuilder()
 			description: PrestationSheet.descriptionObjecter.toZodSchema(),
 			keywords: PrestationSheet.keywordObjecter.array().toZodSchema(),
 			submissionFields: submissionFieldObjecter.array().toZodSchema(),
-			aIAgent: zod.object({
-				pingUrl: AIAgent.pingUrlObjecter.toZodSchema(),
-				tokenKey: AIAgent.tokenKeyObjecter.toZodSchema(),
-				entryPointUrl: AIAgent.entryPointUrlObjecter.toZodSchema(),
-			}).optional(),
-		}),
+		})
+			.and(
+				zod.union([
+					zod.object({ mode: zod.literal(PrestationSheet.modeEnum.human) }),
+					zod.object({
+						mode: zod.literal(PrestationSheet.modeEnum.ai),
+						aIAgent: zod.object({
+							pingUrl: AIAgent.pingUrlObjecter.toZodSchema(),
+							tokenKey: AIAgent.tokenKeyObjecter.toZodSchema(),
+							entryPointUrl: AIAgent.entryPointUrlObjecter.toZodSchema(),
+						}),
+					}),
+				]),
+			),
 	})
 	.cut(
 		async({ pickup, dropper }) => {
-			const { mode, name, description, keywords, submissionFields, aIAgent } = pickup("body");
+			const input = pickup("body");
 
-			const result = await createPrestationSheetUsecase.execute({
-				mode,
-				name,
-				description,
-				keywords,
-				submissionFields,
-				aIAgent,
-			});
+			const result = await createPrestationSheetUsecase.execute(input);
 
 			return match({ result })
 				.with(
 					{ result: { information: "failed-check-AIAgent-availability" } },
 					() => new ServiceUnavailableHttpResponse("AIAgent.unavaible"),
-				)
-				.with(
-					{ result: { information: "missing-aIAgentInput" } },
-					() => new BadRequestHttpResponse("AIAgent.isMissing"),
 				)
 				.with(
 					{ result: undefined },

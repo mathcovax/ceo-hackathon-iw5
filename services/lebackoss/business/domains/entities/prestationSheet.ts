@@ -1,5 +1,5 @@
 import { submissionFieldObjecter } from "@business/domains/common/submissionField";
-import { EntityHandler, type GetEntityProperties, type GetValueObject, createEnum, zod } from "@vendors/clean";
+import { EntityHandler, type GetEntityProperties, type GetEnumValue, type GetValueObject, createEnum, zod } from "@vendors/clean";
 
 export namespace PrestationSheet {
 	export const idObjecter = zod
@@ -30,8 +30,10 @@ export namespace PrestationSheet {
 
 	export const modeEnum = createEnum([
 		"ai",
-		"humain",
+		"human",
 	]);
+
+	export type ModeEnum = GetEnumValue<typeof modeEnum>;
 
 	export const modeObjecter = zod
 		.enum(modeEnum.toTuple())

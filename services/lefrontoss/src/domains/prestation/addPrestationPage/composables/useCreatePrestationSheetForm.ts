@@ -15,36 +15,42 @@ export function useCreatePrestationSheetForm() {
 					schema: zod.string(),
 				},
 			),
-			submissionFields: useRepeatLayout(
-				useUnionLayout(
-					[
+			submissionFields: useCheckLayout(
+				useRepeatLayout(
+					useUnionLayout(
 						[
-							"text",
-							useMultiFieldLayout({
-								fieldName: useCheckLayout(
-									textFormField,
-									{
-										mandatory: true,
-										schema: zod.string(),
-									},
-								),
-							}),
+							[
+								"text",
+								useMultiFieldLayout({
+									fieldName: useCheckLayout(
+										textFormField,
+										{
+											mandatory: true,
+											schema: zod.string(),
+										},
+									),
+								}),
+							],
+							[
+								"number",
+								useMultiFieldLayout({
+									fieldName: useCheckLayout(
+										textFormField,
+										{
+											mandatory: true,
+											schema: zod.string(),
+										},
+									),
+								}),
+							],
 						],
-						[
-							"number",
-							useMultiFieldLayout({
-								fieldName: useCheckLayout(
-									textFormField,
-									{
-										mandatory: true,
-										schema: zod.string(),
-									},
-								),
-							}),
-						],
-					],
+					),
+					{ maxItem: 3 },
 				),
-				{ maxItem: 3 },
+				{
+					mandatory: true,
+					schema: zod.any().array(),
+				},
 			),
 		}),
 	);

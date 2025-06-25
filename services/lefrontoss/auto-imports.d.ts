@@ -125,7 +125,7 @@ declare global {
   export type { BaseProps, ExposedProperties, FormFieldParams, FormFieldInstance, FormField, GetGenericFormField } from './vendors/design-system/composables/useFormBuilder/formField'
   import('./vendors/design-system/composables/useFormBuilder/formField')
   // @ts-ignore
-  export type { CheckLayoutOptions } from './vendors/design-system/composables/useFormBuilder/layouts/useCheckLayout'
+  export type { CheckLayoutOptions, CheckedTypeContaineAny } from './vendors/design-system/composables/useFormBuilder/layouts/useCheckLayout'
   import('./vendors/design-system/composables/useFormBuilder/layouts/useCheckLayout')
   // @ts-ignore
   export type { MultiLayoutOptions } from './vendors/design-system/composables/useFormBuilder/layouts/useMultiFieldLayout'
