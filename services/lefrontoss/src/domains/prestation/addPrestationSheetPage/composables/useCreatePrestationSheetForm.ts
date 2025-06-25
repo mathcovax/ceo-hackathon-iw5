@@ -1,14 +1,17 @@
 import { fileTypeEnum, prestationSheetModeEnum } from "@/libs/lebackoss/types";
 import type { SubmissionField } from "@vendors/clients-type/lebackoss/duplojsTypesCodegen";
 import { match, P } from "ts-pattern";
+import { addPrestationPage } from "../router";
 
 export function useCreatePrestationSheetForm() {
+	const { $pt } = addPrestationPage.use();
+
 	const constantSubmissionFields = {
 		fieldName: useCheckLayout(
 			textFormField,
 			{
 				mandatory: true,
-				label: "Nom du champ :",
+				label: $pt("form.label.fieldName"),
 				schema: zod.string(),
 				template: checkLayoutTemplateGridCols({ hideUselessErrorBlock: true }),
 			},
@@ -19,7 +22,7 @@ export function useCreatePrestationSheetForm() {
 			{
 				mandatory: true,
 				props: {
-					label: "Champ requis",
+					label: $pt("form.label.fieldRequired"),
 				},
 			},
 		),
@@ -30,7 +33,7 @@ export function useCreatePrestationSheetForm() {
 			textFormField,
 			{
 				mandatory: true,
-				label: "Nom de la préstation :",
+				label: $pt("form.label.name"),
 				schema: zod.string(),
 			},
 		),
@@ -38,7 +41,7 @@ export function useCreatePrestationSheetForm() {
 			textareaFormField,
 			{
 				mandatory: true,
-				label: "Description de la préstation :",
+				label: $pt("form.label.description"),
 				schema: zod.string(),
 			},
 		),
@@ -47,7 +50,7 @@ export function useCreatePrestationSheetForm() {
 				useCheckLayout(
 					textFormField,
 					{
-						label: "Mot clé",
+						label: $pt("form.label.keyword"),
 						mandatory: true,
 						schema: zod.string(),
 						template: checkLayoutTemplateGridCols({ hideUselessErrorBlock: true }),
@@ -55,93 +58,102 @@ export function useCreatePrestationSheetForm() {
 				),
 				{
 					template: repeatLayoutTemplate({
-						addLabel: "Ajouter un mot clé",
+						addLabel: $pt("form.label.addKeyword"),
 						colsByItems: 4,
 					}),
 				},
 			),
 			{
-
 				mandatory: true,
-				label: "Mots clef de la préstation :",
+				label: $pt("form.label.keywords"),
 			},
 		),
-		submissionFields: useRepeatLayout(
-			useUnionLayout(
-				[
+		submissionFields: useBaseLayout(
+			useRepeatLayout(
+				useUnionLayout(
 					[
-						"text",
-						useMultiFieldLayout({
-							...constantSubmissionFields,
-						}),
-					],
-					[
-						"number",
-						useMultiFieldLayout({
-							...constantSubmissionFields,
+						[
+							"text",
+							useMultiFieldLayout({
+								...constantSubmissionFields,
+							}),
+						],
+						[
+							"number",
+							useMultiFieldLayout({
+								...constantSubmissionFields,
 
-						}),
-					],
-					[
-						"textarea",
-						useMultiFieldLayout({
-							...constantSubmissionFields,
-						}),
-					],
-					[
-						"file",
-						useMultiFieldLayout({
-							...constantSubmissionFields,
-							fileTypes: useCheckLayout(
-								multiComboBoxFormField,
-								{
-									mandatory: true,
-									props: {
-										items: fileTypeEnum.toTuple()
-											.map((fileType) => ({
-												label: fileType,
-												value: fileType,
-											})),
-										placeholder: "",
-										emptyLabel: "",
+							}),
+						],
+						[
+							"textarea",
+							useMultiFieldLayout({
+								...constantSubmissionFields,
+							}),
+						],
+						[
+							"file",
+							useMultiFieldLayout({
+								...constantSubmissionFields,
+								fileTypes: useCheckLayout(
+									multiComboBoxFormField,
+									{
+										mandatory: true,
+										props: {
+											items: fileTypeEnum.toTuple()
+												.map((fileType) => ({
+													label: fileType,
+													value: fileType,
+												})),
+											placeholder: "",
+											emptyLabel: "",
+										},
+										schema: zod
+											.object({ value: zod.enum(fileTypeEnum.toTuple()) })
+											.transform(({ value }) => value)
+											.array()
+											.min(1),
 									},
-									schema: zod
-										.object({ value: zod.enum(fileTypeEnum.toTuple()) })
-										.transform(({ value }) => value)
-										.array()
-										.min(1),
-								},
-							),
-						}),
+								),
+							}),
+						],
+						[
+							"url",
+							useMultiFieldLayout({
+								...constantSubmissionFields,
+							}),
+						],
+						[
+							"date",
+							useMultiFieldLayout({
+								...constantSubmissionFields,
+							}),
+						],
 					],
-					[
-						"url",
-						useMultiFieldLayout({
-							...constantSubmissionFields,
+					{
+						template: unionLayoutTemplate({
+							selectLabel: $pt("form.label.fieldType"),
+							labelMapper: {
+								text: $pt("form.label.selectOption.text"),
+								number: $pt("form.label.selectOption.number"),
+								textarea: $pt("form.label.selectOption.textarea"),
+								file: $pt("form.label.selectOption.file"),
+								url: $pt("form.label.selectOption.url"),
+								date: $pt("form.label.selectOption.date"),
+							},
 						}),
-					],
-					[
-						"date",
-						useMultiFieldLayout({
-							...constantSubmissionFields,
-						}),
-					],
-				],
+					},
+				),
 				{
-					template: unionLayoutTemplate({
-						selectLabel: "Type de champ",
-						labelMapper: {
-							text: "Texte",
-							number: "Numérique",
-						},
+					template: repeatLayoutTemplate({
+						addLabel: $pt("form.label.addField"),
+						colsByItems: 6,
 					}),
 				},
 			),
 			{
-				template: repeatLayoutTemplate({
-					addLabel: "Ajouter un champ",
-					colsByItems: 6,
-				}),
+				mandatory: true,
+				label: $pt("form.label.fields"),
 			},
 		),
 	};
@@ -188,10 +200,10 @@ export function useCreatePrestationSheetForm() {
 			],
 			{
 				template: unionLayoutTemplate({
-					selectLabel: "Mode de préstation",
+					selectLabel: $pt("form.label.prestationMode"),
 					labelMapper: {
-						[prestationSheetModeEnum.human]: "Humaine",
-						[prestationSheetModeEnum.ai]: "IA",
+						[prestationSheetModeEnum.human]: $pt("form.label.selectOption.human"),
+						[prestationSheetModeEnum.ai]: $pt("form.label.selectOption.ai"),
 					},
 				}),
 			},

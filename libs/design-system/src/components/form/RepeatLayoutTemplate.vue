@@ -31,6 +31,7 @@ const emit = defineEmits<{
 			class="flex justify-start"
 		>
 			<DSGhostButton
+				size="small"
 				icon="plus"
 				@click="emit('addItem')"
 			>
@@ -51,7 +52,7 @@ const emit = defineEmits<{
 					'grid-column': `span ${colsByItems} / span ${colsByItems}`
 				}"
 			>
-				<div class="p-4 flex items-start gap-2">
+				<div class="py-4 flex items-start gap-2">
 					<div class="flex-1 min-w-0">
 						<component :is="item" />
 					</div>

@@ -21,7 +21,7 @@ const { CreatePrestationSheetForm, onSubmitCreatePrestationSheetForm } = useCrea
 
 		<CreatePrestationSheetForm @submit="onSubmitCreatePrestationSheetForm">
 			<DSPrimaryButton type="submit">
-				send
+				{{ $t("cta.submit") }}
 			</DSPrimaryButton>
 		</CreatePrestationSheetForm>
 	</section>
