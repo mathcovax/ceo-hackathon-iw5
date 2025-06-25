@@ -1,7 +1,7 @@
 import { type PrestationSheet } from "@business/domains/entities/prestationSheet";
 import { findOnePrestationSheetUsecase } from "@interfaces/usecases";
 
-export const prestationSheetExistById = createChecker("prestationSheetExistById")
+export const prestationSheetExistByIdCheck = createChecker("prestationSheetExistById")
 	.handler(
 		async(input: PrestationSheet.Id, output) => {
 			const prestationSheet = await findOnePrestationSheetUsecase.execute({
@@ -17,7 +17,7 @@ export const prestationSheetExistById = createChecker("prestationSheetExistById"
 	);
 
 export const iWantPrestationSheetExistById = createPresetChecker(
-	prestationSheetExistById,
+	prestationSheetExistByIdCheck,
 	{
 		result: "prestationSheet.found",
 		catch: () => new NotFoundHttpResponse("prestationSheet.notfound"),
