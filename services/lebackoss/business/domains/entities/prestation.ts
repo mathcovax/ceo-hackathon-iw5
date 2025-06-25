@@ -28,7 +28,13 @@ export class PrestationEntity extends EntityHandler.create({
 	submissionData: submissionDataObjecter,
 	status: Prestation.statusObjecter,
 }) {
-	public static create(params: GetEntityProperties<typeof PrestationEntity>) {
-		return new PrestationEntity(params);
+	public static create(params: Omit<
+		GetEntityProperties<typeof PrestationEntity>,
+		"status"
+	>) {
+		return new PrestationEntity({
+			...params,
+			status: Prestation.statusObjecter.unsafeCreate("inProgress"),
+		});
 	}
 }

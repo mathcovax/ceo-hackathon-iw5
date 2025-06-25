@@ -1,4 +1,4 @@
-import { zod, type ZodSpace } from "@vendors/clean";
+import { type GetValueObject, zod, type ZodSpace } from "@vendors/clean";
 import { type FieldTypeEnum } from "./submissionField";
 
 function createSubmissionData<
@@ -49,6 +49,8 @@ export const submissionDataObjecter = zod
 			dateData,
 			urlData,
 			fileData,
-		]),
+		]).optional(),
 	)
 	.createValueObjecter("submissionData");
+
+export type SubmissionData = GetValueObject<typeof submissionDataObjecter>;
