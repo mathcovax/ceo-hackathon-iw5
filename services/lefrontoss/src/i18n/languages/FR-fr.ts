@@ -9,8 +9,9 @@ export const FRfr = {
 			description: "La page que vous recherchez n'existe pas.",
 		},
 		[listPrestationSheetPage.name]: {
-			title: "Liste des feuilles de prestation",
-			description: "Découvrez les feuilles prestations disponibles.",
+			title: "Liste des fiches de prestations",
+			description: "Découvrez les fiches de prestations disponibles.",
+			noPrestationSheet: "Aucune fiche de prestation n'est disponible pour le moment.",
 		},
 		[addPrestationPage.name]: {
 			title: "Ajouter une prestation",
@@ -24,8 +25,8 @@ export const FRfr = {
 		},
 		header: {
 			nav: {
-				listPrestations: "Liste des prestataires",
-				addPrestation: "Ajouter un prestataire",
+				listPrestationSheet: "Liste fiches de prestations",
+				addPrestation: "Ajouter une fiche de prestation",
 			},
 		},
 		footer: {

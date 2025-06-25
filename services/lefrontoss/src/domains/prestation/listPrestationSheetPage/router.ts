@@ -1,5 +1,5 @@
 export const listPrestationSheetPage = createPage(
-	"listPrestations",
+	"listPrestationSheet",
 	{
 		path: "/prestation-sheets",
 		component: () => import("./ThePage.vue"),

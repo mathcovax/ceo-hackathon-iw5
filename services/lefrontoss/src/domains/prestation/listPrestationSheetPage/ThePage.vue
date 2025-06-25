@@ -20,12 +20,24 @@ const { listPrestationSheet } = useGetPrestationSheet();
 			</p>
 		</div>
 
-		<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+		<div
+			v-if="listPrestationSheet && listPrestationSheet.length"
+			class="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+		>
 			<PrestationSheetCard
 				v-for="prestation in listPrestationSheet"
 				:key="prestation.id"
 				v-bind="prestation"
 			/>
+		</div>
+
+		<div
+			v-else
+			class="h-96 flex items-center justify-center"
+		>
+			<p class="text-muted-foreground">
+				{{ $pt("noPrestationSheet") }}
+			</p>
 		</div>
 	</section>
 </template>
