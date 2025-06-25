@@ -16,6 +16,23 @@ export const FRfr = {
 		[addPrestationPage.name]: {
 			title: "Ajouter une prestation",
 			description: "Ajoutez une nouvelle prestation.",
+			form: {
+				label: {
+					prestationMode: "Mode de prestation",
+					name: "Nom",
+					description: "Description",
+					keywords: "Mots clés",
+					addKeyword: "Ajouter un mot clé",
+					submissionFields: "Champs de soumission",
+					addSubmissionField: "Ajouter un champ",
+					selectOption: {
+						human: "Humain",
+						ai: "IA",
+						text: "Texte",
+						number: "Numérique",
+					},
+				},
+			},
 		},
 	},
 	layout: {

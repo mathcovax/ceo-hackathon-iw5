@@ -1,6 +1,9 @@
 import { prestationSheetModeEnum } from "@/libs/lebackoss/types";
+import { addPrestationPage } from "../router";
 
 export function useCreatePrestationSheetForm() {
+	const { $pt } = addPrestationPage.use();
+
 	const submissionFieldName = useCheckLayout(
 		textFormField,
 		{
@@ -16,7 +19,7 @@ export function useCreatePrestationSheetForm() {
 			textFormField,
 			{
 				mandatory: true,
-				label: "Nom de la préstation :",
+				label: $pt("form.label.name"),
 				schema: zod.string(),
 			},
 		),
@@ -24,7 +27,7 @@ export function useCreatePrestationSheetForm() {
 			textareaFormField,
 			{
 				mandatory: true,
-				label: "Description de la préstation :",
+				label: $pt("form.label.description"),
 				schema: zod.string(),
 			},
 		),
@@ -33,7 +36,6 @@ export function useCreatePrestationSheetForm() {
 				useCheckLayout(
 					textFormField,
 					{
-						label: "Mot clé",
 						mandatory: true,
 						schema: zod.string(),
 						template: checkLayoutTemplateGridCols({ hideUselessErrorBlock: true }),
@@ -41,15 +43,14 @@ export function useCreatePrestationSheetForm() {
 				),
 				{
 					template: repeatLayoutTemplate({
-						addLabel: "Ajouter un mot clé",
+						addLabel: $pt("form.label.addKeyword"),
 						colsByItems: 4,
 					}),
 				},
 			),
 			{
-
 				mandatory: true,
-				label: "Mots clef de la préstation :",
+				label: $pt("form.label.keywords"),
 			},
 		),
 		submissionFields: useCheckLayout(
@@ -71,24 +72,23 @@ export function useCreatePrestationSheetForm() {
 					],
 					{
 						template: unionLayoutTemplate({
-							selectLabel: "Type de champ",
 							labelMapper: {
-								text: "Texte",
-								number: "Numérique",
+								text: $pt("form.label.selectOption.text"),
+								number: $pt("form.label.selectOption.number"),
 							},
 						}),
 					},
 				),
 				{
 					template: repeatLayoutTemplate({
-						addLabel: "Ajouter un champ",
+						addLabel: $pt("form.label.addSubmissionField"),
 						colsByItems: 6,
 					}),
 				},
 			),
 			{
 				mandatory: true,
-				label: "Champ néccésaire pour la préstation :",
+				label: $pt("form.label.submissionFields"),
 				schema: zod.any().array().min(1),
 			},
 		),
@@ -114,10 +114,10 @@ export function useCreatePrestationSheetForm() {
 				],
 				{
 					template: unionLayoutTemplate({
-						selectLabel: "Mode de préstation",
+						selectLabel: $pt("form.label.prestationMode"),
 						labelMapper: {
-							[prestationSheetModeEnum.human]: "Humaine",
-							[prestationSheetModeEnum.ai]: "IA",
+							[prestationSheetModeEnum.human]: $pt("form.label.selectOption.human"),
+							[prestationSheetModeEnum.ai]: $pt("form.label.selectOption.ai"),
 						},
 					}),
 				},
