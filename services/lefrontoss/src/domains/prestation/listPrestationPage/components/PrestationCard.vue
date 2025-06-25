@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { prestationDetailPage } from "../../prestationDetailPage/router";
+
 interface Props {
 	id: string;
 	name: string;
@@ -82,13 +84,14 @@ defineProps<Props>();
 		</div>
 
 		<template #footer>
-			<DSPrimaryButton
-				size="small"
-				:disabled="status === 'disabled'"
+			<RouterLink
 				class="ml-auto"
+				:to="prestationDetailPage.createTo({ params: { prestationId: id } })"
 			>
-				{{ status === 'available' ? $t("cta.contact") : $t("prestation.status.disabled") }}
-			</DSPrimaryButton>
+				<DSPrimaryButton size="small">
+					{{ $t("cta.seeMore") }}
+				</DSPrimaryButton>
+			</RouterLink>
 		</template>
 	</DSCard>
 </template>

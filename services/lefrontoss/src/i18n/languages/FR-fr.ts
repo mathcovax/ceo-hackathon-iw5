@@ -55,7 +55,10 @@ export const FRfr = {
 	cta: {
 		backHome: "Retour à l'accueil",
 		connection: "Inscription / Connexion",
+		seeMore: "Voir plus",
 		contact: "Contacter",
+		use: "Utiliser",
+		back: "Retour",
 	},
 	responses: {
 	},

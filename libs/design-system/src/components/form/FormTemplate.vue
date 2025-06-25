@@ -24,7 +24,7 @@ defineSlots<{
 <template>
 	<form
 		@submit="submit"
-		class="flex flex-col gap-2"
+		class="p-4 flex flex-col gap-2 bg-background border border-border rounded-lg"
 		:class="{
 			'flex-col-reverse': reverse
 		}"

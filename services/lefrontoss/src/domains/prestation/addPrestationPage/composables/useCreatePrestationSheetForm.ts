@@ -17,7 +17,7 @@ export function useCreatePrestationSheetForm() {
 			{
 				mandatory: true,
 				label: "Nom de la préstation :",
-				schema: zod.number(),
+				schema: zod.string(),
 			},
 		),
 		description: useCheckLayout(

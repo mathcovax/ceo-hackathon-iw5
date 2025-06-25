@@ -4,6 +4,9 @@ import {
 	mdiRobot,
 	mdiHome,
 	mdiPlus,
+	mdiArrowLeft,
+	mdiCheck,
+	mdiBookmark,
 } from "@mdi/js";
 
 export const iconsMapper = {
@@ -12,6 +15,9 @@ export const iconsMapper = {
 	robot: mdiRobot,
 	home: mdiHome,
 	plus: mdiPlus,
+	arrowLeft: mdiArrowLeft,
+	check: mdiCheck,
+	bookmark: mdiBookmark,
 };
 
 export const iconSizeMapper = {
