@@ -1,4 +1,4 @@
-import { EntityHandler, type GetValueObject, type GetEntityProperties, zod, createEnum } from "@vendors/clean";
+import { EntityHandler, type GetValueObject, type GetEntityProperties, zod, createEnum, EntityError } from "@vendors/clean";
 import { PrestationSheet } from "./prestationSheet";
 import { submissionDataObjecter } from "../common/submissionData";
 
@@ -35,6 +35,26 @@ export class PrestationEntity extends EntityHandler.create({
 		return new PrestationEntity({
 			...params,
 			status: Prestation.statusObjecter.unsafeCreate("inProgress"),
+		});
+	}
+
+	public start() {
+		if (this.status.value !== "created") {
+			return new EntityError("prestation-already-started", { currentStatus: this.status });
+		}
+
+		return this.update({
+			status: Prestation.statusObjecter.unsafeCreate("inProgress"),
+		});
+	}
+
+	public complete() {
+		if (this.status.value !== "inProgress") {
+			return new EntityError("prestation-is-not-startend", { currentStatus: this.status });
+		}
+
+		return this.update({
+			status: Prestation.statusObjecter.unsafeCreate("completed"),
 		});
 	}
 }
