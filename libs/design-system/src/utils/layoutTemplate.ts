@@ -11,6 +11,9 @@ import TextLayoutTemplate from "../components/form/TextLayoutTemplate.vue";
 import { useUnionLayout } from "../composables/useFormBuilder/layouts/useUnionLayout";
 import UnionSelectLessLayoutTemplate from "../components/form/UnionSelectLessLayoutTemplate.vue";
 import InlineFormTemplate from "../components/form/InlineFormTemplate.vue";
+import { useRepeatLayout } from "../composables/useFormBuilder/layouts/useRepeatLayout";
+import RepeatLayoutTemplate from "../components/form/RepeatLayoutTemplate.vue";
+import UnionLayoutTemplate from "../components/form/UnionLayoutTemplate.vue";
 
 export const baseLayoutTemplateGridCols = createLayoutTemplate(
 	useBaseLayout,
@@ -47,7 +50,17 @@ export const unionSelectLessLayoutTemplate = createLayoutTemplate(
 	UnionSelectLessLayoutTemplate,
 );
 
+export const unionLayoutTemplate = createLayoutTemplate(
+	useUnionLayout,
+	UnionLayoutTemplate,
+);
+
 export const inlineFormTemplate = createLayoutTemplate(
 	useFormBuilder,
 	InlineFormTemplate,
+);
+
+export const repeatLayoutTemplate = createLayoutTemplate(
+	useRepeatLayout,
+	RepeatLayoutTemplate,
 );

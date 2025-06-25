@@ -59,6 +59,7 @@ declare global {
   const reactive: typeof import('vue')['reactive']
   const readonly: typeof import('vue')['readonly']
   const ref: typeof import('vue')['ref']
+  const repeatLayoutTemplate: typeof import('./vendors/design-system/utils/layoutTemplate')['repeatLayoutTemplate']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const selectFormField: typeof import('./vendors/design-system/utils/formFields')['selectFormField']
   const selectStringFormField: typeof import('./vendors/design-system/utils/formFields')['selectStringFormField']
@@ -74,6 +75,7 @@ declare global {
   const toRefs: typeof import('vue')['toRefs']
   const toValue: typeof import('vue')['toValue']
   const triggerRef: typeof import('vue')['triggerRef']
+  const unionLayoutTemplate: typeof import('./vendors/design-system/utils/layoutTemplate')['unionLayoutTemplate']
   const unionSelectLessLayoutTemplate: typeof import('./vendors/design-system/utils/layoutTemplate')['unionSelectLessLayoutTemplate']
   const unref: typeof import('vue')['unref']
   const useAttrs: typeof import('vue')['useAttrs']
@@ -226,6 +228,7 @@ declare module 'vue' {
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('vue')['ref']>
+    readonly repeatLayoutTemplate: UnwrapRef<typeof import('./vendors/design-system/utils/layoutTemplate')['repeatLayoutTemplate']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly selectFormField: UnwrapRef<typeof import('./vendors/design-system/utils/formFields')['selectFormField']>
     readonly selectStringFormField: UnwrapRef<typeof import('./vendors/design-system/utils/formFields')['selectStringFormField']>
@@ -240,6 +243,7 @@ declare module 'vue' {
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
     readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
+    readonly unionLayoutTemplate: UnwrapRef<typeof import('./vendors/design-system/utils/layoutTemplate')['unionLayoutTemplate']>
     readonly unionSelectLessLayoutTemplate: UnwrapRef<typeof import('./vendors/design-system/utils/layoutTemplate')['unionSelectLessLayoutTemplate']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>

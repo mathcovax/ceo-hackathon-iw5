@@ -1,11 +1,16 @@
 <script setup lang="ts">
 interface Props {
 	errorMessage: string;
-	cols: number;
+	cols?: number;
+	hideUselessErrorBlock?: boolean;
 }
 
-defineProps<Props>();
-
+withDefaults(
+	defineProps<Props>(),
+	{
+		cols: 12,
+	},
+);
 </script>
 
 <template>
@@ -17,6 +22,11 @@ defineProps<Props>();
 	>
 		<slot />
 
-		<small class="text-sm text-destructive h-[1.2rem] overflow-hidden text-ellipsis text-nowrap">{{ errorMessage }}</small>
+		<small
+			v-show="!hideUselessErrorBlock || errorMessage"
+			class="text-sm text-destructive h-[1.2rem] overflow-hidden text-ellipsis text-nowrap"
+		>
+			{{ errorMessage }}
+		</small>
 	</div>
 </template>

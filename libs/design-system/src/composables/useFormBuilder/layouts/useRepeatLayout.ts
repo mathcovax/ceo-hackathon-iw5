@@ -7,7 +7,7 @@ import { simpleClone } from "@duplojs/utils";
 
 export interface UnionLayoutOptions {
 	template?: RepeatLayoutTemplateRender;
-	maxItem?: number;
+	maxItems?: number;
 }
 
 export function useRepeatLayout<
@@ -22,7 +22,7 @@ export function useRepeatLayout<
 	> {
 	const {
 		template,
-		maxItem,
+		maxItems = Infinity,
 	} = options ?? {};
 
 	function repeatLayout(params: FormFieldParams<{ value: unknown }[]>): FormFieldInstance {
@@ -99,6 +99,7 @@ export function useRepeatLayout<
 				if (template) {
 					return template(
 						{
+							maxItems,
 							onAddItem: addItem,
 							onRemoveItem: removeItem,
 							items: formFieldItems.value.map(
@@ -110,6 +111,7 @@ export function useRepeatLayout<
 				} else if (useRepeatLayout.defaultTemplate) {
 					return useRepeatLayout.defaultTemplate(
 						{
+							maxItems,
 							onAddItem: addItem,
 							onRemoveItem: removeItem,
 							items: formFieldItems.value.map(
@@ -124,7 +126,7 @@ export function useRepeatLayout<
 					"div",
 					{ class: "formBilderDiv formBilderLayout formBilderRepeatLayout formBilderDivRepeatLayout" },
 					[
-						formFieldItems.value.length < (maxItem ?? Infinity)
+						formFieldItems.value.length < maxItems
 							? h(
 								"button",
 								{

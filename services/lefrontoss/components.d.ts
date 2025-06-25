@@ -88,6 +88,7 @@ declare module 'vue' {
     DSIcon: typeof import('./vendors/design-system/components/ui/icon/DSIcon.vue')['default']
     DSImage: typeof import('./vendors/design-system/components/DSImage.vue')['default']
     DSInput: typeof import('./vendors/design-system/components/ui/input/DSInput.vue')['default']
+    DSInputFile: typeof import('./vendors/design-system/components/ui/input/DSInputFile.vue')['default']
     DSLabel: typeof import('./vendors/design-system/components/ui/label/DSLabel.vue')['default']
     DSLinkButton: typeof import('./vendors/design-system/components/ui/button/DSLinkButton.vue')['default']
     DSMultiComboBox: typeof import('./vendors/design-system/components/DSMultiComboBox.vue')['default']
@@ -135,6 +136,7 @@ declare module 'vue' {
     MultiLayoutTemplate: typeof import('./vendors/design-system/components/form/MultiLayoutTemplate.vue')['default']
     RadioGroup: typeof import('./vendors/design-system/components/ui/radio-group/RadioGroup.vue')['default']
     RadioGroupItem: typeof import('./vendors/design-system/components/ui/radio-group/RadioGroupItem.vue')['default']
+    RepeatLayoutTemplate: typeof import('./vendors/design-system/components/form/RepeatLayoutTemplate.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SelectStringTemplate: typeof import('./vendors/design-system/components/form/SelectStringTemplate.vue')['default']
@@ -143,6 +145,7 @@ declare module 'vue' {
     TheFooter: typeof import('./src/components/TheFooter.vue')['default']
     TheHeader: typeof import('./src/components/TheHeader.vue')['default']
     TheLoader: typeof import('./src/components/TheLoader.vue')['default']
+    UnionLayoutTemplate: typeof import('./vendors/design-system/components/form/UnionLayoutTemplate.vue')['default']
     UnionSelectLessLayoutTemplate: typeof import('./vendors/design-system/components/form/UnionSelectLessLayoutTemplate.vue')['default']
   }
 }

@@ -7,6 +7,7 @@ export function useCreatePrestationSheetForm() {
 			mandatory: true,
 			label: "",
 			schema: zod.string(),
+			template: checkLayoutTemplateGridCols({ hideUselessErrorBlock: true }),
 		},
 	);
 
@@ -16,7 +17,7 @@ export function useCreatePrestationSheetForm() {
 			{
 				mandatory: true,
 				label: "Nom de la préstation :",
-				schema: zod.string(),
+				schema: zod.number(),
 			},
 		),
 		description: useCheckLayout(
@@ -32,12 +33,21 @@ export function useCreatePrestationSheetForm() {
 				useCheckLayout(
 					textFormField,
 					{
+						label: "Mot clé",
 						mandatory: true,
 						schema: zod.string(),
+						template: checkLayoutTemplateGridCols({ hideUselessErrorBlock: true }),
 					},
 				),
+				{
+					template: repeatLayoutTemplate({
+						addLabel: "Ajouter un mot clé",
+						colsByItems: 4,
+					}),
+				},
 			),
 			{
+
 				mandatory: true,
 				label: "Mots clef de la préstation :",
 			},
@@ -59,8 +69,22 @@ export function useCreatePrestationSheetForm() {
 							}),
 						],
 					],
+					{
+						template: unionLayoutTemplate({
+							selectLabel: "Type de champ",
+							labelMapper: {
+								text: "Texte",
+								number: "Numérique",
+							},
+						}),
+					},
 				),
-				{ maxItem: 3 },
+				{
+					template: repeatLayoutTemplate({
+						addLabel: "Ajouter un champ",
+						colsByItems: 6,
+					}),
+				},
 			),
 			{
 				mandatory: true,
@@ -70,7 +94,7 @@ export function useCreatePrestationSheetForm() {
 		),
 	};
 
-	const { Form, check } = useFormBuilder(
+	const { Form, formValue, check } = useFormBuilder(
 		useBaseLayout(
 			useUnionLayout(
 				[
@@ -88,10 +112,19 @@ export function useCreatePrestationSheetForm() {
 						}),
 					],
 				],
+				{
+					template: unionLayoutTemplate({
+						selectLabel: "Mode de préstation",
+						labelMapper: {
+							[prestationSheetModeEnum.human]: "Humaine",
+							[prestationSheetModeEnum.ai]: "IA",
+						},
+					}),
+				},
 			),
 			{
 				mandatory: true,
-				label: "Création d'une fiche de préstation",
+				label: "",
 			},
 		),
 	);
