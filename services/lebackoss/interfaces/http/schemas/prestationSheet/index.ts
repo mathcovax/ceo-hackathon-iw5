@@ -12,3 +12,5 @@ export const prestationSheetSchema = zod.object({
 });
 
 export const endpointFindAllPrestationSheetRoute = prestationSheetSchema.array();
+
+export const endpointFindOnePrestationSheetRoute = prestationSheetSchema;

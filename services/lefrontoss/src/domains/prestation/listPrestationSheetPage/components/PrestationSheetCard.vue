@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { prestationDetailPage } from "../../prestationDetailPage/router";
+import { prestationSheetDetailPage } from "../../prestationSheetDetailPage/router";
 
 interface Props {
 	id: string;
@@ -86,7 +86,7 @@ defineProps<Props>();
 		<template #footer>
 			<RouterLink
 				class="ml-auto"
-				:to="prestationDetailPage.createTo({ params: { prestationId: id } })"
+				:to="prestationSheetDetailPage.createTo({ params: { prestationSheetId: id } })"
 			>
 				<DSPrimaryButton size="small">
 					{{ $t("cta.seeMore") }}

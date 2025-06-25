@@ -2,7 +2,7 @@ import { homePage } from "@/domains/edito/homePage/router";
 import { notFoundPage } from "@/domains/edito/notFoundPage/router";
 import { listPrestationSheetPage } from "@/domains/prestation/listPrestationSheetPage/router";
 import { addPrestationPage } from "@/domains/prestation/addPrestationPage/router";
-import { prestationDetailPage } from "@/domains/prestation/prestationDetailPage/router";
+import { prestationSheetDetailPage } from "@/domains/prestation/prestationSheetDetailPage/router";
 import { createWebHistory, createRouter } from "vue-router";
 
 export const router = createRouter({
@@ -16,7 +16,7 @@ export const router = createRouter({
 				notFoundPage.recordRaw,
 				listPrestationSheetPage.recordRaw,
 				addPrestationPage.recordRaw,
-				prestationDetailPage.recordRaw,
+				prestationSheetDetailPage.recordRaw,
 			],
 		},
 	],

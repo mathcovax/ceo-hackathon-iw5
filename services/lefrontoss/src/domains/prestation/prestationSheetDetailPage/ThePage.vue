@@ -1,7 +1,14 @@
 <script setup lang="ts">
-import { prestationDetailPage } from "./router";
+import { prestationSheetDetailPage } from "./router";
+import { useGetPrestationSheet } from "./composables/useGetPrestationSheet";
 
-const { $pt } = prestationDetailPage.use();
+const router = useRouter();
+const { $pt, params } = prestationSheetDetailPage.use();
+
+const { prestationSheet } = useGetPrestationSheet(
+	params.value.prestationSheetId,
+	() => void router.back(),
+);
 
 // mock
 const prestation = {

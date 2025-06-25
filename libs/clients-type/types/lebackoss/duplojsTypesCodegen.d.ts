@@ -52,6 +52,25 @@ type PrestationSheet = {
 
 export { PrestationSheet };
 
+type SubmissionData = Partial<Record<string, ({
+    type: "text";
+    value: string;
+} | {
+    type: "number";
+    value: number;
+} | {
+    type: "date";
+    value: Date;
+} | {
+    type: "url";
+    value: string;
+} | {
+    type: "file";
+    value: string[];
+}) | undefined>>;
+
+export { SubmissionData };
+
 interface CodegenReceiveFormData<GenericValue extends Record<string, string | string[] | number | number[] | Date | Date[] | File[]>> {
     extractor: (...args: any[]) => Promise<GenericValue>;
 }
@@ -152,6 +171,21 @@ type CodegenRoutes = ({
     };
 }) | ({
     method: "POST";
+    path: "/find-one-prestation-sheet";
+    body: {
+        prestationSheetId: string;
+    };
+    response: {
+        code: 404;
+        information: "prestationSheet.notfound";
+        body?: undefined;
+    } | {
+        code: 200;
+        information: "prestationSheet.found";
+        body: PrestationSheet;
+    };
+}) | ({
+    method: "POST";
     path: "/update-ai-agent";
     body: {
         aiAgentId: string;
@@ -173,22 +207,7 @@ type CodegenRoutes = ({
     path: "/create-prestation";
     body: {
         prestationSheetId: string;
-        submissionData: Partial<Record<string, ({
-            type: "text";
-            value: string;
-        } | {
-            type: "number";
-            value: number;
-        } | {
-            type: "date";
-            value: Date;
-        } | {
-            type: "url";
-            value: string;
-        } | {
-            type: "file";
-            value: string[];
-        }) | undefined>>;
+        submissionData: SubmissionData;
     };
     response: {
         code: 404;
@@ -224,22 +243,7 @@ type CodegenRoutes = ({
         body: {
             id: string;
             prestationSheetId: string;
-            submissionData: Partial<Record<string, ({
-                type: "text";
-                value: string;
-            } | {
-                type: "number";
-                value: number;
-            } | {
-                type: "date";
-                value: Date;
-            } | {
-                type: "url";
-                value: string;
-            } | {
-                type: "file";
-                value: string[];
-            }) | undefined>>;
+            submissionData: SubmissionData;
             status: "created" | "inProgress" | "completed";
         }[];
     };
