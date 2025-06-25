@@ -29,19 +29,19 @@ useBuilder()
 			return match({ result })
 				.with(
 					{ result: { information: "extra-field" } },
-					() => new UnprocessableEntityHttpResponse("extra-field"),
+					() => new UnprocessableEntityHttpResponse("prestation.extraField"),
 				)
 				.with(
 					{ result: { information: "failed-check-AIAgent-availability" } },
-					() => new ServiceUnavailableHttpResponse("failed-check-AIAgent-availability"),
+					() => new ServiceUnavailableHttpResponse("prestation.failedCheckAIAgentAvailability"),
 				)
 				.with(
 					{ result: { information: "field-type-incompatible" } },
-					() => new UnprocessableEntityHttpResponse("field-type-incompatible"),
+					() => new UnprocessableEntityHttpResponse("prestation.fieldTypeIncompatible"),
 				)
 				.with(
 					{ result: { information: "missing-field" } },
-					() => new UnprocessableEntityHttpResponse("missing-field"),
+					() => new UnprocessableEntityHttpResponse("prestation.missingField"),
 				)
 				.with(
 					{ result: P.instanceOf(PrestationEntity) },
@@ -51,13 +51,13 @@ useBuilder()
 		},
 		[],
 		[
-			...makeResponseContract(ServiceUnavailableHttpResponse, "failed-check-AIAgent-availability"),
+			...makeResponseContract(ServiceUnavailableHttpResponse, "prestation.failedCheckAIAgentAvailability"),
 			...makeResponseContract(
 				UnprocessableEntityHttpResponse,
 				[
-					"extra-field",
-					"field-type-incompatible",
-					"missing-field",
+					"prestation.extraField",
+					"prestation.fieldTypeIncompatible",
+					"prestation.missingField",
 				],
 			),
 		],
