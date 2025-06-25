@@ -1,23 +1,26 @@
 import jwt from "jsonwebtoken";
-import { Prestation, type PrestationEntity } from "@business/domains/entities/prestation";
+import { Prestation } from "@business/domains/entities/prestation";
 import { ZodAccelerator } from "@duplojs/core";
 import { envs } from "@interfaces/envs";
+import { AIPrestation } from "@business/domains/entities/aIPrestation";
 
-export class PrestationTokenProvider {
+export class AIPrestationTokenProvider {
 	private static schema = ZodAccelerator.build(
 		zod.object({
 			prestationId: zod.string(),
 		}),
 	);
 
-	public static generate(prestation: PrestationEntity) {
-		return jwt.sign(
-			{ prestationId: prestation.id.value } satisfies ReturnType<typeof PrestationTokenProvider["schema"]["parse"]>,
+	public static generate(prestationId: Prestation.Id) {
+		const rawToken = jwt.sign(
+			{ prestationId: prestationId.value } satisfies ReturnType<typeof AIPrestationTokenProvider["schema"]["parse"]>,
 			envs.PRESTATION_TOKEN_KEY,
 			{
 				algorithm: "ES512",
 			},
 		);
+
+		return AIPrestation.tokenObjecter.unsafeCreate(rawToken);
 	}
 
 	public static verify(token: string) {

@@ -9,7 +9,8 @@ export type AllPrestation =
 export interface PrestationRepository extends RepositoryBase<AllPrestation> {
 	generateId(): Prestation.Id;
 	findOneById(prestationId: Prestation.Id): Promise<AllPrestation | null>;
-	generateToken(): AIPrestation.Token;
+	generateToken(aiPrestationId: Prestation.Id): AIPrestation.Token;
+	findAll(): Promise<PrestationEntity[]>;
 }
 
 export const prestationRepository = createRepositoryHandler<

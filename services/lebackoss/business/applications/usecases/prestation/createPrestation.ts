@@ -74,7 +74,7 @@ export class CreatePrestationUsecase extends UsecaseHandler.create({
 					id: prestationId,
 					prestationSheetId: prestationSheet.id,
 					submissionData,
-					token: this.prestationRepository.generateToken(),
+					token: this.prestationRepository.generateToken(prestationId),
 				}),
 			)
 			.exhaustive();
