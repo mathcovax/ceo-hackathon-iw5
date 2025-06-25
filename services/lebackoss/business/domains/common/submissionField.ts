@@ -32,12 +32,15 @@ const dateField = createSubmissionField("date");
 
 const urlField = createSubmissionField("url");
 
-const fileTypeEnum = createEnum([
+export const fileTypeEnum = createEnum([
 	"pdf",
 	"image",
 	"text",
 	"csv",
+	"any",
 ]);
+
+export type FileTypeEnum = GetEnumValue<typeof fileTypeEnum>;
 
 export const fileTypeEnumSchema = zod.enum(fileTypeEnum.toTuple());
 

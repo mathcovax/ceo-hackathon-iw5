@@ -32,15 +32,24 @@ export class CreatePrestationUsecase extends UsecaseHandler.create({
 
 		for (const field of prestationSheet.submissionFields) {
 			const fieldName = field.value.name;
-			const submissionField = submissionData.value[fieldName];
+			const data = submissionData.value[fieldName];
 
-			if (!submissionField) {
+			if (!data) {
 				return new UsecaseError("missing-field", { fieldName });
 			}
 
-			if (submissionField.type !== field.value.type) {
+			if (
+				data.type !== field.value.type
+				|| (
+					field.value.type === "file"
+					&& data.type === "file"
+					&& !field.value.fileTypes.includes(
+						this.prestationRepository.getFileType(data.value),
+					)
+				)
+			) {
 				return new UsecaseError("field-type-incompatible", {
-					submissionField,
+					submissionField: data,
 					prestationField: field,
 				});
 			}

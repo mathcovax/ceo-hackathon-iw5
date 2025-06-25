@@ -37,7 +37,7 @@ const urlData = createSubmissionData(
 
 const fileData = createSubmissionData(
 	"file",
-	zod.string().array(),
+	zod.string(),
 );
 
 export const submissionDataObjecter = zod

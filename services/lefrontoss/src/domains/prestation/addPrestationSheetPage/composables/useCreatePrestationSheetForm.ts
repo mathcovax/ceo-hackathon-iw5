@@ -158,7 +158,7 @@ export function useCreatePrestationSheetForm() {
 		),
 	};
 
-	const { Form, formValue, check } = useFormBuilder(
+	const { Form, check, reset } = useFormBuilder(
 		useUnionLayout(
 			[
 				[
@@ -261,6 +261,12 @@ export function useCreatePrestationSheetForm() {
 							...constantFields,
 							aIAgent: result.value.aIAgent,
 						},
+				},
+			)
+			.whenInformation(
+				"prestationSheet.created",
+				() => {
+					reset();
 				},
 			);
 	}

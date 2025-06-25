@@ -1,25 +1,77 @@
-import { submissionDataObjecter } from "@business/domains/common/submissionData";
+import { type SubmissionData, submissionDataObjecter } from "@business/domains/common/submissionData";
 import { PrestationEntity } from "@business/domains/entities/prestation";
 import { PrestationSheet } from "@business/domains/entities/prestationSheet";
 import { iWantPrestationSheetExistById } from "@interfaces/http/checkers/presetationSheet";
 import { createPrestationUsecase } from "@interfaces/usecases";
+import { fileTypeFromBuffer } from "file-type";
+import { writeFile } from "fs/promises";
 import { match, P } from "ts-pattern";
 
 useBuilder()
-	.createRoute("POST", "/create-prestation")
+	.createRoute("POST", "/create-prestation/{prestationSheetId}")
 	.extract({
-		body: zod.object({
+		params: {
 			prestationSheetId: PrestationSheet.idObjecter.toZodSchema(),
-			submissionData: submissionDataObjecter.toZodSchema(),
-		}),
+		},
 	})
 	.presetCheck(
 		iWantPrestationSheetExistById,
-		(pickup) => pickup("body").prestationSheetId,
+		(pickup) => pickup("prestationSheetId"),
 	)
+	.extract({
+		body: submissionDataObjecter.zodSchema,
+	})
 	.cut(
 		async({ pickup, dropper }) => {
-			const { body: { submissionData }, prestationSheet } = pickup(["body", "prestationSheet"]);
+			const { body, prestationSheet } = pickup(["body", "prestationSheet"]);
+
+			const submissionData = submissionDataObjecter.unsafeCreate(
+				await Object.entries(body)
+					.reduce<Promise<SubmissionData["value"]>>(
+						async(accPromised, [key, value]) => {
+							const acc = await accPromised;
+
+							return match(value)
+								.with(
+									{ type: P.union("date", "number", "text", "url") },
+									() => {
+										acc[key] = value;
+
+										return acc;
+									},
+								)
+								.with(
+									{ type: "file" },
+									async({ value }) => {
+										const buffer = Buffer.from(value, "base64");
+										const fileType = await fileTypeFromBuffer(buffer);
+
+										if (!fileType) {
+											return acc;
+										}
+
+										const path = `filesUpload/${prestationSheet.id.value}_${process.hrtime.bigint().toString()}${fileType.ext}`;
+
+										await writeFile(
+											path,
+											buffer,
+										);
+
+										acc[key] = {
+											type: "file",
+											value: path,
+										};
+
+										return acc;
+									},
+								)
+								.with(undefined, () => acc)
+								.exhaustive();
+						},
+						Promise.resolve({}),
+					),
+
+			);
 
 			const result = await createPrestationUsecase.execute({
 				prestationSheet,

@@ -1,7 +1,7 @@
 export const addPrestationPage = createPage(
 	"addPrestation",
 	{
-		path: "/add-prestation",
+		path: "/BO/add-prestation",
 		component: () => import("./ThePage.vue"),
 	},
 );

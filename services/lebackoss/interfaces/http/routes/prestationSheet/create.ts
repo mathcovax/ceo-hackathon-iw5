@@ -8,7 +8,6 @@ useBuilder()
 	.createRoute("POST", "/create-prestation-sheet")
 	.extract({
 		body: zod.object({
-			mode: PrestationSheet.modeObjecter.toZodSchema(),
 			name: PrestationSheet.nameObjecter.toZodSchema(),
 			description: PrestationSheet.descriptionObjecter.toZodSchema(),
 			keywords: PrestationSheet.keywordObjecter.array().toZodSchema(),

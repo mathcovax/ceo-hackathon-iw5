@@ -5,10 +5,6 @@
 /* v8 ignore start */
 // noinspection JSUnusedGlobalSymbols
 // @ts-nocheck
-type PrestationSheetModeObjecter = "ai" | "human";
-
-export { PrestationSheetModeObjecter };
-
 type SubmissionField = {
     type: "text";
     name: string;
@@ -56,6 +52,10 @@ type PrestationSheet = {
 
 export { PrestationSheet };
 
+type PrestationSheetModeObjecter = "ai" | "human";
+
+export { PrestationSheetModeObjecter };
+
 type SubmissionData = Partial<Record<string, ({
     type: "text";
     value: string;
@@ -70,7 +70,7 @@ type SubmissionData = Partial<Record<string, ({
     value: string;
 } | {
     type: "file";
-    value: string[];
+    value: string;
 }) | undefined>>;
 
 export { SubmissionData };
@@ -85,7 +85,6 @@ type CodegenRoutes = ({
     method: "POST";
     path: "/create-prestation-sheet";
     body: {
-        mode: PrestationSheetModeObjecter;
         name: string;
         description: string;
         keywords: {
@@ -208,10 +207,10 @@ type CodegenRoutes = ({
     };
 }) | ({
     method: "POST";
-    path: "/create-prestation";
-    body: {
+    path: "/create-prestation/{prestationSheetId}";
+    body?: SubmissionData | undefined;
+    params: {
         prestationSheetId: string;
-        submissionData: SubmissionData;
     };
     response: {
         code: 404;

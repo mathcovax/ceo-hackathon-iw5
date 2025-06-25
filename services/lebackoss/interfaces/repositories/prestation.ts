@@ -1,4 +1,5 @@
 import { prestationRepository } from "@business/applications/repositories/prestation";
+import { fileTypeEnum } from "@business/domains/common/submissionField";
 import { Prestation, PrestationEntity } from "@business/domains/entities/prestation";
 import { mongo } from "@interfaces/providers/mongo";
 import { AIPrestationTokenProvider } from "@interfaces/providers/token/prestation";
@@ -49,5 +50,8 @@ prestationRepository.default = {
 					mongoPrestation,
 				),
 		);
+	},
+	getFileType(_type) {
+		return fileTypeEnum.any;
 	},
 };

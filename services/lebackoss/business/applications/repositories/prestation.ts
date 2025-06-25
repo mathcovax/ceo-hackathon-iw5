@@ -1,3 +1,4 @@
+import { type FileTypeEnum } from "@business/domains/common/submissionField";
 import { type AIPrestationEntity, type AIPrestation } from "@business/domains/entities/aIPrestation";
 import { type Prestation, type PrestationEntity } from "@business/domains/entities/prestation";
 import { createRepositoryHandler, type RepositoryBase } from "@vendors/clean";
@@ -11,6 +12,7 @@ export interface PrestationRepository extends RepositoryBase<AllPrestation> {
 	findOneById(prestationId: Prestation.Id): Promise<AllPrestation | null>;
 	generateToken(aiPrestationId: Prestation.Id): AIPrestation.Token;
 	findAll(): Promise<PrestationEntity[]>;
+	getFileType(path: string): FileTypeEnum;
 }
 
 export const prestationRepository = createRepositoryHandler<
