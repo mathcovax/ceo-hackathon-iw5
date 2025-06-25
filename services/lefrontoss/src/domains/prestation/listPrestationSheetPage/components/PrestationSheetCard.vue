@@ -5,7 +5,7 @@ interface Props {
 	id: string;
 	name: string;
 	description: string;
-	mode: "ai" | "humain";
+	mode: "ai" | "human";
 	status: "disabled" | "available";
 	keywords: { value: string }[];
 }
@@ -29,7 +29,7 @@ defineProps<Props>();
 
 						<div class="flex items-center gap-2 mt-1">
 							<DSBadge
-								:variant="mode === 'humain' ? 'default' : 'secondary'"
+								:variant="mode === 'human' ? 'default' : 'secondary'"
 								class="text-xs"
 							>
 								{{ mode === "ai" ? $t("prestation.mod.ai") : $t("prestation.mod.human") }}
