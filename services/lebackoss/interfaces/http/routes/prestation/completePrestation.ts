@@ -6,16 +6,14 @@ import { completePrestationUsecase } from "@interfaces/usecases";
 useBuilder()
 	.createRoute("POST", "/complete-prestation")
 	.extract({
-		params: zod.object({
-			prestationId: Prestation.idObjecter.toZodSchema(),
-		}),
 		body: zod.object({
+			prestationId: Prestation.idObjecter.toZodSchema(),
 			prestationResultData: prestationResultDataObjecter.array().toZodSchema(),
 		}),
 	})
 	.presetCheck(
 		iWantPrestationExistById,
-		(pickup) => pickup("params").prestationId,
+		(pickup) => pickup("body").prestationId,
 	)
 	.cut(
 		async({ pickup, dropper }) => {

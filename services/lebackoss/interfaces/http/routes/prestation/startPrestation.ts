@@ -6,13 +6,13 @@ import { match, P } from "ts-pattern";
 useBuilder()
 	.createRoute("POST", "/start-prestation")
 	.extract({
-		params: zod.object({
+		body: zod.object({
 			prestationId: Prestation.idObjecter.toZodSchema(),
 		}),
 	})
 	.presetCheck(
 		iWantPrestationExistById,
-		(pickup) => pickup("params").prestationId,
+		(pickup) => pickup("body").prestationId,
 	)
 	.cut(
 		async({ pickup, dropper }) => {
