@@ -2,12 +2,14 @@ import { envs } from "@interfaces/envs";
 import { MongoClient } from "mongodb";
 import { type MongoAIAgentModel } from "./models/aIAgent";
 import { type MongoPrestationSheetModel } from "./models/prestationSheet";
+import { type MongoPrestationModel } from "./models/prestation";
 
 const client = new MongoClient(envs.MONGO_DATABASE_URL);
 
 const database = client.db(envs.MONGO_DB);
-const aIAgentCollection = database.collection<MongoAIAgentModel>("AIAgent");
-const prestationSheetCollection = database.collection<MongoPrestationSheetModel>("PrestationSheet");
+const aIAgentCollection = database.collection<MongoAIAgentModel>("aIAgent");
+const prestationSheetCollection = database.collection<MongoPrestationSheetModel>("prestationSheet");
+const prestationCollection = database.collection<MongoPrestationModel>("prestation");
 
 if (envs.DB_CONNECTION) {
 	await client.connect();
@@ -18,4 +20,5 @@ export const mongo = {
 	database,
 	aIAgentCollection,
 	prestationSheetCollection,
+	prestationCollection,
 };
