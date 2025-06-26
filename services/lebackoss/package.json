@@ -10,7 +10,7 @@
     "postinstall": "npm run duplo:generate"
   },
   "dependencies": {
-    "@duplojs/core": "1.0.3",
+    "@duplojs/core": "1.0.4",
     "@duplojs/http-client": "1.2.3",
     "@duplojs/node": "1.0.2",
     "@duplojs/utils": "0.3.1",
