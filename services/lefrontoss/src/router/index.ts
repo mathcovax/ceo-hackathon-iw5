@@ -1,8 +1,8 @@
 import { homePage } from "@/domains/edito/homePage/router";
 import { notFoundPage } from "@/domains/edito/notFoundPage/router";
-import { listPrestationSheetPage } from "@/domains/prestation/listPrestationSheetPage/router";
-import { prestationSheetDetailPage } from "@/domains/prestation/prestationSheetDetailPage/router";
-import { addPrestationPage } from "@/domains/prestation/addPrestationSheetPage/router";
+import { listPrestationSheetPage } from "@/domains/prestationSheet/listPrestationSheetPage/router";
+import { prestationSheetDetailPage } from "@/domains/prestationSheet/prestationSheetDetailPage/router";
+import { addPrestationPage } from "@/domains/prestationSheet/addPrestationSheetPage/router";
 import { createWebHistory, createRouter } from "vue-router";
 
 export const router = createRouter({
