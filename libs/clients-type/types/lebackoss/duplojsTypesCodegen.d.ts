@@ -34,11 +34,11 @@ type SubmissionField = {
 
 export { SubmissionField };
 
-type FileTypeEnum = "pdf" | "image" | "text" | "csv";
+type FileTypeEnum = "pdf" | "image" | "text" | "csv" | "any";
 
 export { FileTypeEnum };
 
-type PrestationSheet = {
+type Prestation = {
     id: string;
     mode: PrestationSheetModeObjecter;
     status: "disabled" | "available";
@@ -50,7 +50,7 @@ type PrestationSheet = {
     submissionFields: SubmissionField[];
 };
 
-export { PrestationSheet };
+export { Prestation };
 
 type PrestationSheetModeObjecter = "ai" | "human";
 
@@ -170,7 +170,7 @@ type CodegenRoutes = ({
     response: {
         code: 200;
         information: "prestationSheetList.found";
-        body: PrestationSheet[];
+        body: Prestation[];
     };
 }) | ({
     method: "POST";
@@ -185,7 +185,7 @@ type CodegenRoutes = ({
     } | {
         code: 200;
         information: "prestationSheet.found";
-        body: PrestationSheet;
+        body: Prestation;
     };
 }) | ({
     method: "POST";
