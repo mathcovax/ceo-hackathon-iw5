@@ -8,7 +8,7 @@ export interface AIAgentRepository extends RepositoryBase<AIAgentEntity> {
 	isAvailable(aIAgent: AIAgentEntity): Promise<boolean>;
 	findOneById(aIAgentId: AIAgent.Id): Promise<AIAgentEntity | null>;
 	getOneByPrestationSheet(prestationSheet: PrestationSheetEntity): Promise<AIAgentEntity>;
-	sendPrestation(prestation: AIPrestationEntity): Promise<void>;
+	sendPrestation(aIPrestation: AIPrestationEntity): Promise<void>;
 }
 
 export const aIAgentRepository = createRepositoryHandler<

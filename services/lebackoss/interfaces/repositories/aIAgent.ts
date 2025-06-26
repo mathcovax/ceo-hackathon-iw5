@@ -75,7 +75,7 @@ aIAgentRepository.default = {
 			mongoAIAgent,
 		);
 	},
-	async sendPrestation(_prestation) {
+	async sendPrestation(_aIPrestation) {
 		await Promise.all([true]);
 
 		return;

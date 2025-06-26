@@ -5,6 +5,7 @@ import { envs } from "../envs";
 import "./routes";
 import { cors } from "@vendors/duplo-plugins/cors";
 import { debug } from "@vendors/duplo-plugins/debug";
+import { duploStatic } from "./plugins/static";
 
 const duplo = new Duplo({
 	environment: envs.ENVIROMENT,
@@ -13,6 +14,10 @@ const duplo = new Duplo({
 	plugins: [
 		cors(envs.CORS_ALLOW_ORIGIN),
 		debug(),
+		duploStatic({
+			directory: envs.UPLOAD_DIR,
+			paths: ["/*"],
+		}),
 	],
 });
 
