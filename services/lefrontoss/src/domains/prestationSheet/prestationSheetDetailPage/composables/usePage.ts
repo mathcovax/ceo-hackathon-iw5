@@ -197,6 +197,32 @@ export function usePage() {
 									),
 								] as const,
 							)
+							.with(
+								{ type: "selectText" },
+								({ name, require, values }) => [
+									name,
+									useCheckLayout(
+										selectStringFormField,
+										{
+											mandatory: true,
+											schema: optionelRequired(
+												require,
+												zod.string()
+													.transform((value) => ({
+														type: "selectText" as const,
+														value,
+													})),
+											),
+											props: {
+												items: values,
+												placeholder: "Selectioné une valeur.",
+											},
+											defaultValue: values.find(Boolean),
+											label: name,
+										},
+									),
+								] as const,
+							)
 							.exhaustive(),
 					),
 				),

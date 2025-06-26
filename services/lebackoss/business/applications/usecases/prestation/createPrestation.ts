@@ -47,6 +47,13 @@ export class CreatePrestationUsecase extends UsecaseHandler.create({
 						this.prestationRepository.getFileType(data.value),
 					)
 				)
+				|| (
+					field.value.type === "selectText"
+					&& data.type === "selectText"
+					&& !field.value.values.includes(
+						data.value,
+					)
+				)
 			) {
 				return new UsecaseError("field-type-incompatible", {
 					submissionField: data,

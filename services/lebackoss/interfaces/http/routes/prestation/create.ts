@@ -35,7 +35,7 @@ useBuilder()
 
 							return match(value)
 								.with(
-									{ type: P.union("date", "number", "text", "url", "textarea") },
+									{ type: P.union("date", "number", "text", "url", "textarea", "selectText") },
 									() => {
 										acc[key] = value;
 

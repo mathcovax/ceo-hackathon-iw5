@@ -30,6 +30,11 @@ type SubmissionField = {
     name: string;
     require: boolean;
     fileTypes: FileTypeEnum[];
+} | {
+    type: "selectText";
+    name: string;
+    require: boolean;
+    values: string[];
 };
 
 export { SubmissionField };
@@ -73,6 +78,9 @@ type SubmissionData = Partial<Record<string, ({
     value: string;
 } | {
     type: "file";
+    value: string;
+} | {
+    type: "selectText";
     value: string;
 }) | undefined>>;
 

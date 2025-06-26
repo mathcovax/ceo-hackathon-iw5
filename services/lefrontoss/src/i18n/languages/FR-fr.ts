@@ -47,6 +47,7 @@ export const FRfr = {
 						file: "Fichier",
 						url: "URL",
 						date: "Date",
+						selectText: "Selection de text",
 					},
 				},
 			},

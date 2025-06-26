@@ -7,6 +7,7 @@ export const fieldTypeEnum = createEnum([
 	"date",
 	"url",
 	"file",
+	"selectText",
 ]);
 
 export type FieldTypeEnum = GetEnumValue<typeof fieldTypeEnum>;
@@ -31,6 +32,11 @@ const numberField = createSubmissionField("number");
 const dateField = createSubmissionField("date");
 
 const urlField = createSubmissionField("url");
+
+const selectTextField = createSubmissionField("selectText")
+	.extend({
+		values: zod.string().array(),
+	});
 
 export const fileTypeEnum = createEnum([
 	"pdf",
@@ -57,6 +63,7 @@ export const submissionFieldObjecter = zod
 		dateField,
 		urlField,
 		fileField,
+		selectTextField,
 	])
 	.createValueObjecter("submissionField");
 

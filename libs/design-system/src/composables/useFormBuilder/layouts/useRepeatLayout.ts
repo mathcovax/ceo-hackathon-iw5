@@ -39,7 +39,7 @@ export function useRepeatLayout<
 								return modelValue.value?.[index]?.value ?? last.value;
 							},
 							set(value) {
-								if (!modelValue.value) {
+								if (!modelValue.value?.[index]) {
 									return;
 								}
 								last = { value };

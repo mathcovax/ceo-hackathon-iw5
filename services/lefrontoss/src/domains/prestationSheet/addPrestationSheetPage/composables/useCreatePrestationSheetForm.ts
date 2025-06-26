@@ -130,6 +130,27 @@ export function useCreatePrestationSheetForm() {
 								...constantSubmissionFields,
 							}),
 						],
+						[
+							"selectText",
+							useMultiFieldLayout({
+								...constantSubmissionFields,
+								values: useRepeatLayout(
+									useCheckLayout(
+										textFormField,
+										{
+											mandatory: true,
+											schema: zod.string(),
+										},
+									),
+									{
+										template: repeatLayoutTemplate({
+											addLabel: $pt("form.label.addField"),
+											colsByItems: 6,
+										}),
+									},
+								),
+							}),
+						],
 					],
 					{
 						template: unionLayoutTemplate({
@@ -141,6 +162,7 @@ export function useCreatePrestationSheetForm() {
 								file: $pt("form.label.selectOption.file"),
 								url: $pt("form.label.selectOption.url"),
 								date: $pt("form.label.selectOption.date"),
+								selectText: $pt("form.label.selectOption.selectText"),
 							},
 						}),
 					},
@@ -233,6 +255,15 @@ export function useCreatePrestationSheetForm() {
 							type,
 							name: value.fieldName,
 							require: value.required,
+						}),
+					)
+					.with(
+						{ type: "selectText" },
+						({ type, value }) => ({
+							type,
+							name: value.fieldName,
+							require: value.required,
+							values: value.values,
 						}),
 					)
 					.with(

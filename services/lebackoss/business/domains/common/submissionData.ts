@@ -45,6 +45,11 @@ const fileData = createSubmissionData(
 	zod.string(),
 );
 
+const selectTextData = createSubmissionData(
+	"selectText",
+	zod.string(),
+);
+
 export const submissionDataObjecter = zod
 	.record(
 		zod.string(),
@@ -55,6 +60,7 @@ export const submissionDataObjecter = zod
 			dateData,
 			urlData,
 			fileData,
+			selectTextData,
 		]).optional(),
 	)
 	.createValueObjecter("submissionData");
