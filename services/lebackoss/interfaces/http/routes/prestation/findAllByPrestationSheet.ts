@@ -1,5 +1,5 @@
 import { PrestationSheet } from "@business/domains/entities/prestationSheet";
-import { iWantPrestationSheetExistById } from "@interfaces/http/checkers/presetationSheet";
+import { iWantPrestationSheetExistById } from "@interfaces/http/checkers/prestationSheet";
 import { endpointFindAllPrestationRoute } from "@interfaces/http/schemas/prestation";
 import { findAllPrestationByPrestationSheetUsecase } from "@interfaces/usecases";
 
