@@ -1,27 +1,26 @@
 <script setup lang="ts">
 import { listPrestationPage } from "./router";
-import { useGetPrestation } from "./composables/useGetPrestation";
 import PrestationCard from "./components/PrestationCard.vue";
+import { useGetPage } from "./composables/useGetPage";
 
-const router = useRouter();
-const { $pt, params } = listPrestationPage.use();
+const { $pt } = listPrestationPage.use();
 
-const { listPrestation } = useGetPrestation(
-	params.value.prestationSheetId,
-	() => void router.back(),
-);
+const { prestationSheet, listPrestation } = useGetPage();
 
 </script>
 
 <template>
-	<section class="space-y-6">
+	<section
+		class="space-y-6"
+		v-if="prestationSheet"
+	>
 		<div class="space-y-2">
 			<h1 class="text-3xl font-bold">
-				{{ $pt("title") }}
+				{{ prestationSheet.name }}
 			</h1>
 
 			<p class="text-muted-foreground">
-				{{ $pt("description") }}
+				{{ prestationSheet.description }}
 			</p>
 		</div>
 

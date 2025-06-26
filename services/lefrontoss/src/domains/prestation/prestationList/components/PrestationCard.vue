@@ -9,11 +9,6 @@ interface Props {
 
 defineProps<Props>();
 
-function getTextField(data: Props["prestation"], key: string) {
-	const field = data?.submissionData?.[key];
-	return field && field.type === "text" ? field.value : "";
-}
-
 function getMode(prestation: Props["prestation"]) {
 	return "token" in prestation ? "ai" : "human";
 }
@@ -22,8 +17,6 @@ function getMode(prestation: Props["prestation"]) {
 
 <template>
 	<DSCard>
-		<div>Hello</div>
-
 		<template #header>
 			<div class="flex justify-between items-start">
 				<div class="flex items-center gap-3">
@@ -32,10 +25,6 @@ function getMode(prestation: Props["prestation"]) {
 					</div>
 
 					<div>
-						<h2 class="text-lg font-semibold">
-							{{ getTextField(prestation, 'name') || '—' }}
-						</h2>
-
 						<div class="flex items-center gap-2 mt-1">
 							<DSBadge
 								:variant="getMode(prestation) === 'human' ? 'default' : 'secondary'"
@@ -63,35 +52,17 @@ function getMode(prestation: Props["prestation"]) {
 			</div>
 		</template>
 
-		<p class="text-sm text-muted-foreground mb-4 line-clamp-3">
-			{{ getTextField(prestation, 'description') || '—' }}
-		</p>
+		<div>{{ $t("prestation.submissionData") }}:</div>
 
 		<div
-			v-if="Array.isArray(prestation.submissionData.keywords?.value)"
-			class="space-y-2"
+			v-for="(field, key) in prestation.submissionData"
+			:key="key"
+			class="mb-2"
 		>
-			<h4 class="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-				Spécialités
-			</h4>
-
-			<div class="flex flex-wrap gap-1">
-				<DSBadge
-					v-for="(kw, idx) in (prestation.submissionData.keywords?.value as string[]).slice(0, 4)"
-					:key="idx"
-					variant="outline"
-					class="text-xs px-2 py-1"
-				>
-					{{ kw }}
-				</DSBadge>
-
-				<DSBadge
-					v-if="(prestation.submissionData.keywords?.value as string[]).length > 4"
-					variant="outline"
-					class="text-xs px-2 py-1 text-muted-foreground"
-				>
-					+{{ (prestation.submissionData.keywords?.value as string[]).length - 4 }}
-				</DSBadge>
+			<div v-if="field !== undefined">
+				<strong class="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+					{{ key }} : {{ field.value }}
+				</strong>
 			</div>
 		</div>
 
@@ -101,7 +72,7 @@ function getMode(prestation: Props["prestation"]) {
 				:to="listPrestationSheetPage.createTo()"
 			>
 				<DSPrimaryButton size="small">
-					{{ $t("cta.seeMore") }}
+					{{ $t("cta.seePrestationSheet") }}
 				</DSPrimaryButton>
 			</RouterLink>
 		</template>

@@ -88,7 +88,11 @@ export const FRfr = {
 		status: {
 			disabled: "Indisponible",
 			available: "Disponible",
+			created: "Created",
+			inProgress: "InProgress",
+			completed: "Completed",
 		},
+		submissionData: "Submission Data",
 	},
 	formMessage: {
 		required: "Champ obligatoire.",
@@ -103,6 +107,7 @@ export const FRfr = {
 		backHome: "Retour à l'accueil",
 		connection: "Inscription / Connexion",
 		seeMore: "Voir plus",
+		seePrestationSheet: "Voir les prestations sheet",
 		seePrestation: "Voir les prestations",
 		contact: "Contacter",
 		use: "Utiliser",

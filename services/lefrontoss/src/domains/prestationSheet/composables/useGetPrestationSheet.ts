@@ -26,6 +26,7 @@ export function useGetPrestationSheet(
 			.whenRequestError(
 				whenFindError,
 			),
+		{ immediate: true },
 	);
 
 	return {
