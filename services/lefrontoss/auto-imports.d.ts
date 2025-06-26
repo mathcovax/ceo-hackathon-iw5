@@ -20,9 +20,11 @@ declare global {
   const createPage: typeof import('./vendors/design-system/utils/createPage')['createPage']
   const customRef: typeof import('vue')['customRef']
   const dashboardPage: typeof import('./src/domains/dashboard/dashboardPage/router')['dashboardPage']
+  const dateFormField: typeof import('./vendors/design-system/utils/formFields')['dateFormField']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const effectScope: typeof import('vue')['effectScope']
+  const fileFormFiels: typeof import('./vendors/design-system/utils/formFields')['fileFormFiels']
   const formTemplate: typeof import('./vendors/design-system/utils/layoutTemplate')['formTemplate']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
@@ -39,6 +41,7 @@ declare global {
   const multiComboBoxFormField: typeof import('./vendors/design-system/utils/formFields')['multiComboBoxFormField']
   const multiLayoutTemplateGridCols: typeof import('./vendors/design-system/utils/layoutTemplate')['multiLayoutTemplateGridCols']
   const nextTick: typeof import('vue')['nextTick']
+  const numberFormFiels: typeof import('./vendors/design-system/utils/formFields')['numberFormFiels']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
   const onBeforeRouteLeave: typeof import('vue-router')['onBeforeRouteLeave']
@@ -71,6 +74,7 @@ declare global {
   const textLayoutTemplateGridCols: typeof import('./vendors/design-system/utils/layoutTemplate')['textLayoutTemplateGridCols']
   const textareaFormField: typeof import('./vendors/design-system/utils/formFields')['textareaFormField']
   const textformField: typeof import('./vendors/design-system/utils/formFields')['textformField']
+  const toBase64: typeof import('./src/utils/toBase64')['toBase64']
   const toRaw: typeof import('vue')['toRaw']
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
@@ -191,6 +195,7 @@ declare module 'vue' {
     readonly createLayoutTemplate: UnwrapRef<typeof import('./vendors/design-system/composables/useFormBuilder/templates/createLayoutTemplate')['createLayoutTemplate']>
     readonly createPage: UnwrapRef<typeof import('./vendors/design-system/utils/createPage')['createPage']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
+    readonly dateFormField: UnwrapRef<typeof import('./vendors/design-system/utils/formFields')['dateFormField']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
@@ -210,6 +215,7 @@ declare module 'vue' {
     readonly multiComboBoxFormField: UnwrapRef<typeof import('./vendors/design-system/utils/formFields')['multiComboBoxFormField']>
     readonly multiLayoutTemplateGridCols: UnwrapRef<typeof import('./vendors/design-system/utils/layoutTemplate')['multiLayoutTemplateGridCols']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
+    readonly numberFormFiels: UnwrapRef<typeof import('./vendors/design-system/utils/formFields')['numberFormFiels']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
     readonly onBeforeRouteLeave: UnwrapRef<typeof import('vue-router')['onBeforeRouteLeave']>

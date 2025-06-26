@@ -17,7 +17,7 @@ type FormFieldsWrapper = Record<string, FormField>;
 
 type EntriesFormFieldsWrapper<
 	GenericKey extends string = string,
-> = [GenericKey, FormField][];
+> = (readonly [GenericKey, FormField])[];
 
 type FormFieldsWrapperToFormValuesWrapper<
 	GenericFormFields extends FormFieldsWrapper,
@@ -80,15 +80,17 @@ export function useMultiFieldLayout(
 		template,
 	} = options ?? {};
 
+	const entriesFormFieldsWrapper = (
+		formFieldsWrapper instanceof Array
+			? formFieldsWrapper
+			: Object
+				.entries(formFieldsWrapper)
+	);
+
 	function multiFieldLayout(params: FormFieldParams<Record<string, unknown>>): FormFieldInstance {
 		const { modelValue, key: paramsKey } = params;
 
-		const { exposed, formFieldVNode } = (
-			formFieldsWrapper instanceof Array
-				? formFieldsWrapper
-				: Object
-					.entries(formFieldsWrapper)
-		)
+		const { exposed, formFieldVNode } = entriesFormFieldsWrapper
 			.reduce<SpreadFormFieldInstance>(
 				(acc, [key, formField]) => {
 					const { exposed, getVNode } = formField({
@@ -190,8 +192,7 @@ export function useMultiFieldLayout(
 		};
 	}
 
-	multiFieldLayout.defaultValue = Object
-		.entries(formFieldsWrapper)
+	multiFieldLayout.defaultValue = entriesFormFieldsWrapper
 		.reduce(
 			(acc, [key, formField]) => ({
 				...acc,

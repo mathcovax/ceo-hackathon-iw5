@@ -4,7 +4,17 @@ import { Prestation, PrestationEntity } from "@business/domains/entities/prestat
 import { mongo } from "@interfaces/providers/mongo";
 import { AIPrestationTokenProvider } from "@interfaces/providers/token/prestation";
 import { EntityHandler } from "@vendors/clean";
+import { type FileTypeEnum } from "@vendors/clients-type/lebackoss/duplojsTypesCodegen";
+import { extname } from "path";
 import { uuidv7 } from "uuidv7";
+
+const fileTypeMapper: Record<string, FileTypeEnum> = {
+	".pdf": "pdf",
+	".png": "image",
+	".jpg": "image",
+	".csv": "csv",
+	".txt": "text",
+};
 
 prestationRepository.default = {
 	async save(prestation) {
@@ -51,7 +61,7 @@ prestationRepository.default = {
 				),
 		);
 	},
-	getFileType(_type) {
-		return fileTypeEnum.any;
+	getFileType(path) {
+		return fileTypeMapper[extname(path)] ?? fileTypeEnum.any;
 	},
 };

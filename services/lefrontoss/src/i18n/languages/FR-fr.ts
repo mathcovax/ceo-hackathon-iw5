@@ -1,7 +1,6 @@
 import { notFoundPage } from "@/domains/edito/notFoundPage/router";
 import { addPrestationPage } from "@/domains/prestationSheet/addPrestationSheetPage/router";
 import { listPrestationSheetPage } from "@/domains/prestationSheet/listPrestationSheetPage/router";
-import { prestationDetailPage } from "@/domains/prestation/prestationDetailPage/router";
 
 export const FRfr = {
 	page: {
@@ -42,17 +41,6 @@ export const FRfr = {
 					},
 				},
 			},
-		},
-		[prestationDetailPage.name]: {
-			title: "Detail de prestation",
-			prestation: {
-				id: "ID",
-				status: "Statut",
-			},
-			prestationResult: {
-				title: "Résultat",
-			},
-			noPrestationResult: "Pas résultat pour le moment",
 		},
 	},
 	layout: {

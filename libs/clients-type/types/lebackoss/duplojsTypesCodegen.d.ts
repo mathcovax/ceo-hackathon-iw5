@@ -60,6 +60,9 @@ type SubmissionData = Partial<Record<string, ({
     type: "text";
     value: string;
 } | {
+    type: "textarea";
+    value: string;
+} | {
     type: "number";
     value: number;
 } | {

@@ -8,6 +8,10 @@ import {
 import type { HTMLAttributes } from "vue";
 import { reactiveOmit } from "@vueuse/core";
 import { cn } from "../../../lib/utils";
+import DSNumberFieldContent from "./DSNumberFieldContent.vue";
+import DSNumberFieldDecrement from "./DSNumberFieldDecrement.vue";
+import DSNumberFieldInput from "./DSNumberFieldInput.vue";
+import DSNumberFieldIncrement from "./DSNumberFieldIncrement.vue";
 
 const props = defineProps<NumberFieldRootProps & { class?: HTMLAttributes["class"] }>();
 const emits = defineEmits<NumberFieldRootEmits>();
@@ -22,6 +26,12 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
 		v-bind="forwarded"
 		:class="cn('grid gap-1.5', props.class)"
 	>
-		<slot />
+		<DSNumberFieldContent>
+			<DSNumberFieldDecrement />
+
+			<DSNumberFieldInput />
+
+			<DSNumberFieldIncrement />
+		</DSNumberFieldContent>
 	</NumberFieldRoot>
 </template>

@@ -6,6 +6,9 @@ import DSTextarea from "../components/ui/textarea/DSTextarea.vue";
 import SelectTemplate, { type SelectItem } from "../components/form/SelectTemplate.vue";
 import SelectStringTemplate from "../components/form/SelectStringTemplate.vue";
 import MultiComboboxTemplate, { type MultiComboboxItem } from "../components/form/MultiComboboxTemplate.vue";
+import DSDatePicker from "../components/DSDatePicker.vue";
+import DSNumberField from "../components/ui/number-field/DSNumberField.vue";
+import DSInputFile from "../components/ui/input/DSInputFile.vue";
 
 export const textFormField = createFormField(DSInput, {
 	defaultValue: "",
@@ -45,4 +48,19 @@ export const multiComboBoxFormField = createFormField(MultiComboboxTemplate, {
 		emptyLabel: "",
 		items: [],
 	},
+});
+
+export const dateFormField = createFormField(DSDatePicker, {
+	defaultValue: null as null | string,
+	props: {},
+});
+
+export const numberFormFiels = createFormField(DSNumberField, {
+	defaultValue: 0,
+	props: {},
+});
+
+export const fileFormFiels = createFormField(DSInputFile, {
+	defaultValue: null as null | File,
+	props: {},
 });

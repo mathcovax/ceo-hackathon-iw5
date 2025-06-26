@@ -1,10 +1,12 @@
 import { type SubmissionData, submissionDataObjecter } from "@business/domains/common/submissionData";
 import { PrestationEntity } from "@business/domains/entities/prestation";
 import { PrestationSheet } from "@business/domains/entities/prestationSheet";
+import { mimeStandard } from "@duplojs/core";
+import { envs } from "@interfaces/envs";
 import { iWantPrestationSheetExistById } from "@interfaces/http/checkers/prestationSheet";
 import { createPrestationUsecase } from "@interfaces/usecases";
-import { fileTypeFromBuffer } from "file-type";
 import { rm, writeFile } from "fs/promises";
+import { resolve } from "path";
 import { match, P } from "ts-pattern";
 
 useBuilder()
@@ -33,7 +35,7 @@ useBuilder()
 
 							return match(value)
 								.with(
-									{ type: P.union("date", "number", "text", "url") },
+									{ type: P.union("date", "number", "text", "url", "textarea") },
 									() => {
 										acc[key] = value;
 
@@ -43,17 +45,18 @@ useBuilder()
 								.with(
 									{ type: "file" },
 									async({ value }) => {
-										const buffer = Buffer.from(value, "base64");
-										const fileType = await fileTypeFromBuffer(buffer);
+										const [_match, mimeType, base64Payload] = value.match(/^data:([^;]+);base64,(.*)$/) ?? [];
+										const extension = mimeType && mimeStandard.getExtension(mimeType);
 
-										if (!fileType) {
+										if (!extension || !base64Payload) {
 											return acc;
 										}
 
-										const path = `filesUpload/${prestationSheet.id.value}_${process.hrtime.bigint().toString()}${fileType.ext}`;
+										const buffer = Buffer.from(base64Payload, "base64");
+										const path = `${envs.UPLOAD_DIR}/${prestationSheet.id.value}_${process.hrtime.bigint().toString()}.${extension}`;
 
 										await writeFile(
-											path,
+											resolve(path),
 											buffer,
 										);
 

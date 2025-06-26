@@ -26,3 +26,11 @@ type _CheckFileTypeEnum = ExpectType<
 	FileTypeEnum,
 	"strict"
 >;
+
+export const fileTypeMapper: Record<string, FileTypeEnum> = {
+	".pdf": "pdf",
+	".png": "image",
+	".jpg": "image",
+	".csv": "csv",
+	".txt": "text",
+};

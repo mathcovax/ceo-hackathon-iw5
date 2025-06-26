@@ -1,6 +1,7 @@
 import { prestationResultDataObjecter } from "@business/domains/common/prestationResultData";
 import { AIPrestation } from "@business/domains/entities/aIPrestation";
 import { recieveFiles, File } from "@duplojs/core";
+import { envs } from "@interfaces/envs";
 import { iWantAIPrestationTokenIsValid } from "@interfaces/http/checkers/aIPrestationToken";
 import { iWantPrestationExistById } from "@interfaces/http/checkers/prestation";
 import { completePrestationUsecase } from "@interfaces/usecases";
@@ -59,7 +60,7 @@ useBuilder()
 							{ value: P.instanceOf(File) },
 							async({ value: file }) => {
 								await file.deplace(
-									`filesUpload/${prestation.id.value}_${process.hrtime.bigint().toString()}${file.informations.extension}`,
+									`${envs.UPLOAD_DIR}/${prestation.id.value}_${process.hrtime.bigint().toString()}${file.informations.extension}`,
 								);
 
 								return prestationResultDataObjecter.unsafeCreate({

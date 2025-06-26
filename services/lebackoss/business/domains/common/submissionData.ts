@@ -20,6 +20,11 @@ const textData = createSubmissionData(
 	zod.string(),
 );
 
+const textareaData = createSubmissionData(
+	"textarea",
+	zod.string(),
+);
+
 const numberData = createSubmissionData(
 	"number",
 	zod.number(),
@@ -27,7 +32,7 @@ const numberData = createSubmissionData(
 
 const dateData = createSubmissionData(
 	"date",
-	zod.date(),
+	zod.coerce.date(),
 );
 
 const urlData = createSubmissionData(
@@ -45,6 +50,7 @@ export const submissionDataObjecter = zod
 		zod.string(),
 		zod.union([
 			textData,
+			textareaData,
 			numberData,
 			dateData,
 			urlData,
