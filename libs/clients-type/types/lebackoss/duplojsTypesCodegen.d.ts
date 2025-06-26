@@ -326,6 +326,21 @@ type CodegenRoutes = ({
     };
 }) | ({
     method: "POST";
+    path: "/find-one-prestation";
+    body: {
+        prestationId: string;
+    };
+    response: {
+        code: 404;
+        information: "prestation.notfound";
+        body?: undefined;
+    } | {
+        code: 200;
+        information: "prestation.found";
+        body: AllPrestation;
+    };
+}) | ({
+    method: "POST";
     path: "/find-one-prestation-result-by-prestation";
     body: {
         prestationId: string;
