@@ -51,7 +51,7 @@ const urlData = createSubmissionData(
 
 const fileData = createSubmissionData(
 	"file",
-	zod.string(),
+	zod.string().nullable(),
 );
 
 const selectTextData = createSubmissionData(

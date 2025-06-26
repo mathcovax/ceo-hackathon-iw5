@@ -6,7 +6,6 @@ import { envs } from "@interfaces/envs";
 import { iWantPrestationSheetExistById } from "@interfaces/http/checkers/prestationSheet";
 import { createPrestationUsecase } from "@interfaces/usecases";
 import { rm, writeFile } from "fs/promises";
-import { resolve } from "path";
 import { match, P } from "ts-pattern";
 
 useBuilder()
@@ -45,6 +44,15 @@ useBuilder()
 								.with(
 									{ type: "file" },
 									async({ value }) => {
+										if (!value) {
+											acc[key] = {
+												type: "file",
+												value: null,
+											};
+
+											return acc;
+										}
+
 										const [_match, mimeType, base64Payload] = value.match(/^data:([^;]+);base64,(.*)$/) ?? [];
 										const extension = mimeType && mimeStandard.getExtension(mimeType);
 
@@ -80,8 +88,6 @@ useBuilder()
 				prestationSheet,
 				submissionData,
 			});
-
-			console.log(result);
 
 			if (result instanceof Error) {
 				await Promise.all(

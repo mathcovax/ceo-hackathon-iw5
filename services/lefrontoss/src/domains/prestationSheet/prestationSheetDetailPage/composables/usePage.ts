@@ -156,8 +156,9 @@ export function usePage() {
 											schema: optionelRequired(
 												require,
 												zod.instanceof(File)
+													.nullable()
 													.refine(
-														(file) => fileTypes.includes(
+														(file) => !file || fileTypes.includes(
 															fileTypeMapper[getExtention(file.name) ?? ""] ?? fileTypeEnum.any,
 														),
 														{ message: `Type de fichiers attendu : ${fileTypes.join(", ")}` },
@@ -287,7 +288,7 @@ export function usePage() {
 					if (data.type === "file") {
 						acc[key] = {
 							type: "file",
-							value: await toBase64(data.value),
+							value: data.value && await toBase64(data.value),
 						};
 						return acc;
 					} else {

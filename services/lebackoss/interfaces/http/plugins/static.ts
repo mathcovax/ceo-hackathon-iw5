@@ -6,28 +6,36 @@ import {
 	File,
 	type Duplo,
 } from "@duplojs/core";
-import { existsSync, statSync } from "fs";
-import { join, resolve } from "path";
+import { escapeRegExp } from "@duplojs/utils";
+import { existsSync } from "fs";
+import { stat } from "fs/promises";
 
 export interface StaticRouteOptions {
 	directory?: string;
 	description?: Description[];
-	paths?: string[];
+	routePath?: string;
 }
 
 export function makeStaticRoute({
 	directory = "./public",
 	description = [],
-	paths = ["/*", ""],
+	routePath = "",
 }: StaticRouteOptions): Route {
-	const localDirectory = resolve(directory);
-
 	return useBuilder()
-		.createRoute("GET", paths, ...description)
-		.handler((_floor, request) => {
-			const requestedPath = join(localDirectory, request.url);
+		.createRoute("GET", `${routePath}/*`, ...description)
+		.handler(async(_floor, request) => {
+			const targetPath = request.url.replace(
+				new RegExp(escapeRegExp(routePath)),
+				"",
+			);
 
-			if (existsSync(requestedPath) && statSync(requestedPath).isDirectory()) {
+			if (targetPath.includes("..")) {
+				return new NotFoundHttpResponse("ressource.notfound");
+			}
+
+			const requestedPath = `${directory}${targetPath}`;
+
+			if (existsSync(requestedPath) && (await stat(requestedPath)).isDirectory()) {
 				return new NotFoundHttpResponse("ressource.notfound");
 			}
 

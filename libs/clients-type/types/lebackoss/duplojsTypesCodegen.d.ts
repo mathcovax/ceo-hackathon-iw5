@@ -78,7 +78,7 @@ type SubmissionData = Partial<Record<string, ({
     value: string;
 } | {
     type: "file";
-    value: string;
+    value: string | null;
 } | {
     type: "selectText";
     value: string;

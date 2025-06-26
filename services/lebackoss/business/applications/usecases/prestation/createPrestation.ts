@@ -43,6 +43,7 @@ export class CreatePrestationUsecase extends UsecaseHandler.create({
 				|| (
 					field.value.type === "file"
 					&& data.type === "file"
+					&& data.value
 					&& !field.value.fileTypes.includes(
 						this.prestationRepository.getFileType(data.value),
 					)

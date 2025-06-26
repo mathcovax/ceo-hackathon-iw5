@@ -16,7 +16,7 @@ const duplo = new Duplo({
 		debug(),
 		duploStatic({
 			directory: envs.UPLOAD_DIR,
-			paths: ["/*"],
+			routePath: "/files-upload",
 		}),
 	],
 });
