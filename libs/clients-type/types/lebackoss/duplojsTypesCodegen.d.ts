@@ -38,9 +38,9 @@ type FileTypeEnum = "pdf" | "image" | "text" | "csv" | "any";
 
 export { FileTypeEnum };
 
-type Prestation = {
+type PrestationSheet = {
     id: string;
-    mode: PrestationSheetModeObjecter;
+    mode: PrestationSheetMode;
     status: "disabled" | "available";
     name: string;
     description: string;
@@ -50,11 +50,11 @@ type Prestation = {
     submissionFields: SubmissionField[];
 };
 
-export { Prestation };
+export { PrestationSheet };
 
-type PrestationSheetModeObjecter = "ai" | "human";
+type PrestationSheetMode = "ai" | "human";
 
-export { PrestationSheetModeObjecter };
+export { PrestationSheetMode };
 
 type SubmissionData = Partial<Record<string, ({
     type: "text";
@@ -203,7 +203,7 @@ type CodegenRoutes = ({
     response: {
         code: 200;
         information: "prestationSheetList.found";
-        body: Prestation[];
+        body: PrestationSheet[];
     };
 }) | ({
     method: "POST";
@@ -218,7 +218,7 @@ type CodegenRoutes = ({
     } | {
         code: 200;
         information: "prestationSheet.found";
-        body: Prestation;
+        body: PrestationSheet;
     };
 }) | ({
     method: "POST";

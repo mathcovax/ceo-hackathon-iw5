@@ -7,12 +7,12 @@ import { prestatonResultSchema } from "../schemas/prestationResult";
 import { aIPrestationSchema, allPrestationSchema } from "../schemas/prestation";
 
 submissionFieldObjecter.zodSchema._zttIdentifier = "SubmissionField";
-PrestationSheet.modeObjecter.zodSchema._zttIdentifier = "PrestationSheetModeObjecter";
+PrestationSheet.modeObjecter.zodSchema._zttIdentifier = "PrestationSheetMode";
 prestationSheetSchema._zttIdentifier = "PrestationSheet";
 submissionDataObjecter.zodSchema._zttIdentifier = "SubmissionData";
 submissionFieldObjecter.zodSchema._zttIdentifier = "SubmissionField";
 fileTypeEnumSchema._zttIdentifier = "FileTypeEnum";
-prestationSheetSchema._zttIdentifier = "Prestation";
 prestatonResultSchema._zttIdentifier = "PrestationResult";
 aIPrestationSchema._zttIdentifier = "AIPrestation";
 allPrestationSchema._zttIdentifier = "AllPrestation";
+prestationSheetSchema._zttIdentifier = "PrestationSheet";

@@ -1,6 +1,6 @@
 import type { ExpectType } from "@duplojs/utils";
 import { createEnum, type GetEnumValue } from "@vendors/clean";
-import type { FileTypeEnum, PrestationSheetModeObjecter } from "@vendors/clients-type/lebackoss/duplojsTypesCodegen";
+import type { FileTypeEnum, PrestationSheetMode } from "@vendors/clients-type/lebackoss/duplojsTypesCodegen";
 
 export const prestationSheetModeEnum = createEnum([
 	"ai",
@@ -9,7 +9,7 @@ export const prestationSheetModeEnum = createEnum([
 
 type _CheckPrestationSheetModeEnum = ExpectType<
 	GetEnumValue<typeof prestationSheetModeEnum>,
-	PrestationSheetModeObjecter,
+	PrestationSheetMode,
 	"strict"
 >;
 
@@ -18,6 +18,7 @@ export const fileTypeEnum = createEnum([
 	"image",
 	"text",
 	"csv",
+	"any",
 ]);
 
 type _CheckFileTypeEnum = ExpectType<

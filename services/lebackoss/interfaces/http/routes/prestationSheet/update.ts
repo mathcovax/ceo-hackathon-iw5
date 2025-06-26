@@ -1,5 +1,5 @@
 import { PrestationSheet } from "@business/domains/entities/prestationSheet";
-import { iWantPrestationSheetExistById } from "@interfaces/http/checkers/presetationSheet";
+import { iWantPrestationSheetExistById } from "@interfaces/http/checkers/prestationSheet";
 import { updatePrestationSheetDescriptionFieldsUsecase } from "@interfaces/usecases";
 
 useBuilder()

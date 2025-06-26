@@ -1,7 +1,7 @@
 import { AIPrestation } from "@business/domains/entities/aIPrestation";
 import { PrestationEntity } from "@business/domains/entities/prestation";
 import { iWantAIPrestationTokenIsValid } from "@interfaces/http/checkers/aIPrestationToken";
-import { iWantPrestationExistById } from "@interfaces/http/checkers/presetation";
+import { iWantPrestationExistById } from "@interfaces/http/checkers/prestation";
 import { startPrestationUsecase } from "@interfaces/usecases";
 import { match, P } from "ts-pattern";
 

@@ -1,7 +1,7 @@
 import { type SubmissionData, submissionDataObjecter } from "@business/domains/common/submissionData";
 import { PrestationEntity } from "@business/domains/entities/prestation";
 import { PrestationSheet } from "@business/domains/entities/prestationSheet";
-import { iWantPrestationSheetExistById } from "@interfaces/http/checkers/presetationSheet";
+import { iWantPrestationSheetExistById } from "@interfaces/http/checkers/prestationSheet";
 import { createPrestationUsecase } from "@interfaces/usecases";
 import { fileTypeFromBuffer } from "file-type";
 import { rm, writeFile } from "fs/promises";

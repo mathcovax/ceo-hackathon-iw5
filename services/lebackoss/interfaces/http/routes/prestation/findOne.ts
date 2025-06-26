@@ -1,5 +1,5 @@
 import { Prestation } from "@business/domains/entities/prestation";
-import { iWantPrestationExistById } from "@interfaces/http/checkers/presetation";
+import { iWantPrestationExistById } from "@interfaces/http/checkers/prestation";
 import { endpointFindOnePrestationRoute } from "@interfaces/http/schemas/prestation";
 
 useBuilder()

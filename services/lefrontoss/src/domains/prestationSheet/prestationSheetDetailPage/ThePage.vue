@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import { prestationSheetDetailPage } from "./router";
-import { useGetPrestationSheet } from "./composables/useGetPrestationSheet";
+import { useGetPage } from "./composables/useGetPage";
 
-const router = useRouter();
-const { $pt, params } = prestationSheetDetailPage.use();
+const { $pt } = prestationSheetDetailPage.use();
 
-const { prestationSheet } = useGetPrestationSheet(
-	params.value.prestationSheetId,
-	() => void router.back(),
-);
+const { prestationSheet } = useGetPage();
 
 // mock
 const prestation = {

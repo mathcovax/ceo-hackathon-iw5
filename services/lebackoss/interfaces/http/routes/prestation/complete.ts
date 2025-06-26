@@ -2,7 +2,7 @@ import { prestationResultDataObjecter } from "@business/domains/common/prestatio
 import { AIPrestation } from "@business/domains/entities/aIPrestation";
 import { recieveFiles, File } from "@duplojs/core";
 import { iWantAIPrestationTokenIsValid } from "@interfaces/http/checkers/aIPrestationToken";
-import { iWantPrestationExistById } from "@interfaces/http/checkers/presetation";
+import { iWantPrestationExistById } from "@interfaces/http/checkers/prestation";
 import { completePrestationUsecase } from "@interfaces/usecases";
 import { match, P } from "ts-pattern";
 
