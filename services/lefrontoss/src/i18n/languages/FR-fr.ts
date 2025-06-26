@@ -145,5 +145,14 @@ export const FRfr = {
 		download: "Télécharger",
 	},
 	responses: {
+		prestationSheet: {
+			created: "Fiche de prestation créée avec succès.",
+			updated: "Fiche de prestation mise à jour avec succès.",
+		},
+		prestation: {
+			created: "Prestation créée avec succès.",
+			start: "La prestation a été démarrée.",
+			completed: "La prestation a été complétée.",
+		},
 	},
 };
