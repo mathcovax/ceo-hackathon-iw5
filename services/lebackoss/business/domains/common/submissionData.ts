@@ -1,5 +1,6 @@
 import { type GetValueObject, zod, type ZodSpace } from "@vendors/clean";
 import { type FieldTypeEnum } from "./submissionField";
+import { submissionDataRules } from "@vendors/entity-rules";
 
 function createSubmissionData<
 	GenericType extends FieldTypeEnum,
@@ -17,17 +18,23 @@ function createSubmissionData<
 
 const textData = createSubmissionData(
 	"text",
-	zod.string(),
+	zod.string()
+		.min(submissionDataRules.text.min)
+		.max(submissionDataRules.text.max),
 );
 
 const textareaData = createSubmissionData(
 	"textarea",
-	zod.string(),
+	zod.string()
+		.min(submissionDataRules.textarea.min)
+		.max(submissionDataRules.textarea.max),
 );
 
 const numberData = createSubmissionData(
 	"number",
-	zod.number(),
+	zod.number()
+		.min(submissionDataRules.number.min)
+		.max(submissionDataRules.number.max),
 );
 
 const dateData = createSubmissionData(
@@ -37,7 +44,9 @@ const dateData = createSubmissionData(
 
 const urlData = createSubmissionData(
 	"url",
-	zod.string().url(),
+	zod.string().url()
+		.min(submissionDataRules.url.min)
+		.max(submissionDataRules.url.max),
 );
 
 const fileData = createSubmissionData(
@@ -47,7 +56,9 @@ const fileData = createSubmissionData(
 
 const selectTextData = createSubmissionData(
 	"selectText",
-	zod.string(),
+	zod.string()
+		.min(submissionDataRules.selectText.min)
+		.max(submissionDataRules.selectText.max),
 );
 
 export const submissionDataObjecter = zod

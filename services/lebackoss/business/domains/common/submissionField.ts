@@ -1,4 +1,5 @@
 import { createEnum, type GetEnumValue, type GetValueObject, zod } from "@vendors/clean";
+import { submissionFieldRules } from "@vendors/entity-rules";
 
 export const fieldTypeEnum = createEnum([
 	"text",
@@ -18,7 +19,10 @@ function createSubmissionField<
 	return zod
 		.object({
 			type: zod.literal(type),
-			name: zod.string(),
+			name: zod
+				.string()
+				.min(submissionFieldRules.name.min)
+				.max(submissionFieldRules.name.max),
 			require: zod.boolean(),
 		});
 }
@@ -35,7 +39,13 @@ const urlField = createSubmissionField("url");
 
 const selectTextField = createSubmissionField("selectText")
 	.extend({
-		values: zod.string().array(),
+		values: zod
+			.string()
+			.min(submissionFieldRules.selectTextValue.min)
+			.max(submissionFieldRules.selectTextValue.max)
+			.array()
+			.min(submissionFieldRules.selectTextValue.minQuantity)
+			.max(submissionFieldRules.selectTextValue.maxQuantity),
 	});
 
 export const fileTypeEnum = createEnum([
@@ -52,7 +62,9 @@ export const fileTypeEnumSchema = zod.enum(fileTypeEnum.toTuple());
 
 const fileField = createSubmissionField("file")
 	.extend({
-		fileTypes: fileTypeEnumSchema.array(),
+		fileTypes: fileTypeEnumSchema.array()
+			.min(submissionFieldRules.fileTypes.minQuantity)
+			.max(submissionFieldRules.fileTypes.maxQuantity),
 	});
 
 export const submissionFieldObjecter = zod

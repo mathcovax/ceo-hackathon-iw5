@@ -1,4 +1,5 @@
 import { createEnum, zod, type ZodSpace, type GetEnumValue, type GetValueObject } from "@vendors/clean";
+import { prestationResultDataRules } from "@vendors/entity-rules";
 
 export const presationResultDataTypeEnum = createEnum([
 	"text",
@@ -21,7 +22,12 @@ function createPrestationResultData<
 		});
 }
 
-const textData = createPrestationResultData("text", zod.string());
+const textData = createPrestationResultData(
+	"text",
+	zod.string()
+		.min(prestationResultDataRules.text.min)
+		.max(prestationResultDataRules.text.max),
+);
 
 const fileData = createPrestationResultData("file", zod.string());
 

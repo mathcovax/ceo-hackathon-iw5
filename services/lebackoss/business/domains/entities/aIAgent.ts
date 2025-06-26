@@ -1,4 +1,5 @@
 import { EntityHandler, type GetValueObject, type GetEntityProperties, zod } from "@vendors/clean";
+import { aIAgentRules } from "@vendors/entity-rules";
 import { PrestationSheet } from "./prestationSheet";
 
 export namespace AIAgent {
@@ -11,6 +12,8 @@ export namespace AIAgent {
 	export const pingUrlObjecter = zod
 		.string()
 		.url()
+		.min(aIAgentRules.pingUrl.min)
+		.max(aIAgentRules.pingUrl.max)
 		.createValueObjecter("aIAgentPingUrl");
 
 	export type PingUrl = GetValueObject<typeof pingUrlObjecter>;
@@ -18,12 +21,16 @@ export namespace AIAgent {
 	export const entryPointUrlObjecter = zod
 		.string()
 		.url()
+		.min(aIAgentRules.entryPointUrl.min)
+		.max(aIAgentRules.entryPointUrl.max)
 		.createValueObjecter("aIAgentEntryPointUrl");
 
 	export type EntryPointUrl = GetValueObject<typeof entryPointUrlObjecter>;
 
 	export const tokenKeyObjecter = zod
 		.string()
+		.min(aIAgentRules.tokenKey.min)
+		.max(aIAgentRules.tokenKey.max)
 		.createValueObjecter("aIAgentTokenKey");
 
 	export type TokenKey = GetValueObject<typeof tokenKeyObjecter>;

@@ -1,5 +1,6 @@
 import { submissionFieldObjecter } from "@business/domains/common/submissionField";
 import { EntityHandler, type GetEntityProperties, type GetEnumValue, type GetValueObject, createEnum, zod } from "@vendors/clean";
+import { prestationSheetRules } from "@vendors/entity-rules";
 
 export namespace PrestationSheet {
 	export const idObjecter = zod
@@ -10,19 +11,26 @@ export namespace PrestationSheet {
 
 	export const nameObjecter = zod
 		.string()
+		.min(prestationSheetRules.name.min)
+		.min(prestationSheetRules.name.max)
 		.createValueObjecter("prestationSheetName");
 
 	export type Name = GetValueObject<typeof nameObjecter>;
 
 	export const descriptionObjecter = zod
 		.string()
+		.min(prestationSheetRules.description.min)
+		.min(prestationSheetRules.description.max)
 		.createValueObjecter("prestationSheetDescription");
 
 	export type Description = GetValueObject<typeof descriptionObjecter>;
 
 	export const keywordObjecter = zod
 		.object({
-			value: zod.string(),
+			value: zod
+				.string()
+				.min(prestationSheetRules.keyword.min)
+				.min(prestationSheetRules.keyword.max),
 		})
 		.createValueObjecter("prestationSheetKeyword");
 

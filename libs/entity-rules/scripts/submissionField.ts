@@ -1,1 +1,16 @@
-export const submissionField = {};
+export const submissionFieldRules = {
+	name: {
+		min: 2,
+		max: 25,
+	},
+	selectTextValue: {
+		min: 2,
+		max: 25,
+		minQuantity: 1,
+		maxQuantity: 10,
+	},
+	fileTypes: {
+		minQuantity: 1,
+		maxQuantity: 5,
+	},
+};
