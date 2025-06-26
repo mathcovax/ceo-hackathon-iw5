@@ -1,4 +1,5 @@
 import { submissionDataObjecter } from "@business/domains/common/submissionData";
+import { AIPrestation } from "@business/domains/entities/aIPrestation";
 import { Prestation } from "@business/domains/entities/prestation";
 import { PrestationSheet } from "@business/domains/entities/prestationSheet";
 
@@ -9,4 +10,15 @@ const prestationSchema = zod.object({
 	status: Prestation.statusObjecter.zodSchema,
 });
 
-export const endpointFindAllPrestationRoute = prestationSchema.array();
+export const aIPrestationSchema = prestationSchema.extend({
+	token: AIPrestation.tokenObjecter.zodSchema.optional(),
+});
+
+export const allPrestationSchema = zod.union([
+	prestationSchema,
+	aIPrestationSchema,
+]);
+
+export const endpointFindOnePrestationRoute = allPrestationSchema;
+
+export const endpointFindAllPrestationRoute = allPrestationSchema.array();

@@ -75,6 +75,25 @@ type SubmissionData = Partial<Record<string, ({
 
 export { SubmissionData };
 
+type AllPrestation = {
+    id: string;
+    prestationSheetId: string;
+    submissionData: SubmissionData;
+    status: "created" | "inProgress" | "completed";
+} | AIPrestation;
+
+export { AllPrestation };
+
+type AIPrestation = {
+    id: string;
+    prestationSheetId: string;
+    submissionData: SubmissionData;
+    status: "created" | "inProgress" | "completed";
+    token?: string | undefined;
+};
+
+export { AIPrestation };
+
 interface CodegenReceiveFormData<GenericValue extends Record<string, string | string[] | number | number[] | Date | Date[] | File[]>> {
     extractor: (...args: any[]) => Promise<GenericValue>;
 }
@@ -243,12 +262,7 @@ type CodegenRoutes = ({
     response: {
         code: 200;
         information: "prestationList.found";
-        body: {
-            id: string;
-            prestationSheetId: string;
-            submissionData: SubmissionData;
-            status: "created" | "inProgress" | "completed";
-        }[];
+        body: AllPrestation[];
     };
 }) | ({
     method: "POST";

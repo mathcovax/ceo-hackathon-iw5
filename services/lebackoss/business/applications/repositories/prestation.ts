@@ -11,7 +11,7 @@ export interface PrestationRepository extends RepositoryBase<AllPrestation> {
 	generateId(): Prestation.Id;
 	findOneById(prestationId: Prestation.Id): Promise<AllPrestation | null>;
 	generateToken(aiPrestationId: Prestation.Id): AIPrestation.Token;
-	findAll(): Promise<PrestationEntity[]>;
+	findAll(): Promise<AllPrestation[]>;
 	getFileType(path: string): FileTypeEnum;
 }
 
