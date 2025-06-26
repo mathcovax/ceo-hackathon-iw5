@@ -1,10 +1,15 @@
 import { prestationRepository } from "@business/applications/repositories/prestation";
+import { type PrestationSheetEntity } from "@business/domains/entities/prestationSheet";
 import { UsecaseHandler } from "@vendors/clean";
 
-export class FindAllPrestationUsecase extends UsecaseHandler.create({
+interface Input {
+	prestationSheet: PrestationSheetEntity;
+}
+
+export class FindAllPrestationByPrestationSheetUsecase extends UsecaseHandler.create({
 	prestationRepository,
 }) {
-	public async execute() {
-		return this.prestationRepository.findAll();
+	public async execute({ prestationSheet }: Input) {
+		return this.prestationRepository.findAllByPrestationSheet(prestationSheet);
 	}
 }

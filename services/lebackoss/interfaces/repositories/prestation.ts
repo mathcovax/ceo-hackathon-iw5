@@ -38,9 +38,9 @@ prestationRepository.default = {
 			mongoPrestation,
 		);
 	},
-	async findAll() {
+	async findAllByPrestationSheet(prestationSheet) {
 		const mongoPrestationList = await mongo.prestationCollection
-			.find()
+			.find({ prestationSheetId: prestationSheet.id.value })
 			.toArray();
 
 		return mongoPrestationList.map(

@@ -271,9 +271,16 @@ type CodegenRoutes = ({
         body?: undefined;
     };
 }) | ({
-    method: "GET";
-    path: "/find-all-prestation";
+    method: "POST";
+    path: "/find-all-prestation-by-prestation-sheet";
+    body: {
+        prestationSheetId: string;
+    };
     response: {
+        code: 404;
+        information: "prestationSheet.notfound";
+        body?: undefined;
+    } | {
         code: 200;
         information: "prestationList.found";
         body: AllPrestation[];

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { listPrestationPage } from "@/domains/prestation/prestationList/router";
 import { prestationSheetDetailPage } from "../../prestationSheetDetailPage/router";
 
 interface Props {
@@ -84,14 +85,27 @@ defineProps<Props>();
 		</div>
 
 		<template #footer>
-			<RouterLink
-				class="ml-auto"
-				:to="prestationSheetDetailPage.createTo({ params: { prestationSheetId: id } })"
-			>
-				<DSPrimaryButton size="small">
-					{{ $t("cta.seeMore") }}
-				</DSPrimaryButton>
-			</RouterLink>
+			<div class="flex justify-end gap-2">
+				<RouterLink
+					class="ml-auto"
+					:to="prestationSheetDetailPage.createTo({ params: { prestationSheetId: id } })"
+				>
+					<DSPrimaryButton size="small">
+						{{ $t("cta.seeMore") }}
+					</DSPrimaryButton>
+				</RouterLink>
+
+				<RouterLink
+					class="ml-auto"
+					:to="listPrestationPage.createTo({ params: { prestationSheetId: id } })"
+				>
+					<DSPrimaryButton
+						size="small"
+					>
+						{{ $t("cta.seePrestation") }}
+					</DSPrimaryButton>
+				</RouterLink>
+			</div>
 		</template>
 	</DSCard>
 </template>

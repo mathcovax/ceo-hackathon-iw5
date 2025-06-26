@@ -94,6 +94,7 @@ export const FRfr = {
 		backHome: "Retour à l'accueil",
 		connection: "Inscription / Connexion",
 		seeMore: "Voir plus",
+		seePrestation: "Voir les prestations",
 		contact: "Contacter",
 		use: "Utiliser",
 		back: "Retour",

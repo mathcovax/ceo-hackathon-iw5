@@ -10,10 +10,8 @@ import { CreatePrestationUsecase } from "@business/applications/usecases/prestat
 import { FindOnePrestationUsecase } from "@business/applications/usecases/prestation/findOnePresation";
 import { StartPrestationUsecase } from "@business/applications/usecases/prestation/startPrestation";
 import { CompletePrestationUsecase } from "@business/applications/usecases/prestation/completePrestation";
-import { FindAllPrestationUsecase } from "@business/applications/usecases/prestation/findAllPrestation";
+import { FindAllPrestationByPrestationSheetUsecase } from "@business/applications/usecases/prestation/findAllPrestation";
 import { FindAllPrestationSheetUsecase } from "@business/applications/usecases/prestationSheet/findAllPrestationSheet";
-import { FindOnePrestationResultByIdUsecase } from "@business/applications/usecases/prestationResult/findOnePrestationResultById";
-import { FindOnePrestationResultByPrestationUsecase } from "@business/applications/usecases/prestationResult/findOnePrestationResultByPrestation";
 
 export const availablePrestationSheetUsecase = new AvailablePrestationSheetUsecase();
 export const createPrestationSheetUsecase = new CreatePrestationSheetUsecase();
@@ -29,7 +27,4 @@ export const updateAIAgentUsecase = new UpdateAIAgentUsecase();
 export const findOnePrestationUsecase = new FindOnePrestationUsecase();
 export const startPrestationUsecase = new StartPrestationUsecase();
 export const completePrestationUsecase = new CompletePrestationUsecase();
-export const findAllPrestationUsecase = new FindAllPrestationUsecase();
-
-export const findOnePrestationResultByIdUsecase = new FindOnePrestationResultByIdUsecase();
-export const findOnePrestationResultByPrestationUsecase = new FindOnePrestationResultByPrestationUsecase();
+export const findAllPrestationByPrestationSheetUsecase = new FindAllPrestationByPrestationSheetUsecase();
