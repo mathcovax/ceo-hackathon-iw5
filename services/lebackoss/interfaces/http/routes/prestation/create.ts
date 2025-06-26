@@ -81,6 +81,8 @@ useBuilder()
 				submissionData,
 			});
 
+			console.log(result);
+
 			if (result instanceof Error) {
 				await Promise.all(
 					Object.values(submissionData.value)

@@ -34,7 +34,7 @@ export class PrestationEntity extends EntityHandler.create({
 	>) {
 		return new PrestationEntity({
 			...params,
-			status: Prestation.statusObjecter.unsafeCreate("inProgress"),
+			status: Prestation.statusObjecter.unsafeCreate("created"),
 		});
 	}
 

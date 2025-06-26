@@ -3,6 +3,7 @@ import { addPrestationSheetPage } from "@/domains/prestationSheet/addPrestationS
 import { listPrestationSheetPage } from "@/domains/prestationSheet/listPrestationSheetPage/router";
 import { prestationDetailPage } from "@/domains/prestation/prestationDetailPage/router";
 import { prestationSheetDetailPage } from "@/domains/prestationSheet/prestationSheetDetailPage/router";
+import { addPrestationResultPage } from "@/domains/prestation/addPrestationResultPage/router";
 
 export const FRfr = {
 	page: {
@@ -63,6 +64,33 @@ export const FRfr = {
 			},
 			noPrestationResult: "Pas résultat pour le moment",
 		},
+		[addPrestationResultPage.name]: {
+			title: "Rendu de prestation",
+			description: "Rendez votre prestation en remplissant le formulaire ci-dessous.",
+			prestation: {
+				id: "ID de la prestation",
+
+			},
+			form: {
+				label: {
+					comment: "Commentaire",
+					addField: "Ajouter un champ",
+					fieldType: "Type de champ",
+					fieldName: "Nom du champ",
+					fieldRequired: "Champ requis",
+					selectOption: {
+						human: "Humain",
+						ai: "IA",
+						text: "Texte",
+						number: "Numérique",
+						textarea: "Zone de texte",
+						file: "Fichier",
+						url: "URL",
+						date: "Date",
+					},
+				},
+			},
+		},
 	},
 	layout: {
 		loader: {
@@ -88,9 +116,9 @@ export const FRfr = {
 		status: {
 			disabled: "Indisponible",
 			available: "Disponible",
-			created: "Created",
-			inProgress: "InProgress",
-			completed: "Completed",
+			created: "Créée",
+			inProgress: "En cours",
+			completed: "Terminée",
 		},
 		submissionData: "Submission Data",
 	},
@@ -112,6 +140,7 @@ export const FRfr = {
 		contact: "Contacter",
 		use: "Utiliser",
 		back: "Retour",
+		start: "Commencer",
 		submit: "Soumettre",
 		download: "Télécharger",
 	},

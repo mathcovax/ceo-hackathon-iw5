@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { listPrestationSheetPage } from "@/domains/prestationSheet/listPrestationSheetPage/router";
 import type { transformCodegenBodyToHttpClientBody } from "@duplojs/http-client";
 import type { AllPrestation } from "@vendors/clients-type/lebackoss/duplojsTypesCodegen";
+import { addPrestationResultPage } from "../../addPrestationResultPage/router";
 
 interface Props {
 	prestation: transformCodegenBodyToHttpClientBody<AllPrestation>;
@@ -69,7 +69,7 @@ function getMode(prestation: Props["prestation"]) {
 		<template #footer>
 			<RouterLink
 				class="ml-auto"
-				:to="listPrestationSheetPage.createTo()"
+				:to="addPrestationResultPage.createTo({ params: { prestationId: prestation.id } })"
 			>
 				<DSPrimaryButton size="small">
 					{{ $t("cta.seePrestationSheet") }}
