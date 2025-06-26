@@ -6,6 +6,8 @@ import { uuidv7 } from "uuidv7";
 import { ZodAccelerator } from "@duplojs/core";
 import { EntityHandler, RepositoryError } from "@vendors/clean";
 import crypto from "crypto";
+import { AIAgentTokenProvider } from "@interfaces/providers/token/aIAgent";
+import { AIPrestationTokenProvider } from "@interfaces/providers/token/prestation";
 
 const responseOfIsAvailableSchema = ZodAccelerator.build(
 	zod.object({
@@ -15,6 +17,12 @@ const responseOfIsAvailableSchema = ZodAccelerator.build(
 
 const randNumberRangeMin = 0;
 const randNumberRangeMax = 10000;
+
+const responseSendPrestation = ZodAccelerator.build(
+	zod.object({
+		token: zod.string(),
+	}),
+);
 
 aIAgentRepository.default = {
 	async save(aIAgent) {
@@ -75,9 +83,47 @@ aIAgentRepository.default = {
 			mongoAIAgent,
 		);
 	},
-	async sendPrestation(_aIPrestation) {
-		await Promise.all([true]);
+	async sendPrestation(aIPrestation) {
+		const mongoAIAgent = await mongo.aIAgentCollection.findOne({
+			prestationSheetId: aIPrestation.prestationSheetId.value,
+		});
 
-		return;
+		if (!mongoAIAgent) {
+			throw new RepositoryError("aIAgent.notfound", {
+				aIPrestation,
+			});
+		}
+
+		const aIAgent = EntityHandler.unsafeMapper(
+			AIAgentEntity,
+			mongoAIAgent,
+		);
+
+		const agentToken = AIAgentTokenProvider.generate(aIAgent);
+
+		await fetch(
+			aIAgent.entryPointUrl.value,
+			{
+				method: "POST",
+				body: JSON.stringify({
+					token: agentToken,
+					aiPrestationToken: aIPrestation.token.value,
+					data: aIPrestation.submissionData.value,
+				}),
+			},
+		)
+			.then(({ json }) => json())
+			.then(responseSendPrestation.parse)
+			.then(({ token }) => {
+				if (agentToken !== token) {
+					throw new Error();
+				}
+			})
+			.catch(() => {
+				throw new RepositoryError("aIPrestation.fail", {
+					aIAgent,
+					aIPrestation,
+				});
+			});
 	},
 };

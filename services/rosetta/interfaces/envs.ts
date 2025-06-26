@@ -15,5 +15,6 @@ export const envs = zod
 		ENVIROMENT: zod.enum(["DEV", "PROD"]),
 		LIBRETRANSLATE_BASE_URL: zod.string().url(),
 		TOKEN_KEY: zod.string(),
+		LEBACKOSS_BASE_URL: zod.string().url(),
 	})
 	.parse(process.env);

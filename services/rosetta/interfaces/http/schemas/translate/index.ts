@@ -1,3 +1,3 @@
 export const endpointTranslateRoute = zod.object({
-	result: zod.string(),
+	token: zod.string(),
 });
