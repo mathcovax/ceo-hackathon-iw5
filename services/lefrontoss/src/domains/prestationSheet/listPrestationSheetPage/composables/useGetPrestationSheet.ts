@@ -1,24 +1,19 @@
 import type { PrestationSheet } from "@vendors/clients-type/lebackoss/duplojsTypesCodegen";
 
-export function useGetPrestationSheet() {
-	const list = ref<PrestationSheet[]>([]);
+export function useGetPage() {
+	const list = ref<PrestationSheet[] | null>(null);
 
-	function findAll() {
-		return lebackossClient.get(
-			"/find-all-prestation-sheet",
-		)
-			.whenInformation(
-				"prestationSheetList.found",
-				({ body }) => {
-					list.value = body;
-				},
-			);
-	}
-
-	void findAll();
+	void lebackossClient.get(
+		"/find-all-prestation-sheet",
+	)
+		.whenInformation(
+			"prestationSheetList.found",
+			({ body }) => {
+				list.value = body;
+			},
+		);
 
 	return {
-		findAllPrestationSheet: findAll,
 		listPrestationSheet: list,
 	};
 }

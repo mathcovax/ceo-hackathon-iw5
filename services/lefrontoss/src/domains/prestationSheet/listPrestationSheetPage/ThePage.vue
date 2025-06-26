@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { listPrestationSheetPage } from "./router";
 import PrestationSheetCard from "./components/PrestationSheetCard.vue";
-import { useGetPrestationSheet } from "./composables/useGetPrestationSheet";
+import { useGetPage } from "./composables/useGetPrestationSheet";
 
 const { $pt } = listPrestationSheetPage.use();
-const { listPrestationSheet } = useGetPrestationSheet();
+const { listPrestationSheet } = useGetPage();
 
 </script>
 
