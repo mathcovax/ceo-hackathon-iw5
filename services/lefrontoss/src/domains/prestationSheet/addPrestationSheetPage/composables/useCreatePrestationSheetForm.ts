@@ -2,9 +2,11 @@ import { fileTypeEnum, prestationSheetModeEnum } from "@/libs/lebackoss/types";
 import type { SubmissionField } from "@vendors/clients-type/lebackoss/duplojsTypesCodegen";
 import { match, P } from "ts-pattern";
 import { addPrestationSheetPage } from "../router";
+import { aIAgentRules, prestationSheetRules, submissionFieldRules } from "@vendors/entity-rules";
 
 export function useCreatePrestationSheetForm() {
 	const { $pt } = addPrestationSheetPage.use();
+	const { t } = useI18n();
 
 	const constantSubmissionFields = {
 		fieldName: useCheckLayout(
@@ -12,7 +14,15 @@ export function useCreatePrestationSheetForm() {
 			{
 				mandatory: true,
 				label: $pt("form.label.fieldName"),
-				schema: zod.string(),
+				schema: zod.string()
+					.min(
+						submissionFieldRules.name.min,
+						{ message: t("formMessage.minLength", { value: submissionFieldRules.name.min }) },
+					)
+					.max(
+						submissionFieldRules.name.max,
+						{ message: t("formMessage.maxLength", { value: submissionFieldRules.name.max }) },
+					),
 				template: checkLayoutTemplateGridCols({ hideUselessErrorBlock: true }),
 			},
 		),
@@ -35,7 +45,15 @@ export function useCreatePrestationSheetForm() {
 			{
 				mandatory: true,
 				label: $pt("form.label.name"),
-				schema: zod.string(),
+				schema: zod.string()
+					.min(
+						prestationSheetRules.name.min,
+						{ message: t("formMessage.minLength", { value: prestationSheetRules.name.min }) },
+					)
+					.max(
+						prestationSheetRules.name.max,
+						{ message: t("formMessage.maxLength", { value: prestationSheetRules.name.max }) },
+					),
 			},
 		),
 		description: useCheckLayout(
@@ -43,7 +61,15 @@ export function useCreatePrestationSheetForm() {
 			{
 				mandatory: true,
 				label: $pt("form.label.description"),
-				schema: zod.string(),
+				schema: zod.string()
+					.min(
+						prestationSheetRules.description.min,
+						{ message: t("formMessage.minLength", { value: prestationSheetRules.description.min }) },
+					)
+					.max(
+						prestationSheetRules.description.max,
+						{ message: t("formMessage.maxLength", { value: prestationSheetRules.description.max }) },
+					),
 			},
 		),
 		keywords: useBaseLayout(
@@ -53,7 +79,15 @@ export function useCreatePrestationSheetForm() {
 					{
 						label: $pt("form.label.keyword"),
 						mandatory: true,
-						schema: zod.string(),
+						schema: zod.string()
+							.min(
+								prestationSheetRules.keyword.min,
+								{ message: t("formMessage.minLength", { value: prestationSheetRules.keyword.min }) },
+							)
+							.max(
+								prestationSheetRules.keyword.max,
+								{ message: t("formMessage.maxLength", { value: prestationSheetRules.keyword.max }) },
+							),
 						template: checkLayoutTemplateGridCols({ hideUselessErrorBlock: true }),
 					},
 				),
@@ -62,6 +96,7 @@ export function useCreatePrestationSheetForm() {
 						addLabel: $pt("form.label.addKeyword"),
 						colsByItems: 4,
 					}),
+					maxItems: prestationSheetRules.keyword.maxQuantity,
 				},
 			),
 			{
@@ -139,7 +174,15 @@ export function useCreatePrestationSheetForm() {
 										textFormField,
 										{
 											mandatory: true,
-											schema: zod.string(),
+											schema: zod.string()
+												.min(
+													submissionFieldRules.selectTextValue.min,
+													{ message: t("formMessage.minLength", { value: submissionFieldRules.selectTextValue.min }) },
+												)
+												.max(
+													submissionFieldRules.selectTextValue.max,
+													{ message: t("formMessage.maxLength", { value: submissionFieldRules.selectTextValue.max }) },
+												),
 										},
 									),
 									{
@@ -197,7 +240,15 @@ export function useCreatePrestationSheetForm() {
 								textFormField,
 								{
 									mandatory: true,
-									schema: zod.string().url(),
+									schema: zod.string().url()
+										.min(
+											aIAgentRules.pingUrl.min,
+											{ message: t("formMessage.minLength", { value: aIAgentRules.pingUrl.min }) },
+										)
+										.max(
+											aIAgentRules.pingUrl.max,
+											{ message: t("formMessage.maxLength", { value: aIAgentRules.pingUrl.max }) },
+										),
 									label: "Ping Url",
 								},
 							),
@@ -205,7 +256,15 @@ export function useCreatePrestationSheetForm() {
 								textFormField,
 								{
 									mandatory: true,
-									schema: zod.string().url(),
+									schema: zod.string().url()
+										.min(
+											aIAgentRules.entryPointUrl.min,
+											{ message: t("formMessage.minLength", { value: aIAgentRules.entryPointUrl.min }) },
+										)
+										.max(
+											aIAgentRules.entryPointUrl.max,
+											{ message: t("formMessage.maxLength", { value: aIAgentRules.entryPointUrl.max }) },
+										),
 									label: "Entrypoint Url",
 								},
 							),
@@ -213,7 +272,15 @@ export function useCreatePrestationSheetForm() {
 								textFormField,
 								{
 									mandatory: true,
-									schema: zod.string(),
+									schema: zod.string()
+										.min(
+											aIAgentRules.tokenKey.min,
+											{ message: t("formMessage.minLength", { value: aIAgentRules.tokenKey.min }) },
+										)
+										.max(
+											aIAgentRules.tokenKey.max,
+											{ message: t("formMessage.maxLength", { value: aIAgentRules.tokenKey.max }) },
+										),
 									label: "Clef de token",
 								},
 							),

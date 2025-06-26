@@ -7,6 +7,7 @@ import { type transformCodegenBodyToHttpClientBody } from "@duplojs/http-client"
 import { toBase64 } from "@/utils/toBase64";
 import { getExtention } from "@/utils/getExtension";
 import { fileTypeEnum, fileTypeMapper } from "@/libs/lebackoss/types";
+import { submissionDataRules } from "@vendors/entity-rules";
 
 function optionelRequired<
 	GenericZodType extends ZodType,
@@ -27,6 +28,7 @@ function optionelRequired<
 export function usePage() {
 	const router = useRouter();
 	const { params } = prestationSheetDetailPage.use();
+	const { t } = useI18n();
 
 	const prestationSheet = ref<PrestationSheet | null>(null);
 
@@ -72,6 +74,14 @@ export function usePage() {
 											schema: optionelRequired(
 												require,
 												zod.string()
+													.min(
+														submissionDataRules.text.min,
+														{ message: t("formMessage.minLength", { value: submissionDataRules.text.min }) },
+													)
+													.max(
+														submissionDataRules.text.max,
+														{ message: t("formMessage.maxLength", { value: submissionDataRules.text.max }) },
+													)
 													.transform((value) => ({
 														type: "text" as const,
 														value,
@@ -93,6 +103,14 @@ export function usePage() {
 											schema: optionelRequired(
 												require,
 												zod.number()
+													.min(
+														submissionDataRules.number.min,
+														{ message: t("formMessage.minLength", { value: submissionDataRules.number.min }) },
+													)
+													.max(
+														submissionDataRules.number.max,
+														{ message: t("formMessage.maxLength", { value: submissionDataRules.number.max }) },
+													)
 													.transform((value) => ({
 														type: "number" as const,
 														value,
@@ -165,6 +183,14 @@ export function usePage() {
 											schema: optionelRequired(
 												require,
 												zod.string()
+													.min(
+														submissionDataRules.textarea.min,
+														{ message: t("formMessage.minLength", { value: submissionDataRules.textarea.min }) },
+													)
+													.max(
+														submissionDataRules.textarea.max,
+														{ message: t("formMessage.maxLength", { value: submissionDataRules.textarea.max }) },
+													)
 													.transform((value) => ({
 														type: "textarea" as const,
 														value,
@@ -187,6 +213,14 @@ export function usePage() {
 												require,
 												zod.string()
 													.url()
+													.min(
+														submissionDataRules.url.min,
+														{ message: t("formMessage.minLength", { value: submissionDataRules.url.min }) },
+													)
+													.max(
+														submissionDataRules.url.max,
+														{ message: t("formMessage.maxLength", { value: submissionDataRules.url.max }) },
+													)
 													.transform((value) => ({
 														type: "url" as const,
 														value,
@@ -208,6 +242,14 @@ export function usePage() {
 											schema: optionelRequired(
 												require,
 												zod.string()
+													.min(
+														submissionDataRules.selectText.min,
+														{ message: t("formMessage.minLength", { value: submissionDataRules.selectText.min }) },
+													)
+													.max(
+														submissionDataRules.selectText.max,
+														{ message: t("formMessage.maxLength", { value: submissionDataRules.selectText.max }) },
+													)
 													.transform((value) => ({
 														type: "selectText" as const,
 														value,
