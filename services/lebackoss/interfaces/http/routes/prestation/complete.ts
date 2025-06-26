@@ -59,13 +59,14 @@ useBuilder()
 						.with(
 							{ value: P.instanceOf(File) },
 							async({ value: file }) => {
+								const path = `/${prestation.id.value}_${process.hrtime.bigint().toString()}${file.informations.extension}`;
 								await file.deplace(
-									`${envs.UPLOAD_DIR}/${prestation.id.value}_${process.hrtime.bigint().toString()}${file.informations.extension}`,
+									`${envs.UPLOAD_DIR}${path}`,
 								);
 
 								return prestationResultDataObjecter.unsafeCreate({
 									type: "text",
-									value: file.path,
+									value: path,
 								});
 							},
 						)

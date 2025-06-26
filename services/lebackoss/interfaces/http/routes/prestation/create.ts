@@ -53,10 +53,10 @@ useBuilder()
 										}
 
 										const buffer = Buffer.from(base64Payload, "base64");
-										const path = `${envs.UPLOAD_DIR}/${prestationSheet.id.value}_${process.hrtime.bigint().toString()}.${extension}`;
+										const path = `/${prestationSheet.id.value}_${process.hrtime.bigint().toString()}.${extension}`;
 
 										await writeFile(
-											resolve(path),
+											`${envs.UPLOAD_DIR}${path}`,
 											buffer,
 										);
 
@@ -85,7 +85,7 @@ useBuilder()
 				await Promise.all(
 					Object.values(submissionData.value)
 						.map(
-							(data) => data?.type === "file" && rm(data.value),
+							(data) => data?.type === "file" && rm(`${envs.UPLOAD_DIR}${data.value}`),
 						),
 				);
 			}
