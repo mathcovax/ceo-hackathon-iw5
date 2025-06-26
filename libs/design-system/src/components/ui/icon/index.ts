@@ -7,6 +7,9 @@ import {
 	mdiArrowLeft,
 	mdiCheck,
 	mdiBookmark,
+	mdiPoll,
+	mdiFileDocumentOutline,
+	mdiDownload,
 } from "@mdi/js";
 
 export const iconsMapper = {
@@ -18,6 +21,9 @@ export const iconsMapper = {
 	arrowLeft: mdiArrowLeft,
 	check: mdiCheck,
 	bookmark: mdiBookmark,
+	poll: mdiPoll,
+	fileDocumentOutline: mdiFileDocumentOutline,
+	download: mdiDownload
 };
 
 export const iconSizeMapper = {
