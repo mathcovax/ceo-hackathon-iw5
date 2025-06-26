@@ -5,7 +5,7 @@ import { useCreatePrestationResultForm } from "./useCreatePrestationResultForm";
 export function usePage() {
 	const { params } = addPrestationResultPage.use();
 	const router = useRouter();
-	const { prestation } = useGetPrestation(
+	const { prestation, findOnePrestation } = useGetPrestation(
 		computed(() => params.value.prestationId),
 		() => void router.back(),
 	);
@@ -30,8 +30,9 @@ export function usePage() {
 
 	function onSubmit() {
 		const result = check();
+		const prestationId = prestation.value?.id;
 
-		if (!result) {
+		if (!result || !prestationId) {
 			return;
 		}
 
@@ -41,19 +42,17 @@ export function usePage() {
 					"/start-prestation",
 					{
 						body: {
-							prestationId: prestation.value.id,
+							prestationId,
 						},
 					},
 				)
 				.whenInformation(
 					"prestation.start",
 					() => {
-						formValue.value.type = "result";
+						void findOnePrestation(prestationId);
 					},
 				);
 		}
-
-		console.log("Form submitted with result:", result);
 	}
 
 	return {

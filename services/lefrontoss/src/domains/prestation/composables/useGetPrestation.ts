@@ -7,9 +7,8 @@ export function useGetPrestation(
 ) {
 	const prestation = ref<transformCodegenBodyToHttpClientBody<AllPrestation> | null>(null);
 
-	watch(
-		prestationId,
-		(prestationId) => lebackossClient
+	function findOnePrestation(prestationId: string) {
+		return lebackossClient
 			.post(
 				"/find-one-prestation",
 				{
@@ -26,11 +25,17 @@ export function useGetPrestation(
 			)
 			.whenRequestError(
 				whenFindError,
-			),
+			);
+	}
+
+	watch(
+		prestationId,
+		findOnePrestation,
 		{ immediate: true },
 	);
 
 	return {
 		prestation,
+		findOnePrestation,
 	};
 }

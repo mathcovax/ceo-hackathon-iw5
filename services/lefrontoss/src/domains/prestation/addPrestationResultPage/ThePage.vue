@@ -1,12 +1,10 @@
 <script setup lang="ts">
-// import { useCreatePrestationResultForm } from "./composables/useCreatePrestationResultForm";
 import type { AllPrestation } from "@vendors/clients-type/lebackoss/duplojsTypesCodegen";
 import { usePage } from "./composables/usePage";
 import { addPrestationResultPage } from "./router";
 
 const { $pt } = addPrestationResultPage.use();
 const { prestation, CreatePrestationResultForm, onSubmitCreatePrestationResultForm } = usePage();
-// const { CreatePrestationResultForm, onSubmitCreatePrestationResultForm } = useCreatePrestationResultForm();
 
 function getStatusVariant(status: AllPrestation["status"]) {
 	switch (status) {
@@ -36,8 +34,6 @@ function getStatusVariant(status: AllPrestation["status"]) {
 			</p>
 		</div>
 
-		{{ console.log(prestation) }}
-
 		<template v-if="prestation">
 			<DSCard>
 				<div class="flex gap-4 justify-between items-start">
@@ -60,12 +56,12 @@ function getStatusVariant(status: AllPrestation["status"]) {
 				</div>
 			</DSCard>
 
-			<CreatePrestationResultForm @submit="onSubmitCreatePrestationResultForm()">
+			<CreatePrestationResultForm @submit="onSubmitCreatePrestationResultForm">
 				<DSPrimaryButton
 					v-if="prestation.status !=='completed'"
 					type="submit"
 				>
-					{{ prestation.status !=='created' ? $t("cta.start") : $t("cta.submit") }}
+					{{ prestation.status ==='created' ? $t("cta.start") : $t("cta.submit") }}
 				</DSPrimaryButton>
 			</CreatePrestationResultForm>
 		</template>
