@@ -34,10 +34,10 @@ prestationResultRepository.default = {
 			mongoPrestationResult,
 		);
 	},
-	async findOneByPrestationId(prestationId) {
+	async findOneByPrestation(prestation) {
 		const mongoPrestationResult = await mongo.prestationResultCollection
 			.findOne({
-				prestationId: prestationId.value,
+				prestationId: prestation.id.value,
 			});
 
 		if (!mongoPrestationResult) {

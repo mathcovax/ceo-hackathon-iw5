@@ -16,7 +16,7 @@ useBuilder()
 	)
 	.presetCheck(
 		iWantPrestationResultExistbyPrestationId,
-		(pickup) => pickup("prestation").id,
+		(pickup) => pickup("prestation"),
 	)
 	.handler(
 		(pickup) => {
