@@ -1,7 +1,7 @@
 export const prestationSheetDetailPage = createPage(
 	"prestationSheetDetail",
 	{
-		path: "/prestation-sheet-detail/:prestationSheetId",
+		path: "/client/prestation-sheet-detail/:prestationSheetId",
 		params: {
 			prestationSheetId: zod.string(),
 		},

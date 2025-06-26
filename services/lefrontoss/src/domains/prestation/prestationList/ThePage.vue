@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { listPrestationPage } from "./router";
 import { useGetPrestation } from "./composables/useGetPrestation";
-import PrestationSheetCard from "./components/PrestationSheetCard.vue";
+import PrestationCard from "./components/PrestationCard.vue";
 
 const router = useRouter();
 const { $pt, params } = listPrestationPage.use();
@@ -29,7 +29,7 @@ const { listPrestation } = useGetPrestation(
 			v-if="listPrestation && listPrestation.length"
 			class="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
 		>
-			<PrestationSheetCard
+			<PrestationCard
 				v-for="prestation in listPrestation"
 				:key="prestation.id"
 				:prestation="prestation"

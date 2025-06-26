@@ -28,6 +28,7 @@ declare global {
   const formTemplate: typeof import('./vendors/design-system/utils/layoutTemplate')['formTemplate']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getExtention: typeof import('./src/utils/getExtension')['getExtention']
   const h: typeof import('vue')['h']
   const i18n: typeof import('./src/i18n/index')['i18n']
   const inject: typeof import('vue')['inject']
@@ -199,9 +200,11 @@ declare module 'vue' {
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
+    readonly fileFormFiels: UnwrapRef<typeof import('./vendors/design-system/utils/formFields')['fileFormFiels']>
     readonly formTemplate: UnwrapRef<typeof import('./vendors/design-system/utils/layoutTemplate')['formTemplate']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getExtention: UnwrapRef<typeof import('./src/utils/getExtension')['getExtention']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly i18n: UnwrapRef<typeof import('./src/i18n/index')['i18n']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
@@ -246,6 +249,7 @@ declare module 'vue' {
     readonly textFormField: UnwrapRef<typeof import('./vendors/design-system/utils/formFields')['textFormField']>
     readonly textLayoutTemplateGridCols: UnwrapRef<typeof import('./vendors/design-system/utils/layoutTemplate')['textLayoutTemplateGridCols']>
     readonly textareaFormField: UnwrapRef<typeof import('./vendors/design-system/utils/formFields')['textareaFormField']>
+    readonly toBase64: UnwrapRef<typeof import('./src/utils/toBase64')['toBase64']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
