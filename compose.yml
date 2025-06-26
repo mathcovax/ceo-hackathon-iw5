@@ -73,7 +73,6 @@ services:
     depends_on:
       node-installer:
         condition: service_completed_successfully
-      libretranslate:
     ports:
       - "1507:1506"
     command: npm -w services/rosetta run duplo:dev
