@@ -1,6 +1,6 @@
 import { Translate } from "@business/entities/translate";
 import { endpointTranslateRoute } from "@interfaces/http/schemas/translate";
-import { useMustBeAuthozizeToUse } from "@interfaces/http/security/authentication";
+import { authenticationProcess } from "@interfaces/http/security/authentication";
 import { GoogleScrape } from "@interfaces/providers/googleScrape";
 import { LebackossAPI } from "@interfaces/providers/lebackoss";
 import { LibretranslateAPI } from "@interfaces/providers/libretranslate";
@@ -8,8 +8,12 @@ import { resultTranslateQueue } from "@interfaces/providers/resultTranslateQueue
 import { submissionDataRules } from "@vendors/entity-rules";
 import { match, P } from "ts-pattern";
 
-useMustBeAuthozizeToUse()
+useBuilder()
 	.createRoute("POST", "/translate")
+	.execute(
+		authenticationProcess,
+		{ pickup: ["aIAgentToken"] },
+	)
 	.extract({
 		body: {
 			aIPrestationToken: zod.string(),
@@ -31,7 +35,7 @@ useMustBeAuthozizeToUse()
 	})
 	.handler(
 		(pickup) => {
-			const { data: { provider, language, text }, token, aIPrestationToken } = pickup(["data", "token", "aIPrestationToken"]);
+			const { data: { provider, language, text }, aIAgentToken, aIPrestationToken } = pickup(["data", "aIAgentToken", "aIPrestationToken"]);
 
 			void resultTranslateQueue.add(async() => {
 				void LebackossAPI.startAIPrestation({ aIPrestationToken });
@@ -55,7 +59,7 @@ useMustBeAuthozizeToUse()
 				});
 			});
 
-			return new OkHttpResponse("text.translated", { token });
+			return new OkHttpResponse("text.translated", { aIAgentToken });
 		},
 		makeResponseContract(OkHttpResponse, "text.translated", endpointTranslateRoute),
 	);

@@ -36,7 +36,7 @@ useBuilder()
 			return match({ result })
 				.with(
 					{ result: { information: "failed-check-AIAgent-availability" } },
-					() => new ServiceUnavailableHttpResponse("AIAgent.unavaible"),
+					() => new BadRequestHttpResponse("AIAgent.unavaible"),
 				)
 				.with(
 					{ result: undefined },
@@ -45,10 +45,7 @@ useBuilder()
 				.exhaustive();
 		},
 		[],
-		[
-			...makeResponseContract(ServiceUnavailableHttpResponse, "AIAgent.unavaible"),
-			...makeResponseContract(BadRequestHttpResponse, "AIAgent.isMissing"),
-		],
+		makeResponseContract(BadRequestHttpResponse, ["AIAgent.isMissing", "AIAgent.unavaible"]),
 	)
 	.handler(
 		() => new OkHttpResponse("prestationSheet.created"),

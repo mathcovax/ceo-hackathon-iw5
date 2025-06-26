@@ -23,6 +23,7 @@ export class CreatePrestationUsecase extends UsecaseHandler.create({
 			const aIAgent = await this.aIAgentRepository.getOneByPrestationSheet(
 				prestationSheet,
 			);
+
 			const result = await this.checkAIAgent({ aIAgent });
 
 			if (result instanceof Error) {

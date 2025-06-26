@@ -15,7 +15,7 @@ export class AIAgentTokenProvider {
 				token,
 				envs.TOKEN_KEY,
 				{
-					algorithms: ["ES512"],
+					algorithms: ["HS256"],
 				},
 			);
 

@@ -19,9 +19,9 @@ export class LebackossAPI {
 	public static completeAIPrestation({ aIPrestationToken, resultText }: InputCompleteAIPrestation) {
 		return this.httpClient
 			.post(
-				"/ai-complete-prestation/{aIPrestationToken}",
+				"/ai-complete-prestation",
 				{
-					params: {
+					query: {
 						aIPrestationToken,
 					},
 					body: new StrictFormData({

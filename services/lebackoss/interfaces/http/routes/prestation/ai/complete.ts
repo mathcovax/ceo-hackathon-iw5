@@ -11,9 +11,9 @@ const quantityFile = {
 };
 
 useBuilder()
-	.createRoute("POST", "/ai-complete-prestation/{aIPrestationToken}")
+	.createRoute("POST", "/ai-complete-prestation")
 	.extract({
-		params: {
+		query: {
 			aIPrestationToken: AIPrestation.tokenObjecter.toZodSchema(),
 		},
 	})

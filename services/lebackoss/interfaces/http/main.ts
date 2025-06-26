@@ -6,6 +6,7 @@ import "./routes";
 import { cors } from "@vendors/duplo-plugins/cors";
 import { debug } from "@vendors/duplo-plugins/debug";
 import { duploStatic } from "./plugins/static";
+import "@vendors/backend-logger";
 
 const duplo = new Duplo({
 	environment: envs.ENVIROMENT,

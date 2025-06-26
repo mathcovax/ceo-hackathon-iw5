@@ -1,5 +1,6 @@
 import { prestationRepository } from "@business/applications/repositories/prestation";
 import { fileTypeEnum } from "@business/domains/common/submissionField";
+import { AIPrestationEntity } from "@business/domains/entities/aIPrestation";
 import { Prestation, PrestationEntity } from "@business/domains/entities/prestation";
 import { mongo } from "@interfaces/providers/mongo";
 import { AIPrestationTokenProvider } from "@interfaces/providers/token/prestation";
@@ -45,10 +46,13 @@ prestationRepository.default = {
 			return null;
 		}
 
-		return EntityHandler.unsafeMapper(
-			PrestationEntity,
-			mongoPrestation,
-		);
+		return EntityHandler
+			.unsafeMapper(
+				"token" in mongoPrestation
+					? AIPrestationEntity
+					: PrestationEntity,
+				mongoPrestation,
+			);
 	},
 	async findAllByPrestationSheet(prestationSheet) {
 		const mongoPrestationList = await mongo.prestationCollection
@@ -58,7 +62,9 @@ prestationRepository.default = {
 		return mongoPrestationList.map(
 			(mongoPrestation) => EntityHandler
 				.unsafeMapper(
-					PrestationEntity,
+					"token" in mongoPrestation
+						? AIPrestationEntity
+						: PrestationEntity,
 					mongoPrestation,
 				),
 		);

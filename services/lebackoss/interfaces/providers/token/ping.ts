@@ -8,7 +8,7 @@ export class PingTokenProvider {
 			{ number: randNumber },
 			tokenKey.value,
 			{
-				algorithm: "ES512",
+				algorithm: "HS256",
 			},
 		);
 	}

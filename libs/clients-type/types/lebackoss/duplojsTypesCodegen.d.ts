@@ -146,12 +146,12 @@ type CodegenRoutes = ({
         };
     });
     response: {
-        code: 503;
-        information: "AIAgent.unavaible";
+        code: 400;
+        information: "AIAgent.isMissing";
         body?: undefined;
     } | {
         code: 400;
-        information: "AIAgent.isMissing";
+        information: "AIAgent.unavaible";
         body?: undefined;
     } | {
         code: 200;
@@ -321,12 +321,12 @@ type CodegenRoutes = ({
     };
 }) | ({
     method: "POST";
-    path: "/ai-complete-prestation/{aIPrestationToken}";
+    path: "/ai-complete-prestation";
     body: CodegenReceiveFormData<{
         resultFiles: File[];
         resultText?: (string[] | string) | undefined;
     }>;
-    params: {
+    query: {
         aIPrestationToken: string;
     };
     response: {

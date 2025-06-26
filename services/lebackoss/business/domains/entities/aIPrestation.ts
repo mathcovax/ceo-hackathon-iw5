@@ -19,7 +19,7 @@ export class AIPrestationEntity extends EntityHandler.create(
 		GetEntityProperties<typeof AIPrestationEntity>,
 		"status"
 	>) {
-		return new PrestationEntity({
+		return new AIPrestationEntity({
 			...params,
 			status: Prestation.statusObjecter.unsafeCreate("created"),
 		});

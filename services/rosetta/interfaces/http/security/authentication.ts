@@ -1,13 +1,13 @@
 import { IgnoreByTypeCodegenDescription } from "@duplojs/types-codegen";
 import { AIAgentTokenProvider } from "@interfaces/providers/token/aIAgent";
 
-const authenticationProcess = createProcess(
+export const authenticationProcess = createProcess(
 	"authentification",
 )
 	.extract(
 		{
 			body: {
-				authorization: zod.string(),
+				aIAgentToken: zod.string(),
 			},
 		},
 		() => new ForbiddenHttpResponse("authorization.missing"),
@@ -15,27 +15,18 @@ const authenticationProcess = createProcess(
 	)
 	.cut(
 		({ pickup, dropper }) => {
-			const { authorization: token } = pickup(["authorization"]);
+			const { aIAgentToken } = pickup(["aIAgentToken"]);
 
-			const payloadToken = AIAgentTokenProvider.verify(token);
+			const payloadToken = AIAgentTokenProvider.verify(aIAgentToken);
 
 			if (!payloadToken) {
 				return new ForbiddenHttpResponse("authorization.wrong");
 			}
 
-			return dropper({ token });
+			return dropper({ aIAgentToken });
 		},
-		["token"],
+		["aIAgentToken"],
 		makeResponseContract(ForbiddenHttpResponse, "authorization.wrong"),
 	)
-	.exportation(["token"]);
+	.exportation(["aIAgentToken"]);
 
-export function useMustBeAuthozizeToUse() {
-	return useBuilder()
-		.preflight(
-			authenticationProcess,
-			{
-				pickup: ["token"],
-			},
-		);
-}

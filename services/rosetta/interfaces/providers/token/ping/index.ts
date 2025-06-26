@@ -15,7 +15,7 @@ export class PingTokenProvider {
 				token,
 				envs.TOKEN_KEY,
 				{
-					algorithms: ["ES512"],
+					algorithms: ["HS256"],
 				},
 			);
 

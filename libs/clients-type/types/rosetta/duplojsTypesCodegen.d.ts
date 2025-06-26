@@ -47,7 +47,7 @@ type CodegenRoutes = ({
         code: 200;
         information: "text.translated";
         body: {
-            token: string;
+            aIAgentToken: string;
         };
     };
 });

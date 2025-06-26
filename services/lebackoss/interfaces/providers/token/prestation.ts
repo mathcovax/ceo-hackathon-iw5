@@ -16,7 +16,7 @@ export class AIPrestationTokenProvider {
 			{ prestationId: prestationId.value } satisfies ReturnType<typeof AIPrestationTokenProvider["schema"]["parse"]>,
 			envs.PRESTATION_TOKEN_KEY,
 			{
-				algorithm: "ES512",
+				algorithm: "HS256",
 			},
 		);
 
@@ -29,7 +29,7 @@ export class AIPrestationTokenProvider {
 				token.value,
 				envs.PRESTATION_TOKEN_KEY,
 				{
-					algorithms: ["ES512"],
+					algorithms: ["HS256"],
 				},
 			);
 

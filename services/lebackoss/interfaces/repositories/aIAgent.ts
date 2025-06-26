@@ -7,7 +7,6 @@ import { ZodAccelerator } from "@duplojs/core";
 import { EntityHandler, RepositoryError } from "@vendors/clean";
 import crypto from "crypto";
 import { AIAgentTokenProvider } from "@interfaces/providers/token/aIAgent";
-import { AIPrestationTokenProvider } from "@interfaces/providers/token/prestation";
 
 const responseOfIsAvailableSchema = ZodAccelerator.build(
 	zod.object({
@@ -20,7 +19,7 @@ const randNumberRangeMax = 10000;
 
 const responseSendPrestation = ZodAccelerator.build(
 	zod.object({
-		token: zod.string(),
+		aIAgentToken: zod.string(),
 	}),
 );
 
@@ -47,11 +46,12 @@ aIAgentRepository.default = {
 			aIAgent.pingUrl.value,
 			{
 				method: "POST",
+				headers: { "content-type": "application/json; charset=utf-8" },
 				body: JSON.stringify({ pingToken }),
 			},
 		)
-			.then(({ json }) => json())
-			.then(responseOfIsAvailableSchema.parse)
+			.then((response) => response.json())
+			.then((body) => responseOfIsAvailableSchema.parse(body))
 			.then(({ number }) => number === randNumber * randNumber)
 			.catch(() => false);
 	},
@@ -99,23 +99,24 @@ aIAgentRepository.default = {
 			mongoAIAgent,
 		);
 
-		const agentToken = AIAgentTokenProvider.generate(aIAgent);
+		const aIAgentToken = AIAgentTokenProvider.generate(aIAgent);
 
 		await fetch(
 			aIAgent.entryPointUrl.value,
 			{
 				method: "POST",
+				headers: { "content-type": "application/json; charset=utf-8" },
 				body: JSON.stringify({
-					token: agentToken,
-					aiPrestationToken: aIPrestation.token.value,
+					aIAgentToken,
+					aIPrestationToken: aIPrestation.token.value,
 					data: aIPrestation.submissionData.value,
 				}),
 			},
 		)
-			.then(({ json }) => json())
-			.then(responseSendPrestation.parse)
-			.then(({ token }) => {
-				if (agentToken !== token) {
+			.then((response) => response.json())
+			.then((body) => responseSendPrestation.parse(body))
+			.then(({ aIAgentToken: returnedAIAgentToken }) => {
+				if (aIAgentToken !== returnedAIAgentToken) {
 					throw new Error();
 				}
 			})
