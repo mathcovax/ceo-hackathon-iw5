@@ -1,6 +1,7 @@
 import { notFoundPage } from "@/domains/edito/notFoundPage/router";
-import { addPrestationPage } from "@/domains/prestationSheet/addPrestationSheetPage/router";
+import { addPrestationSheetPage } from "@/domains/prestationSheet/addPrestationSheetPage/router";
 import { listPrestationSheetPage } from "@/domains/prestationSheet/listPrestationSheetPage/router";
+import { prestationDetailPage } from "@/domains/prestation/prestationDetailPage/router";
 import { prestationSheetDetailPage } from "@/domains/prestationSheet/prestationSheetDetailPage/router";
 
 export const FRfr = {
@@ -19,8 +20,9 @@ export const FRfr = {
 				description: "Description",
 				createPrestation: "Créer une prestation",
 			},
+			createPrestation: "Créer une préstation",
 		},
-		[addPrestationPage.name]: {
+		[addPrestationSheetPage.name]: {
 			title: "Ajouter une prestation",
 			description: "Ajoutez une nouvelle prestation.",
 			form: {
@@ -48,6 +50,17 @@ export const FRfr = {
 					},
 				},
 			},
+		},
+		[prestationDetailPage.name]: {
+			title: "Detail de prestation",
+			prestation: {
+				id: "ID",
+				status: "Statut",
+			},
+			prestationResult: {
+				title: "Résultat",
+			},
+			noPrestationResult: "Pas résultat pour le moment",
 		},
 	},
 	layout: {

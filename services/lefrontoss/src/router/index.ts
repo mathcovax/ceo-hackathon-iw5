@@ -6,7 +6,6 @@ import { addPrestationSheetPage } from "@/domains/prestationSheet/addPrestationS
 import { createWebHistory, createRouter } from "vue-router";
 import { prestationDetailPage } from "@/domains/prestation/prestationDetailPage/router";
 import { listPrestationPage } from "@/domains/prestation/prestationList/router";
-import { addPrestationResultPage } from "@/domains/prestation/addPrestationResultPage/router";
 
 export const router = createRouter({
 	history: createWebHistory(),
@@ -22,7 +21,6 @@ export const router = createRouter({
 				prestationSheetDetailPage.recordRaw,
 				prestationDetailPage.recordRaw,
 				listPrestationPage.recordRaw,
-				addPrestationResultPage.recordRaw,
 			],
 		},
 	],
