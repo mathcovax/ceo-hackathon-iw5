@@ -50,6 +50,34 @@ services:
       - "3000:3000"
     command: npm -w services/lefrontoss run dev
 
+  libretranslate:
+    image: libretranslate/libretranslate:v1.6.5
+    env_file:
+      - ./services/rosetta/.env
+    ports:
+      - 5000:5000
+    volumes:
+      - ./services/rosetta/languages:/home/libretranslate/.local/share/argos-translate/packages/
+  #   post_start:
+  #     - command: ["sh", "-c", "chown 1032 /home/libretranslate/.local/share/argos-translate/packages/"]
+  #       user: root
+
+  rosetta:
+    image: node:22.15.0-alpine3.21
+    volumes:
+      - ${PWD}:/home/node/project
+    environment:
+      npm_config_cache: /home/node/cache
+    working_dir: /home/node/project
+    user: 1000:1000
+    depends_on:
+      node-installer:
+        condition: service_completed_successfully
+      libretranslate:
+    ports:
+      - "1507:1506"
+    command: npm -w services/rosetta run duplo:dev
+
 
 volumes:
   lebackoss-mongo-data:

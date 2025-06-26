@@ -32,7 +32,8 @@
     "libs/entity-rules",
 	"libs/design-system",
     "services/lefrontoss",
-	"services/lebackoss"
+	"services/lebackoss",
+	"services/rosetta"
   ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
