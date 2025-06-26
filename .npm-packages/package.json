@@ -1,6 +1,8 @@
 {
   "name": "npm-packages",
   "dependencies": {
+    "@duplojs/core": "1.0.4",
+    "@duplojs/node": "1.0.2",
     "@duplojs/utils": "0.3.1",
     "@duplojs/eslint": "0.4.0",
     "eslint": "9.23.0",
