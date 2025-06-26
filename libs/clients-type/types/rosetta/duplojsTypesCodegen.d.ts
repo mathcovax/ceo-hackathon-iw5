@@ -26,15 +26,28 @@ type CodegenRoutes = ({
     method: "POST";
     path: "/translate";
     body: {
-        provider: "default" | "googleScrape" | "libretranslate";
-        language: "fr-FR" | "en-US" | "it-IT" | "es-ES";
-        text: string;
+        aIPrestationToken: string;
+        data: {
+            provider: {
+                value: "default" | "googleScrape" | "libretranslate";
+            };
+            language: {
+                value: "fr-FR" | "en-US" | "it-IT" | "es-ES";
+            };
+            text: {
+                value: string;
+            };
+        };
     };
     response: {
+        code: 403;
+        information: "authorization.wrong";
+        body?: undefined;
+    } | {
         code: 200;
         information: "text.translated";
         body: {
-            result: string;
+            token: string;
         };
     };
 });

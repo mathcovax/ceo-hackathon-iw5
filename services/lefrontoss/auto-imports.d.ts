@@ -33,6 +33,7 @@ declare global {
   const i18n: typeof import('./src/i18n/index')['i18n']
   const inject: typeof import('vue')['inject']
   const inlineFormTemplate: typeof import('./vendors/design-system/utils/layoutTemplate')['inlineFormTemplate']
+  const isImage: typeof import('./src/utils/isImage')['isImage']
   const isProxy: typeof import('vue')['isProxy']
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
@@ -209,6 +210,7 @@ declare module 'vue' {
     readonly i18n: UnwrapRef<typeof import('./src/i18n/index')['i18n']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly inlineFormTemplate: UnwrapRef<typeof import('./vendors/design-system/utils/layoutTemplate')['inlineFormTemplate']>
+    readonly isImage: UnwrapRef<typeof import('./src/utils/isImage')['isImage']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>

@@ -10,11 +10,24 @@ interface Props {
 
 defineProps<Props>();
 
+const imagePath = envs.VITE_IMAGES_PATH;
+
 function getMode(prestation: Props["prestation"]) {
 	return "token" in prestation ? "ai" : "human";
 }
-const imagePath = envs.VITE_IMAGES_PATH;
 
+function getStatusVariant(status: AllPrestation["status"]) {
+	switch (status) {
+		case "completed":
+			return "success";
+		case "inProgress":
+			return "warning";
+		case "created":
+			return "outline";
+		default:
+			return "secondary";
+	}
+}
 </script>
 
 <template>
@@ -38,13 +51,7 @@ const imagePath = envs.VITE_IMAGES_PATH;
 							</DSBadge>
 
 							<DSBadge
-								class="text-xs"
-								:variant="'secondary'"
-								:class="{
-									'bg-muted text-muted-foreground border-border': prestation.status === 'created',
-									'bg-warning/10 text-warning border-warning/20': prestation.status === 'inProgress',
-									'bg-success/5 text-success border-success/20': prestation.status === 'completed',
-								}"
+								:variant="getStatusVariant(prestation.status)"
 							>
 								{{ $t(`prestation.status.${prestation.status}`) }}
 							</DSBadge>
@@ -61,22 +68,20 @@ const imagePath = envs.VITE_IMAGES_PATH;
 			:key="key"
 			class="mb-2"
 		>
-			<div v-if="field !== undefined">
-				<div v-if="field.type === 'file'">
-					<p>{{ key }}</p>
+			<te v-if="field?.value && field?.type === 'file'&& isImage(field.value)">
+				<p>{{ key }}</p>
 
-					<DSImage
-						:src="`${imagePath}${field.value}`"
-						alt="Prestation file"
-						class="block size-40"
-					/>
-				</div>
+				<DSImage
+					:src="`${imagePath}${field.value}`"
+					alt="Prestation file"
+					class="block size-40"
+				/>
+			</te>
 
-				<div v-else>
-					<strong class="text-xs font-medium text-muted-foreground tracking-wide">
-						{{ key }} : {{ field.value }}
-					</strong>
-				</div>
+			<div v-else-if="field?.type !== 'file'">
+				<p class="text-xs font-medium text-muted-foreground tracking-wide">
+					<strong>{{ key }}</strong> : {{ field?.value }}
+				</p>
 			</div>
 		</div>
 

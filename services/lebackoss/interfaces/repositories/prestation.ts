@@ -13,6 +13,7 @@ const fileTypeMapper: Record<string, FileTypeEnum> = {
 	".png": "image",
 	".jpg": "image",
 	".jpeg": "image",
+	".svg": "image",
 	".csv": "csv",
 	".txt": "text",
 };
