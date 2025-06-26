@@ -12,7 +12,7 @@ export namespace PrestationSheet {
 	export const nameObjecter = zod
 		.string()
 		.min(prestationSheetRules.name.min)
-		.min(prestationSheetRules.name.max)
+		.max(prestationSheetRules.name.max)
 		.createValueObjecter("prestationSheetName");
 
 	export type Name = GetValueObject<typeof nameObjecter>;
@@ -20,7 +20,7 @@ export namespace PrestationSheet {
 	export const descriptionObjecter = zod
 		.string()
 		.min(prestationSheetRules.description.min)
-		.min(prestationSheetRules.description.max)
+		.max(prestationSheetRules.description.max)
 		.createValueObjecter("prestationSheetDescription");
 
 	export type Description = GetValueObject<typeof descriptionObjecter>;
@@ -30,7 +30,7 @@ export namespace PrestationSheet {
 			value: zod
 				.string()
 				.min(prestationSheetRules.keyword.min)
-				.min(prestationSheetRules.keyword.max),
+				.max(prestationSheetRules.keyword.max),
 		})
 		.createValueObjecter("prestationSheetKeyword");
 

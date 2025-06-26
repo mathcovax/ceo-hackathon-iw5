@@ -57,10 +57,7 @@ services:
     ports:
       - 5000:5000
     volumes:
-      - ./services/rosetta/languages:/home/libretranslate/.local/share/argos-translate/packages/
-  #   post_start:
-  #     - command: ["sh", "-c", "chown 1032 /home/libretranslate/.local/share/argos-translate/packages/"]
-  #       user: root
+      - libretranslate-data:/home/libretranslate
 
   rosetta:
     image: mcr.microsoft.com/playwright:v1.53.1-noble
@@ -82,3 +79,4 @@ services:
 
 volumes:
   lebackoss-mongo-data:
+  libretranslate-data:
