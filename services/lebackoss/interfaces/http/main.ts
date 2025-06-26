@@ -19,6 +19,9 @@ const duplo = new Duplo({
 			routePath: "/files-upload",
 		}),
 	],
+	recieveFormDataOptions: {
+		uploadDirectory: envs.UPLOAD_DIR,
+	},
 });
 
 duplo.register(

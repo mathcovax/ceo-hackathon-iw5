@@ -2,6 +2,7 @@
 import type { AllPrestation } from "@vendors/clients-type/lebackoss/duplojsTypesCodegen";
 import { usePage } from "./composables/usePage";
 import { prestationDetailPage } from "./router";
+import { envs } from "@/envs";
 
 const { $pt } = prestationDetailPage.use();
 const { prestation, prestationResult } = usePage();
@@ -20,7 +21,7 @@ function getStatusVariant(status: AllPrestation["status"]) {
 }
 
 function downloadFile(url: string) {
-	window.open(url, "_blank");
+	window.open(`${envs.VITE_IMAGES_PATH}/${url}`, "_blank");
 }
 
 </script>

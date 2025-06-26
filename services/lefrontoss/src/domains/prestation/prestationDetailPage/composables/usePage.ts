@@ -1,6 +1,6 @@
-import { type PrestationResult } from "@vendors/clients-type/lebackoss/duplojsTypesCodegen";
 import { prestationDetailPage } from "../router";
 import { useGetPrestation } from "../../composables/useGetPrestation";
+import type { PrestationResult } from "@vendors/clients-type/lebackoss/duplojsTypesCodegen";
 
 export function usePage() {
 	const { params } = prestationDetailPage.use();

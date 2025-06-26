@@ -8,6 +8,7 @@ import {
 	type ExposedProperties,
 } from "../formField";
 import { type MultiLayoutTemplateRender } from "../templates/multiLayout";
+import { simpleClone } from "@duplojs/utils";
 
 export interface MultiLayoutOptions {
 	template?: MultiLayoutTemplateRender;
@@ -96,9 +97,15 @@ export function useMultiFieldLayout(
 					const { exposed, getVNode } = formField({
 						modelValue: computed({
 							get() {
-								return modelValue.value[key];
+								if (modelValue.value === undefined) {
+									return simpleClone(multiFieldLayout.defaultValue);
+								}
+								return modelValue.value?.[key];
 							},
 							set(value) {
+								if (modelValue.value === undefined) {
+									return;
+								}
 								modelValue.value[key] = value;
 							},
 						}),

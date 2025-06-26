@@ -1,6 +1,7 @@
 import { addPrestationResultPage } from "../router";
 import { useGetPrestation } from "../../composables/useGetPrestation";
 import { useCreatePrestationResultForm } from "./useCreatePrestationResultForm";
+import { StrictFormData } from "@duplojs/http-client";
 
 export function usePage() {
 	const { params } = addPrestationResultPage.use();
@@ -14,7 +15,6 @@ export function usePage() {
 		CreatePrestationResultForm,
 		switchForm,
 		check,
-		formValue,
 	} = useCreatePrestationResultForm();
 
 	watch(
@@ -36,7 +36,7 @@ export function usePage() {
 			return;
 		}
 
-		if (formValue.value.type === "created") {
+		if (result.type === "created") {
 			void lebackossClient
 				.post(
 					"/start-prestation",
@@ -48,6 +48,28 @@ export function usePage() {
 				)
 				.whenInformation(
 					"prestation.start",
+					() => {
+						void findOnePrestation(prestationId);
+					},
+				);
+		} else if (result.type === "result") {
+			void lebackossClient
+				.post(
+					"/complete-prestation/{prestationId}",
+					{
+						params: {
+							prestationId,
+						},
+						body: new StrictFormData({
+							resultFiles: result.value
+								.flatMap(({ type, value }) => type === "file" ? value : []),
+							resultText: result.value
+								.flatMap(({ type, value }) => type === "textarea" ? value : []),
+						}),
+					},
+				)
+				.whenInformation(
+					"prestation.completed",
 					() => {
 						void findOnePrestation(prestationId);
 					},
