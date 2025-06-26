@@ -1,10 +1,10 @@
 import { fileTypeEnum, prestationSheetModeEnum } from "@/libs/lebackoss/types";
 import type { SubmissionField } from "@vendors/clients-type/lebackoss/duplojsTypesCodegen";
 import { match, P } from "ts-pattern";
-import { addPrestationPage } from "../router";
+import { addPrestationSheetPage } from "../router";
 
 export function useCreatePrestationSheetForm() {
-	const { $pt } = addPrestationPage.use();
+	const { $pt } = addPrestationSheetPage.use();
 
 	const constantSubmissionFields = {
 		fieldName: useCheckLayout(
@@ -28,6 +28,7 @@ export function useCreatePrestationSheetForm() {
 		),
 	};
 
+	const minLength = 1;
 	const constantFields = {
 		name: useCheckLayout(
 			textFormField,
@@ -112,7 +113,7 @@ export function useCreatePrestationSheetForm() {
 											.object({ value: zod.enum(fileTypeEnum.toTuple()) })
 											.transform(({ value }) => value)
 											.array()
-											.min(1),
+											.min(minLength),
 									},
 								),
 							}),

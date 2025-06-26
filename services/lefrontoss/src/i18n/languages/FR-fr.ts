@@ -1,6 +1,7 @@
 import { notFoundPage } from "@/domains/edito/notFoundPage/router";
 import { addPrestationPage } from "@/domains/prestationSheet/addPrestationSheetPage/router";
 import { listPrestationSheetPage } from "@/domains/prestationSheet/listPrestationSheetPage/router";
+import { prestationSheetDetailPage } from "@/domains/prestationSheet/prestationSheetDetailPage/router";
 
 export const FRfr = {
 	page: {
@@ -12,6 +13,12 @@ export const FRfr = {
 			title: "Liste des fiches de prestations",
 			description: "Découvrez les fiches de prestations disponibles.",
 			noPrestationSheet: "Aucune fiche de prestation n'est disponible pour le moment.",
+		},
+		[prestationSheetDetailPage.name]: {
+			label: {
+				description: "Description",
+				createPrestation: "Créer une prestation",
+			},
 		},
 		[addPrestationPage.name]: {
 			title: "Ajouter une prestation",

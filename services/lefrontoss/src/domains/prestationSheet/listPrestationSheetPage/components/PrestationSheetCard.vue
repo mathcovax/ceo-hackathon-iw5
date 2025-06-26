@@ -52,35 +52,37 @@ defineProps<Props>();
 			</div>
 		</template>
 
-		<p class="text-sm text-muted-foreground mb-4 line-clamp-3">
-			{{ description }}
-		</p>
+		<div class="h-full flex flex-col justify-between">
+			<p class="text-sm text-muted-foreground mb-4 line-clamp-3">
+				{{ description }}
+			</p>
 
-		<div
-			v-if="keywords.length > 0"
-			class="space-y-2"
-		>
-			<h4 class="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-				Spécialités
-			</h4>
+			<div
+				v-if="keywords.length > 0"
+				class="space-y-2"
+			>
+				<h4 class="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+					Spécialités
+				</h4>
 
-			<div class="flex flex-wrap gap-1">
-				<DSBadge
-					v-for="keyword in keywords.slice(0, 4)"
-					:key="keyword.value"
-					variant="outline"
-					class="text-xs px-2 py-1"
-				>
-					{{ keyword.value }}
-				</DSBadge>
+				<div class="flex flex-wrap gap-1">
+					<DSBadge
+						v-for="keyword in keywords.slice(0, 4)"
+						:key="keyword.value"
+						variant="outline"
+						class="text-xs px-2 py-1"
+					>
+						{{ keyword.value }}
+					</DSBadge>
 
-				<DSBadge
-					v-if="keywords.length > 4"
-					variant="outline"
-					class="text-xs px-2 py-1 text-muted-foreground"
-				>
-					+{{ keywords.length - 4 }}
-				</DSBadge>
+					<DSBadge
+						v-if="keywords.length > 4"
+						variant="outline"
+						class="text-xs px-2 py-1 text-muted-foreground"
+					>
+						+{{ keywords.length - 4 }}
+					</DSBadge>
+				</div>
 			</div>
 		</div>
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { homePage } from "@/domains/edito/homePage/router";
-import { addPrestationPage } from "@/domains/prestationSheet/addPrestationSheetPage/router";
+import { addPrestationSheetPage } from "@/domains/prestationSheet/addPrestationSheetPage/router";
 import { listPrestationSheetPage } from "@/domains/prestationSheet/listPrestationSheetPage/router";
 
 const { isScrolled } = useScroll({ allowScrollEvent: true });
@@ -35,7 +35,7 @@ const { isScrolled } = useScroll({ allowScrollEvent: true });
 					</li>
 
 					<li>
-						<RouterLink :to="addPrestationPage">
+						<RouterLink :to="addPrestationSheetPage">
 							<DSLinkButton>{{ $t("layout.header.nav.addPrestation") }}</DSLinkButton>
 						</RouterLink>
 					</li>

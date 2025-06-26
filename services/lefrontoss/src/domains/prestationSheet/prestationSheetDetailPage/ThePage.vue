@@ -3,9 +3,7 @@ import { prestationSheetDetailPage } from "./router";
 import { usePage } from "./composables/usePage";
 
 const { $pt } = prestationSheetDetailPage.use();
-
 const { prestationSheet, dinamicCreatePrestationForm, onSubmit } = usePage();
-
 </script>
 
 <template>
@@ -47,35 +45,35 @@ const { prestationSheet, dinamicCreatePrestationForm, onSubmit } = usePage();
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="space-y-6">
-			<DSCard>
-				<template #header>
-					<h2 class="text-xl font-semibold">
-						Description
-					</h2>
-				</template>
+			<div class="space-y-6">
+				<DSCard>
+					<template #header>
+						<h2 class="text-xl font-semibold">
+							{{ $pt("label.description") }}
+						</h2>
+					</template>
 
-				<div class="space-y-4">
-					<p class="text-muted-foreground leading-relaxed">
-						{{ prestationSheet.description }}
-					</p>
-				</div>
-			</DSCard>
+					<div class="space-y-4">
+						<p class="text-muted-foreground leading-relaxed">
+							{{ prestationSheet.description }}
+						</p>
+					</div>
+				</DSCard>
 
-			<aside
-				v-if="dinamicCreatePrestationForm"
-			>
-				<component
-					:is="dinamicCreatePrestationForm.Form"
-					@submit="onSubmit"
+				<aside
+					v-if="dinamicCreatePrestationForm"
 				>
-					<DSPrimaryButton type="submit">
-						{{ $pt("createPrestation") }}
-					</DSPrimaryButton>
-				</component>
-			</aside>
+					<component
+						:is="dinamicCreatePrestationForm.Form"
+						@submit="onSubmit"
+					>
+						<DSPrimaryButton type="submit">
+							{{ $pt("label.createPrestation") }}
+						</DSPrimaryButton>
+					</component>
+				</aside>
+			</div>
 		</div>
 	</section>
 </template>

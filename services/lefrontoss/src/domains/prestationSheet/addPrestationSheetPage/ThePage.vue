@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useCreatePrestationSheetForm } from "./composables/useCreatePrestationSheetForm";
-import { addPrestationPage } from "./router";
+import { addPrestationSheetPage } from "./router";
 
-const { $pt } = addPrestationPage.use();
+const { $pt } = addPrestationSheetPage.use();
 const { CreatePrestationSheetForm, onSubmitCreatePrestationSheetForm } = useCreatePrestationSheetForm();
 
 </script>
