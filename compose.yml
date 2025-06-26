@@ -57,7 +57,7 @@ services:
     ports:
       - 5000:5000
     volumes:
-      - libretranslate-data:/home/libretranslate
+      - libretranslate-data:/home/libretranslate/
 
   rosetta:
     image: mcr.microsoft.com/playwright:v1.53.1-noble

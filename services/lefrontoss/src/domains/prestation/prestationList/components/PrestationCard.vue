@@ -2,6 +2,7 @@
 import type { transformCodegenBodyToHttpClientBody } from "@duplojs/http-client";
 import type { AllPrestation } from "@vendors/clients-type/lebackoss/duplojsTypesCodegen";
 import { addPrestationResultPage } from "../../addPrestationResultPage/router";
+import { envs } from "@/envs";
 
 interface Props {
 	prestation: transformCodegenBodyToHttpClientBody<AllPrestation>;
@@ -12,6 +13,7 @@ defineProps<Props>();
 function getMode(prestation: Props["prestation"]) {
 	return "token" in prestation ? "ai" : "human";
 }
+const imagePath = envs.VITE_IMAGES_PATH;
 
 </script>
 
@@ -60,9 +62,21 @@ function getMode(prestation: Props["prestation"]) {
 			class="mb-2"
 		>
 			<div v-if="field !== undefined">
-				<strong class="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-					{{ key }} : {{ field.value }}
-				</strong>
+				<div v-if="field.type === 'file'">
+					<p>{{ key }}</p>
+
+					<DSImage
+						:src="`${imagePath}${field.value}`"
+						alt="Prestation file"
+						class="block size-40"
+					/>
+				</div>
+
+				<div v-else>
+					<strong class="text-xs font-medium text-muted-foreground tracking-wide">
+						{{ key }} : {{ field.value }}
+					</strong>
+				</div>
 			</div>
 		</div>
 

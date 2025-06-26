@@ -35,7 +35,11 @@ export function makeStaticRoute({
 
 			const requestedPath = `${directory}${targetPath}`;
 
-			if (existsSync(requestedPath) && (await stat(requestedPath)).isDirectory()) {
+			const isFile = await stat(requestedPath)
+				.then((stat) => stat.isFile())
+				.catch(() => false);
+
+			if (!isFile) {
 				return new NotFoundHttpResponse("ressource.notfound");
 			}
 
