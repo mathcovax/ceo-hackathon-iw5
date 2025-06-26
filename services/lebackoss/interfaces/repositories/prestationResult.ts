@@ -20,18 +20,33 @@ prestationResultRepository.default = {
 		return PrestationResult.idObjecter.unsafeCreate(uuidv7());
 	},
 	async findOneById(prestationSheetId) {
-		const mongoPrestationSheet = await mongo.prestationResultCollection
+		const mongoPrestationResult = await mongo.prestationResultCollection
 			.findOne({
 				id: prestationSheetId.value,
 			});
 
-		if (!mongoPrestationSheet) {
+		if (!mongoPrestationResult) {
 			return null;
 		}
 
 		return EntityHandler.unsafeMapper(
 			PrestationResultEntity,
-			mongoPrestationSheet,
+			mongoPrestationResult,
+		);
+	},
+	async findOneByPrestationId(prestationId) {
+		const mongoPrestationResult = await mongo.prestationResultCollection
+			.findOne({
+				prestationId: prestationId.value,
+			});
+
+		if (!mongoPrestationResult) {
+			return null;
+		}
+
+		return EntityHandler.unsafeMapper(
+			PrestationResultEntity,
+			mongoPrestationResult,
 		);
 	},
 };

@@ -6,7 +6,7 @@ interface Input {
 	prestationResultId: PrestationResult.Id;
 }
 
-export class FindOneByIdPrestationUsecase extends UsecaseHandler.create({
+export class FindOnePrestationResultByIdUsecase extends UsecaseHandler.create({
 	prestationResultRepository,
 }) {
 	public execute({ prestationResultId }: Input) {

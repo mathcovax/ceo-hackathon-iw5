@@ -11,7 +11,7 @@ const prestationSchema = zod.object({
 });
 
 export const aIPrestationSchema = prestationSchema.extend({
-	token: AIPrestation.tokenObjecter.zodSchema.optional(),
+	token: AIPrestation.tokenObjecter.zodSchema,
 });
 
 export const allPrestationSchema = zod.union([

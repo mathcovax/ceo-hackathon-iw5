@@ -89,7 +89,7 @@ type AIPrestation = {
     prestationSheetId: string;
     submissionData: SubmissionData;
     status: "created" | "inProgress" | "completed";
-    token?: string | undefined;
+    token: string;
 };
 
 export { AIPrestation };
@@ -99,6 +99,20 @@ interface CodegenReceiveFormData<GenericValue extends Record<string, string | st
 }
 
 export { CodegenReceiveFormData };
+
+type PrestationResult = {
+    id: string;
+    prestationId: string;
+    data: ({
+        type: "text";
+        value: string;
+    } | {
+        type: "file";
+        value: string;
+    })[];
+};
+
+export { PrestationResult };
 
 type CodegenRoutes = ({
     method: "POST";
@@ -309,6 +323,25 @@ type CodegenRoutes = ({
         code: 200;
         information: "prestation.completed";
         body?: undefined;
+    };
+}) | ({
+    method: "POST";
+    path: "/find-one-prestation-result-by-prestation";
+    body: {
+        prestationId: string;
+    };
+    response: {
+        code: 404;
+        information: "prestation.notfound";
+        body?: undefined;
+    } | {
+        code: 404;
+        information: "prestationResult.notfound";
+        body?: undefined;
+    } | {
+        code: 200;
+        information: "prestationResult.found";
+        body: PrestationResult;
     };
 });
 

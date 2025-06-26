@@ -2,7 +2,7 @@ import { endpointFindAllPrestationRoute } from "@interfaces/http/schemas/prestat
 import { findAllPrestationUsecase } from "@interfaces/usecases";
 
 useBuilder()
-	.createRoute("GET", "find-all-prestation")
+	.createRoute("GET", "/find-all-prestation")
 	.handler(
 		async() => {
 			const prestationList = await findAllPrestationUsecase.execute();
