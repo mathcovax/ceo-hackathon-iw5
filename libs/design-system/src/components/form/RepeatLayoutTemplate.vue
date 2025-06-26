@@ -25,7 +25,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-	<div class="col-span-full">
+	<div class="col-span-full space-y-2">
 		<div
 			v-if="items.length < maxItems"
 			class="flex justify-start"
@@ -52,7 +52,7 @@ const emit = defineEmits<{
 					'grid-column': `span ${colsByItems} / span ${colsByItems}`
 				}"
 			>
-				<div class="py-4 flex items-start gap-2">
+				<div class="p-4 flex items-start gap-2 bg-accent/40 rounded-lg">
 					<div class="flex-1 min-w-0">
 						<component :is="item" />
 					</div>
