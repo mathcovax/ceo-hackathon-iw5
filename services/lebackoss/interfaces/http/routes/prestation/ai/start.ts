@@ -6,7 +6,7 @@ import { startPrestationUsecase } from "@interfaces/usecases";
 import { match, P } from "ts-pattern";
 
 useBuilder()
-	.createRoute("POST", "/start-prestation")
+	.createRoute("POST", "/ai-start-prestation")
 	.extract({
 		body: {
 			aIPrestationToken: AIPrestation.tokenObjecter.toZodSchema(),

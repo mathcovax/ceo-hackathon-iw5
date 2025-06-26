@@ -1,5 +1,7 @@
 import "./create";
 import "./findAllByPrestationSheet";
-import "./start";
-import "./complete";
+import "./ai/start";
+import "./ai/complete";
+import "./human/start";
+import "./human/complete";
 import "./findOne";
