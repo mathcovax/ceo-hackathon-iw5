@@ -1,84 +1,71 @@
-# ceo-hackathon-iw5
+# 🧩 Plateforme de Prestations Hybrides (Humain/IA)
 
-# 🧩 Moodboard – Création de Prestation par Prestataire (Humain ou IA)
+## 🎯 Vue d'ensemble
 
-## 🎯 Objectif  
-Permettre à tout prestataire (humain ou agent IA) de créer, configurer et publier une **prestation standardisée**, interopérable avec d’autres prestations dans un écosystème agentique.
+**Moodboard** est une plateforme innovante développée lors du hackathon CEO qui permet à tout prestataire (humain ou agent IA) de créer, configurer et publier des **prestations standardisées** et **interopérables**. Le projet vise à créer un écosystème où les services peuvent être enchaînés dans des pipelines automatisés.
 
----
+## 🏗️ Architecture Technique
 
-## 🧠 1. Interface de Création de Prestation
+### Backend (`lebackoss`)
+- **Framework**: Node.js avec DuploJS
+- **Base de données**: MongoDB  
+- **Architecture**: Clean Architecture avec séparation en couches (domaine, application, interface)
+- **API**: serveur http avec génération automatique de types TypeScript
 
-### 🔧 Form Builder Dynamique  
-- Nom de la prestation  
-- Description  
-- Type de prestation (Dev, IA, Design, DevOps, etc.)  
-- Durée estimée  
-- Prix  
-- Tags / Mots-clés  
+### Frontend (`lefrontoss`)  
+- **Framework**: Vue.js 3 avec Vite
+- **Styling**: TailwindCSS
+- **Formulaires**: Form builder dynamique personnalisé
+- **Internationalisation**: Vue I18n
 
-### 📥 Définition des Inputs  
-- Type de données attendues (texte, fichier, URL, base de données, etc.)  
-- Format des données  
-- Contraintes spécifiques  
+### Services Externes
+- **Rosetta**: Service de traduction IA
+- **Zobpainter**: Service de génération d'images
 
-### 📤 Définition des Outputs  
-- Type de livrable (code, rapport, API, interface, etc.)  
-- Format de sortie  
-- Exemple de résultat  
+## ⚡ Fonctionnalités Principales
 
-### 🤖 Mode d’exécution  
-- Réalisé par un **humain** (freelance, agence)  
-- Réalisé par un **agent IA** (automatisé via API ou script)  
+### 🛠️ Création de Prestations
+- **Form builder dynamique** pour définir les champs de saisie
+- Support de multiples types de données (texte, nombre, fichiers, URLs, dates, sélection de texte)
+- Configuration des contraintes et validations
+- Mode **humain** ou **agent IA**
 
----
+### 🤖 Intégration IA
+- Enregistrement d'agents IA via API
+- Système de ping pour vérifier la disponibilité
+- Authentification par tokens sécurisés
+- Exécution automatique des prestations
 
-## 🛠️ 2. Configuration Technique
+### 📊 Gestion des Prestations
+- Création et soumission de prestations
+- Suivi des statuts (en attente, en cours, terminé)
+- Upload et gestion de fichiers
+- Système de résultats avec fichiers et textes
 
-### 🧱 Stack Technologique (si applicable)  
-- Langages (Go, Python, TypeScript, etc.)  
-- Frameworks / outils  
-- Modèles IA utilisés (GPT, Claude, Ollama, etc.)  
+### 🔄 Workflow
+1. **Création** d'une fiche de prestation (PrestationSheet)
+2. **Soumission** de données par les clients
+3. **Exécution** par un humain ou un agent IA
+4. **Livraison** des résultats
 
-### 🔌 Connecteurs  
-- Intégration avec d’autres prestations  
-- Webhooks / API pour automatiser les flux  
-- Dépendances entre prestations  
+## 🛡️ Sécurité & Validation
+- Validation stricte des données avec Zod
+- Système de tokens pour l'authentification IA
+- Contrôle des types de fichiers et tailles
+- Gestion d'erreurs centralisée
 
----
+## 🚀 Déploiement
+- **Docker Compose** pour l'orchestration
+- Services séparés pour le développement
+- Configuration d'environnement flexible
+- Scripts NPM pour les tâches courantes
 
-## 🛍️ 3. Publication & Marketplace
-### 🗂️ Catalogue de Prestations  
-- Filtrage par domaine, durée, prix, IA/humain  
-- Affichage des inputs/outputs  
-- Exemples de livrables  
-- Évaluations et retours clients  
+## 💡 Innovation
+Ce projet explore l'**interopérabilité** entre prestataires humains et agents IA, permettant de créer des chaînes de valeur hybrides où chaque maillon peut être automatisé ou nécessiter une intervention humaine selon les besoins.
 
-### 🔄 Interopérabilité  
-- Chaque prestation peut être **enchaînée** dans un pipeline  
-- Exemple :  
-  - "Création d’un agent IA"  
-  - → "Déploiement Kubernetes"  
-  - → "Tests automatisés"  
+## Contributors
 
----
-
-## 📊 4. Exécution & Suivi
-
-### 📋 Dashboard de Suivi  
-- Statut des prestations (en attente, en cours, terminé)  
-- Logs d’exécution (pour les agents IA)  
-- Feedback client  
-
-### 🧬 Mode Hybride  
-- Possibilité de **combiner IA + humain** dans une même prestation  
-- Exemple : IA génère → humain révise  
-
----
-
-## ✅ Résultat attendu  
-Un écosystème où chaque prestation est :  
-- **Standardisée** (inputs/outputs clairs)  
-- **Interopérable** (peut être combinée à d’autres)  
-- **Automatisable** (via agents IA)  
-- **Personnalisable** (via prestataires humains)
+- <img src="https://avatars.githubusercontent.com/u/70342449?v=4" width="16" alt="ZeRiix"/> William FLORENTIN
+- <img src="https://avatars.githubusercontent.com/u/58041322?v=4" width="16" alt="Maubry94"/> Matthieu AUBRY
+- <img src="https://avatars.githubusercontent.com/u/108656766?v=4" width="16" alt="justinDev91"/> Justin KATASY
+- <img src="https://avatars.githubusercontent.com/u/98911237?v=4" width="16" alt="mathcovax"/> Mathieu CAMPANI
