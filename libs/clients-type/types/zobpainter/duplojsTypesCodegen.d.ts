@@ -36,6 +36,45 @@ type CodegenRoutes = ({
             aIAgentToken: string;
         };
     };
+}) | ({
+    method: "POST";
+    path: "/ping";
+    body: {
+        pingToken: string;
+    };
+    response: {
+        code: 401;
+        information: "wrong.token";
+        body?: undefined;
+    } | {
+        code: 200;
+        information: "ping.ok";
+        body: {
+            number: number;
+        };
+    };
+}) | ({
+    method: "POST";
+    path: "/draw-zob";
+    body: {
+        aIPrestationToken: string;
+        data: {
+            image: {
+                value: string;
+            };
+        };
+    };
+    response: {
+        code: 403;
+        information: "authorization.wrong";
+        body?: undefined;
+    } | {
+        code: 200;
+        information: "zobpaint.sucess";
+        body: {
+            aIAgentToken: string;
+        };
+    };
 });
 
 export { CodegenRoutes };
