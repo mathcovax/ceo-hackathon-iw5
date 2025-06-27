@@ -3,6 +3,7 @@ import type { SubmissionField } from "@vendors/clients-type/lebackoss/duplojsTyp
 import { match, P } from "ts-pattern";
 import { addPrestationSheetPage } from "../router";
 import { aIAgentRules, prestationSheetRules, submissionFieldRules } from "@vendors/entity-rules";
+import { randomString } from "@/utils/ramdomString";
 
 export function useCreatePrestationSheetForm() {
 	const { $pt } = addPrestationSheetPage.use();
@@ -281,6 +282,7 @@ export function useCreatePrestationSheetForm() {
 											aIAgentRules.tokenKey.max,
 											{ message: t("formMessage.maxLength", { value: aIAgentRules.tokenKey.max }) },
 										),
+									defaultValue: randomString(),
 									label: "Clef de token",
 								},
 							),
