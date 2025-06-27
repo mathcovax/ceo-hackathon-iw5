@@ -5,9 +5,41 @@ import { prestationDetailPage } from "@/domains/prestation/prestationDetailPage/
 import { prestationSheetDetailPage } from "@/domains/prestationSheet/prestationSheetDetailPage/router";
 import { addPrestationResultPage } from "@/domains/prestation/addPrestationResultPage/router";
 import { listPrestationPage } from "@/domains/prestation/prestationList/router";
+import { homePage } from "@/domains/edito/homePage/router";
 
 export const FRfr = {
 	page: {
+		[homePage.name]: {
+			hero: {
+				subtitle: "La plateforme intelligente de gestion des services professionnels",
+			},
+			features: {
+				human: {
+					title: "Expertise humaine",
+					description: "Trouvez des experts qualifiés pour vos besoins spécifiques.",
+				},
+				ai: {
+					title: "Intelligence artificielle",
+					description: "Utilisez l'IA pour automatiser et optimiser vos processus.",
+				},
+				tracking: {
+					title: "Suivi en temps réel",
+					description: "Suivez l'avancement des prestations en temps réel.",
+				},
+			},
+			quickActions: {
+				title: "Actions Rapides",
+				description: "Accédez rapidement aux fonctionnalités principales",
+				browse: {
+					title: "Consulter les Services",
+					description: "Parcourez tous les services disponibles",
+				},
+				create: {
+					title: "Créer un Service",
+					description: "Ajoutez un nouveau service à votre catalogue",
+				},
+			},
+		},
 		[notFoundPage.name]: {
 			title: "Page non trouvée",
 			description: "La page que vous recherchez n'existe pas.",
@@ -111,8 +143,7 @@ export const FRfr = {
 			},
 		},
 		footer: {
-			nav: {
-			},
+			copyright: "Fait avec ❤️ par l'équipe 18 lors du Hackathon ECITV x ESGI 2025",
 		},
 	},
 	prestation: {

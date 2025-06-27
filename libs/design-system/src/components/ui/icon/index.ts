@@ -11,6 +11,7 @@ import {
 	mdiFileDocumentOutline,
 	mdiDownload,
 	mdiWeb,
+	mdiViewList,
 } from "@mdi/js";
 
 export const iconsMapper = {
@@ -26,6 +27,7 @@ export const iconsMapper = {
 	fileDocumentOutline: mdiFileDocumentOutline,
 	download: mdiDownload,
 	web: mdiWeb,
+	viewList: mdiViewList,
 };
 
 export const iconSizeMapper = {
