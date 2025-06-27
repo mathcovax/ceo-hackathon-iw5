@@ -11,3 +11,5 @@ RUN apk add --no-cache \
 	python3 \
 	g++ \
 	make
+
+ENV npm_config_python=/usr/bin/python3
