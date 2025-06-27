@@ -90,9 +90,8 @@ const { $pt } = listPrestationSheetPage.use();
 		</div>
 
 		<template #footer>
-			<div class="flex justify-end gap-2">
+			<div class="flex md:flex-col 2xl:flex-row gap-2">
 				<RouterLink
-					class="ml-auto"
 					:to="prestationSheetDetailPage.createTo({ params: { prestationSheetId: id } })"
 				>
 					<DSPrimaryButton size="small">
@@ -101,7 +100,6 @@ const { $pt } = listPrestationSheetPage.use();
 				</RouterLink>
 
 				<RouterLink
-					class="ml-auto"
 					:to="listPrestationPage.createTo({ params: { prestationSheetId: id } })"
 				>
 					<DSPrimaryButton

@@ -10,6 +10,8 @@ const { listPrestationSheet } = useGetPage();
 
 <template>
 	<section class="space-y-6">
+		<BackButton />
+
 		<div class="space-y-2">
 			<h1 class="text-3xl font-bold">
 				{{ $pt("title") }}

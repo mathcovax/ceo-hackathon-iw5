@@ -26,7 +26,7 @@ const { $pt } = homePage.use();
 			<DSCard class="text-center">
 				<template #header>
 					<div class="mb-4 flex justify-center">
-						<div class="size-16 flex justify-center items-center bg-success/10 text-success rounded-full">
+						<div class="size-16 flex justify-center items-center bg-primary/10 text-primary rounded-full">
 							<DSIcon
 								name="account"
 								size="large"
@@ -68,7 +68,7 @@ const { $pt } = homePage.use();
 			<DSCard class="text-center">
 				<template #header>
 					<div class="mb-4 flex justify-center">
-						<div class="size-16 flex justify-center items-center bg-warning/10 text-warning rounded-full">
+						<div class="size-16 flex justify-center items-center bg-primary/10 text-primary rounded-full">
 							<DSIcon
 								name="poll"
 								size="large"
@@ -124,7 +124,7 @@ const { $pt } = homePage.use();
 				<RouterLink :to="addPrestationSheetPage">
 					<DSCard class="hover:shadow-md transition-shadow cursor-pointer group">
 						<div class="flex items-center gap-4">
-							<div class="shrink-0 size-12 flex justify-center items-center bg-success/10 text-success rounded-lg group-hover:bg-success/20 transition-colors">
+							<div class="shrink-0 size-12 flex justify-center items-center bg-primary/10 text-primary rounded-lg group-hover:bg-primary/20 transition-colors">
 								<DSIcon name="plus" />
 							</div>
 

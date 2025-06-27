@@ -90,23 +90,25 @@ function getStatusVariant(status: AllPrestation["status"]) {
 		</div>
 
 		<template #footer>
-			<RouterLink
-				class="ml-auto"
-				:to="addPrestationResultPage.createTo({ params: { prestationId: prestation.id } })"
-			>
-				<DSPrimaryButton size="small">
-					{{ $pt("seePrestation") }}
-				</DSPrimaryButton>
-			</RouterLink>
+			<div class="flex gap-2">
+				<RouterLink
+					class="ml-auto"
+					:to="addPrestationResultPage.createTo({ params: { prestationId: prestation.id } })"
+				>
+					<DSPrimaryButton size="small">
+						{{ $pt("seePrestation") }}
+					</DSPrimaryButton>
+				</RouterLink>
 
-			<RouterLink
-				class="ml-auto"
-				:to="prestationDetailPage.createTo({ params: { prestationId: prestation.id } })"
-			>
-				<DSPrimaryButton size="small">
-					{{ $pt("seeClientResult") }}
-				</DSPrimaryButton>
-			</RouterLink>
+				<RouterLink
+					class="ml-auto"
+					:to="prestationDetailPage.createTo({ params: { prestationId: prestation.id } })"
+				>
+					<DSPrimaryButton size="small">
+						{{ $pt("seeClientResult") }}
+					</DSPrimaryButton>
+				</RouterLink>
+			</div>
 		</template>
 	</DSCard>
 </template>

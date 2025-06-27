@@ -14,6 +14,8 @@ const { prestationSheet, listPrestation } = usePage();
 		class="space-y-6"
 		v-if="prestationSheet"
 	>
+		<BackButton />
+
 		<div class="space-y-2">
 			<h1 class="text-3xl font-bold">
 				{{ prestationSheet.name }}
