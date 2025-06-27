@@ -33,7 +33,8 @@
 	"libs/design-system",
     "services/lefrontoss",
 	"services/lebackoss",
-	"services/rosetta"
+	"services/rosetta",
+	"services/zobpainter"
   ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
