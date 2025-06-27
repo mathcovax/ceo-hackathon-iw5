@@ -1,5 +1,2 @@
-useBuilder()
-	.createRoute("GET", "/test")
-	.handler(
-		() => new OkHttpResponse("test", { result: "zob" }),
-	);
+import "./circle";
+import "./ping";

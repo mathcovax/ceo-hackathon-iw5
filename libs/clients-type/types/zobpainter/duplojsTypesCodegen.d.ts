@@ -6,13 +6,35 @@
 // noinspection JSUnusedGlobalSymbols
 // @ts-nocheck
 type CodegenRoutes = ({
-    method: "GET";
-    path: "/test";
+    method: "POST";
+    path: "/draw-random-circle";
+    body: {
+        aIPrestationToken: string;
+        data: {
+            image: {
+                value: string;
+            };
+            numberOfCircles: {
+                value?: number | undefined;
+            };
+            minRadius: {
+                value?: number | undefined;
+            };
+            maxRadius: {
+                value?: number | undefined;
+            };
+        };
+    };
     response: {
-        code: number;
-        information: string;
-        body: unknown;
-        ok: boolean;
+        code: 403;
+        information: "authorization.wrong";
+        body?: undefined;
+    } | {
+        code: 200;
+        information: "circlepaint.sucess";
+        body: {
+            aIAgentToken: string;
+        };
     };
 });
 

@@ -5,7 +5,6 @@ import { GoogleScrape } from "@interfaces/providers/googleScrape";
 import { LebackossAPI } from "@interfaces/providers/lebackoss";
 import { LibretranslateAPI } from "@interfaces/providers/libretranslate";
 import { resultTranslateQueue } from "@interfaces/providers/resultTranslateQueue";
-import { submissionDataRules } from "@vendors/entity-rules";
 import { match, P } from "ts-pattern";
 
 useBuilder()
@@ -26,9 +25,7 @@ useBuilder()
 						value: Translate.language,
 					}),
 					text: zod.object({
-						value: zod.string()
-							.min(submissionDataRules.textarea.min)
-							.max(submissionDataRules.textarea.max),
+						value: zod.string(),
 					}),
 				}),
 		},
