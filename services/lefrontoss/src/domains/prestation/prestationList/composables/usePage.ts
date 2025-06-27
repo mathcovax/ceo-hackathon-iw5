@@ -3,7 +3,7 @@ import type { AllPrestation } from "@vendors/clients-type/lebackoss/duplojsTypes
 import { listPrestationPage } from "../router";
 import { useGetPrestationSheet } from "@/domains/prestationSheet/composables/useGetPrestationSheet";
 
-export function useGetPage() {
+export function usePage() {
 	const router = useRouter();
 	const { params } = listPrestationPage.use();
 	const list = ref<transformCodegenBodyToHttpClientBody<AllPrestation>[]>([]);
@@ -26,7 +26,8 @@ export function useGetPage() {
 			({ body }) => {
 				list.value = body;
 			},
-		).whenRequestError(
+		)
+		.whenRequestError(
 			() => void router.back(),
 		);
 

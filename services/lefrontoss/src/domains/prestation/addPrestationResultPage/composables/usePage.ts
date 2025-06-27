@@ -2,6 +2,7 @@ import { addPrestationResultPage } from "../router";
 import { useGetPrestation } from "../../composables/useGetPrestation";
 import { useCreatePrestationResultForm } from "./useCreatePrestationResultForm";
 import { StrictFormData } from "@duplojs/http-client";
+import type { PrestationResult } from "@vendors/clients-type/lebackoss/duplojsTypesCodegen";
 
 export function usePage() {
 	const { params } = addPrestationResultPage.use();
@@ -10,6 +11,7 @@ export function usePage() {
 		computed(() => params.value.prestationId),
 		() => void router.back(),
 	);
+	const prestationResult = ref<PrestationResult | null>(null);
 
 	const {
 		CreatePrestationResultForm,
@@ -26,6 +28,29 @@ export function usePage() {
 				switchForm("completed");
 			}
 		},
+	);
+
+	watch(
+		prestation,
+		(prestation) => prestation?.status === "completed"
+			&& lebackossClient
+				.post(
+					"/find-one-prestation-result-by-prestation",
+					{
+						body: {
+							prestationId: prestation.id,
+						},
+					},
+				)
+				.whenInformation(
+					"prestationResult.found",
+					({ body }) => {
+						prestationResult.value = body;
+					},
+				)
+				.whenRequestError(
+					() => void router.back(),
+				),
 	);
 
 	function onSubmit() {
@@ -82,5 +107,6 @@ export function usePage() {
 		addPrestationResultPage,
 		CreatePrestationResultForm,
 		onSubmitCreatePrestationResultForm: onSubmit,
+		prestationResult,
 	};
 }

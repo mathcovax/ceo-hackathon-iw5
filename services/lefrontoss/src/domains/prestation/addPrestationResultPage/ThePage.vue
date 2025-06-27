@@ -8,9 +8,10 @@ import DSLabel from "@vendors/design-system/components/ui/label/DSLabel.vue";
 import DSImage from "@vendors/design-system/components/DSImage.vue";
 import DSLinkButton from "@vendors/design-system/components/ui/button/DSLinkButton.vue";
 import { formatDate } from "@vendors/design-system/lib/utils";
+import PrestationResult from "../components/PrestationResult.vue";
 
 const { $pt } = addPrestationResultPage.use();
-const { prestation, CreatePrestationResultForm, onSubmitCreatePrestationResultForm } = usePage();
+const { prestation, prestationResult, CreatePrestationResultForm, onSubmitCreatePrestationResultForm } = usePage();
 
 const imagePath = envs.VITE_IMAGES_PATH;
 
@@ -113,14 +114,23 @@ function getStatusVariant(status: AllPrestation["status"]) {
 				</div>
 			</DSCard>
 
-			<CreatePrestationResultForm @submit="onSubmitCreatePrestationResultForm">
+			<CreatePrestationResultForm
+				v-if="prestation.status !=='completed'"
+				@submit="onSubmitCreatePrestationResultForm"
+			>
 				<DSPrimaryButton
-					v-if="prestation.status !=='completed'"
+
 					type="submit"
 				>
 					{{ prestation.status ==='created' ? $t("cta.start") : $t("cta.submit") }}
 				</DSPrimaryButton>
 			</CreatePrestationResultForm>
+
+			<DSCard v-else-if="prestationResult">
+				<PrestationResult
+					:prestation-result="prestationResult"
+				/>
+			</DSCard>
 		</template>
 	</section>
 </template>

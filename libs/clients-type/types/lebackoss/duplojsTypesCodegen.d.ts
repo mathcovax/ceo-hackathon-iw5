@@ -147,11 +147,7 @@ type CodegenRoutes = ({
     });
     response: {
         code: 400;
-        information: "AIAgent.isMissing";
-        body?: undefined;
-    } | {
-        code: 400;
-        information: "AIAgent.unavaible";
+        information: "prestationSheet.createdButAIAgentUnavaible";
         body?: undefined;
     } | {
         code: 200;
@@ -261,7 +257,7 @@ type CodegenRoutes = ({
         information: "prestationSheet.notfound";
         body?: undefined;
     } | {
-        code: 503;
+        code: 422;
         information: "prestation.failedCheckAIAgentAvailability";
         body?: undefined;
     } | {

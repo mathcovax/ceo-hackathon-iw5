@@ -105,7 +105,7 @@ useBuilder()
 				)
 				.with(
 					{ result: { information: "failed-check-AIAgent-availability" } },
-					() => new ServiceUnavailableHttpResponse("prestation.failedCheckAIAgentAvailability"),
+					() => new UnprocessableEntityHttpResponse("prestation.failedCheckAIAgentAvailability"),
 				)
 				.with(
 					{ result: { information: "field-type-incompatible" } },
@@ -123,10 +123,10 @@ useBuilder()
 		},
 		[],
 		[
-			...makeResponseContract(ServiceUnavailableHttpResponse, "prestation.failedCheckAIAgentAvailability"),
 			...makeResponseContract(
 				UnprocessableEntityHttpResponse,
 				[
+					"prestation.failedCheckAIAgentAvailability",
 					"prestation.extraField",
 					"prestation.fieldTypeIncompatible",
 					"prestation.missingField",

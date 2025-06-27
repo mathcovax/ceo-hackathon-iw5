@@ -81,7 +81,7 @@ export class PrestationSheetEntity extends EntityHandler.create({
 	public static create(params: Omit<GetEntityProperties<typeof PrestationSheetEntity>, "status">) {
 		return new PrestationSheetEntity({
 			...params,
-			status: PrestationSheet.statusObjecter.unsafeCreate("disabled"),
+			status: PrestationSheet.statusObjecter.unsafeCreate("available"),
 		});
 	}
 

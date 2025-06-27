@@ -3,6 +3,8 @@ import type { transformCodegenBodyToHttpClientBody } from "@duplojs/http-client"
 import type { AllPrestation } from "@vendors/clients-type/lebackoss/duplojsTypesCodegen";
 import { addPrestationResultPage } from "../../addPrestationResultPage/router";
 import { envs } from "@/envs";
+import { prestationDetailPage } from "../../prestationDetailPage/router";
+import { listPrestationPage } from "../router";
 
 interface Props {
 	prestation: transformCodegenBodyToHttpClientBody<AllPrestation>;
@@ -15,6 +17,8 @@ const imagePath = envs.VITE_IMAGES_PATH;
 function getMode(prestation: Props["prestation"]) {
 	return "token" in prestation ? "ai" : "human";
 }
+
+const { $pt } = listPrestationPage.use();
 
 function getStatusVariant(status: AllPrestation["status"]) {
 	switch (status) {
@@ -68,7 +72,7 @@ function getStatusVariant(status: AllPrestation["status"]) {
 			:key="key"
 			class="mb-2"
 		>
-			<te v-if="field?.value && field?.type === 'file'&& isImage(field.value)">
+			<te v-if="field?.value && field?.type === 'file' && isImage(field.value)">
 				<p>{{ key }}</p>
 
 				<DSImage
@@ -91,7 +95,16 @@ function getStatusVariant(status: AllPrestation["status"]) {
 				:to="addPrestationResultPage.createTo({ params: { prestationId: prestation.id } })"
 			>
 				<DSPrimaryButton size="small">
-					{{ $t("cta.seePrestationSheet") }}
+					{{ $pt("seePrestation") }}
+				</DSPrimaryButton>
+			</RouterLink>
+
+			<RouterLink
+				class="ml-auto"
+				:to="prestationDetailPage.createTo({ params: { prestationId: prestation.id } })"
+			>
+				<DSPrimaryButton size="small">
+					{{ $pt("seeClientResult") }}
 				</DSPrimaryButton>
 			</RouterLink>
 		</template>

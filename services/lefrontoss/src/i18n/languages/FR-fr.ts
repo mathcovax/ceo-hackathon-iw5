@@ -4,6 +4,7 @@ import { listPrestationSheetPage } from "@/domains/prestationSheet/listPrestatio
 import { prestationDetailPage } from "@/domains/prestation/prestationDetailPage/router";
 import { prestationSheetDetailPage } from "@/domains/prestationSheet/prestationSheetDetailPage/router";
 import { addPrestationResultPage } from "@/domains/prestation/addPrestationResultPage/router";
+import { listPrestationPage } from "@/domains/prestation/prestationList/router";
 
 export const FRfr = {
 	page: {
@@ -15,6 +16,8 @@ export const FRfr = {
 			title: "Liste des fiches de prestations",
 			description: "Découvrez les fiches de prestations disponibles.",
 			noPrestationSheet: "Aucune fiche de prestation n'est disponible pour le moment.",
+			orderPrestation: "Commander une préstation",
+			seeAllPrestation: "Voir les préstations",
 		},
 		[prestationSheetDetailPage.name]: {
 			label: {
@@ -91,6 +94,10 @@ export const FRfr = {
 				},
 			},
 		},
+		[listPrestationPage.name]: {
+			seeClientResult: "Voir le résultat",
+			seePrestation: "Voir la préstaion",
+		},
 	},
 	layout: {
 		loader: {
@@ -148,11 +155,13 @@ export const FRfr = {
 		prestationSheet: {
 			created: "Fiche de prestation créée avec succès.",
 			updated: "Fiche de prestation mise à jour avec succès.",
+			createdButAIAgentUnavaible: "La fiche de préstation a étais créer mais le ping du service à échoué.",
 		},
 		prestation: {
 			created: "Prestation créée avec succès.",
 			start: "La prestation a été démarrée.",
 			completed: "La prestation a été complétée.",
+			failedCheckAIAgentAvailability: "Le service de cette préstation ne répond pas.",
 		},
 	},
 };

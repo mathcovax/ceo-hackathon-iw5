@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { listPrestationPage } from "./router";
 import PrestationCard from "./components/PrestationCard.vue";
-import { useGetPage } from "./composables/useGetPage";
+import { usePage } from "./composables/usePage";
 
 const { $pt } = listPrestationPage.use();
 
-const { prestationSheet, listPrestation } = useGetPage();
+const { prestationSheet, listPrestation } = usePage();
 
 </script>
 

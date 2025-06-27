@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { listPrestationPage } from "@/domains/prestation/prestationList/router";
 import { prestationSheetDetailPage } from "../../prestationSheetDetailPage/router";
+import { listPrestationSheetPage } from "../router";
 
 interface Props {
 	id: string;
@@ -12,6 +13,8 @@ interface Props {
 }
 
 defineProps<Props>();
+
+const { $pt } = listPrestationSheetPage.use();
 </script>
 
 <template>
@@ -93,7 +96,7 @@ defineProps<Props>();
 					:to="prestationSheetDetailPage.createTo({ params: { prestationSheetId: id } })"
 				>
 					<DSPrimaryButton size="small">
-						{{ $t("cta.seeMore") }}
+						{{ $pt("orderPrestation") }}
 					</DSPrimaryButton>
 				</RouterLink>
 
@@ -104,7 +107,7 @@ defineProps<Props>();
 					<DSPrimaryButton
 						size="small"
 					>
-						{{ $t("cta.seePrestation") }}
+						{{ $pt("seeAllPrestation") }}
 					</DSPrimaryButton>
 				</RouterLink>
 			</div>

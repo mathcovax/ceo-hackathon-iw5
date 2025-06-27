@@ -363,7 +363,7 @@ export function useCreatePrestationSheetForm() {
 				},
 			)
 			.whenInformation(
-				"prestationSheet.created",
+				["prestationSheet.created", "prestationSheet.createdButAIAgentUnavaible"],
 				() => {
 					reset();
 				},
